@@ -6,5 +6,9 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
+<<<<<<< HEAD
 recent_files = ['Graficas\\Pantallas.py', '..\\..\\..\\..\\.spyder-py3\\SaveFaceinterfazLoginScreen.py']
+=======
+recent_files = ['LogicaBasica\\Verificacion.py', 'LogicaBasica\\Correos.txt']
+>>>>>>> Matias
 
