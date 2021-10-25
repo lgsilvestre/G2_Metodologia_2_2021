@@ -1,6 +1,11 @@
 
-from tkinter import ttk
+from tkinter import *
 import tkinter
+
+usuario="SringVar()"
+contraseña="StringVar()"
+from LogicaBasica.Verificacion import verificarUsuario, verificarContraseña
+
 #import cv2
 
 ventana =tkinter.Tk()   #Creacion de ventana
@@ -20,7 +25,7 @@ miframe.configure(relief="solid")
 miframe.config(bd=0.5)
 miframe.create_text(50, 50, text="Inicio",font=("Arial",14))
 
-btn2 = Button(text="Ingresar",font=("Arial",14,'bold') , bg='#a8021e',fg='white') ##Boton ingresar
+btn2 = Button(text="Ingresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[Login()]) ##Boton ingresar
 btn2.place(x=680,y=450)
 btn2.config(width="12")
 btn2.configure(relief="solid")
@@ -39,6 +44,15 @@ entry2 = ttk.Entry(miframe) ## Entrada de contraseña
 entry2.place(x=75, y=260,width="600",height="40")
 miframe.create_text(125, 240, text="Contraseña",font=("Arial",14))
 
+
+
+def Login():
+    usuario=entry.get()
+    contraseña=entry2.get()
+    if(verificarUsuario(usuario)== True and verificarContraseña(contraseña) == True):
+            print("Login Succesfull")
+    else:
+            print("Usuario o contraseña incorrecta")
 
 
 

@@ -4,28 +4,34 @@ Created on Sat Oct 23 19:45:55 2021
 
 @author: Matias
 """
-archivo= open("Correos.txt")# el nombre del txt es archivo
+
+usuario="hola"
+linea="hola2"
 
 
 #funcion
 def verificarUsuario(usuario):
-    linea = archivo.readlines()#
+    archivo= open(r"C:\Users\maxim\Documents\SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Correos.txt")
+    linea = archivo.readline()#
     while len(linea)>0:
-        linea=archivo.readline()
-        if(usuario==linea):
+        linea=linea.rstrip()
+        if(usuario == linea):
             return True
+        linea=archivo.readline()
     return False   
         
 
 def verificarContraseña(contraseña):
-    linea = archivo.readlines()#
+    archivo= open(r"C:\Users\maxim\Documents\SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Correos.txt")
+    linea = archivo.readline()#
     while len(linea)>0:
-        linea=archivo.readline()
-        if(contraseña==linea):
+        linea=linea.rstrip()
+        if(contraseña == linea):
             return True
+        linea=archivo.readline()
     return False
 
-archivo.close()# cerrar el archivo
+# cerrar el archivo
 
 #para importar las funciones a otro fichero se utiliza " from funciones import verificarUsuario, verificarContraseña "
 
