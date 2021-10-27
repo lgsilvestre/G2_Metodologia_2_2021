@@ -1,9 +1,7 @@
 
-from tkinter import *
+from tkinter import ttk, Button
 import tkinter
 
-usuario="SringVar()"
-contraseña="StringVar()"
 from LogicaBasica.Verificacion import verificarUsuario, verificarContraseña
 
 #import cv2
