@@ -19,7 +19,7 @@ def reconocimientoA():
         cv2.imshow('Rostro',frame) #mostramos el video en pantalla
         if cv2.waitKey(1) == 27: # cuando se presiona " escape" se para el video
             break
-    cv2.imwrithe('Rostro.jpg',frame) #guardamos la ultima captura de video como imagen
+    cv2.imwrite('Rostro.jpg',frame) #guardamos la ultima captura de video como imagen
     cap.release() # cerramos se tiene que cambiar por el boton 
     cv2.destroyAllWindows() #cerrar la ventana de la camara pero hay que cambiarlo al boton que apaga la camara
     def dibujo(img, lista_resultados):
