@@ -6,8 +6,16 @@ Created on Sat Oct 23 19:45:55 2021
 """
 
 #funcion
+import os
+
 def verificarUsuario(usuario):
-    archivo= open(r"C:\Users\maxim\Documents\SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Correos.txt")
+    s = os.getcwd()
+    print(s)
+    new_s = s.replace('Graficas','LogicaBasica\Correos.txt')
+    print(new_s)
+    print("**********************************")
+    
+    archivo= open(new_s)
     linea = archivo.readline()#
     while len(linea)>0:
         linea=linea.rstrip()
@@ -18,7 +26,12 @@ def verificarUsuario(usuario):
         
 
 def verificarContraseña(contraseña):
-    archivo= open(r"C:\Users\maxim\Documents\SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Contraseñas.txt")
+    s = os.getcwd()
+    print(s)
+    new_s = s.replace('Graficas','LogicaBasica\Contraseñas.txt')
+    print(new_s)
+    print("**********************************")
+    archivo= open(new_s)
     linea = archivo.readline()#
     while len(linea)>0:
         linea=linea.rstrip()
@@ -44,4 +57,3 @@ def verificarContraseña(contraseña):
 #funciona mas directo con el for
 #for linea in archivo:
 #    print(linea, end=' ')
-
