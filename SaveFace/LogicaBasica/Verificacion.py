@@ -8,37 +8,20 @@ Created on Sat Oct 23 19:45:55 2021
 #funcion
 import os
 
-def verificarUsuario(usuario):
+def verificarUsuario(usuario, contraseña):
     s = os.getcwd()
-    print(s)
-    new_s = s.replace('Graficas','LogicaBasica\Correos.txt')
-    print(new_s)
-    print("**********************************")
-    
+    new_s = s.replace('Graficas','LogicaBasica/usuarios.txt')    
     archivo= open(new_s)
     linea = archivo.readline()#
     while len(linea)>0:
         linea=linea.rstrip()
-        if(usuario == linea):
-            return True
+        Array=linea.split()
+        if(usuario == Array[0]):
+            if(contraseña == Array[1]):
+                return True
         linea=archivo.readline()
     return False   
         
-
-def verificarContraseña(contraseña):
-    s = os.getcwd()
-    print(s)
-    new_s = s.replace('Graficas','LogicaBasica\Contraseñas.txt')
-    print(new_s)
-    print("**********************************")
-    archivo= open(new_s)
-    linea = archivo.readline()#
-    while len(linea)>0:
-        linea=linea.rstrip()
-        if(contraseña == linea):
-            return True
-        linea=archivo.readline()
-    return False
 
 # cerrar el archivo
 
