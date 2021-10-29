@@ -15,14 +15,17 @@ def show_frame(frame):
     frametop=tkinter.Canvas(ventana) ## Frametop corresponde la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
-    frametop.config(bg="#046b17") 
+    frametop.config(bg="#23442B") 
     frametop.create_text(100, 40, fill="white",text="SaveFace",font=("Arial",24,'bold')) 
 
     
 ventana =tkinter.Tk()   #Creacion de ventana 
 ventana.title("SaveFace") #Titulo de ventana
 ventana.config(bg="white") #Fondo blanco
-ventana.geometry('1500x720')  #
+ventana.state('zoomed')
+ventana.resizable(False, False)
+ventana.geometry('1200x780')  #
+
 
 
 #---------- Declaracion de frames a usar -------#
@@ -30,9 +33,10 @@ framelogin = tk.Frame(ventana,bg="white")
 framelogin.config(height=1900,width=1900)
 framecam = tk.Frame(ventana,bg="white")
 framecam.config(height=1900,width=1900)
-frame3 = tk.Frame(ventana)
+frameforg = tk.Frame(ventana,bg="white")
+frameforg.config(height=1900,width=1900)
 
-for frame in (framelogin, framecam, frame3): #For para mostrar los frames
+for frame in (framelogin, framecam, frameforg): #For para mostrar los frames
     frame.grid(row=0,column=0,sticky='nsew')
     
     
@@ -47,28 +51,62 @@ miframe.config(width=740,height=620)
 miframe.config(bg="white")
 miframe.configure(relief="solid")
 miframe.config(bd=0.5)
-miframe.create_text(50, 50, text="Inicio",font=("Arial",14))
+miframe.create_text(50, 50, text="Inicio",font=("Sitka Text",14))
 miframe.place(x=400,y=100)
-        
+      
 btn2 = Button(miframe,text="Ingresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[Login()])
-btn2.place(x=280,y=400)
+btn2.place(x=280,y=350)
 btn2.config(width="12")
 btn2.configure(relief="solid")
 btn2.config(bd=0.5)
         
-btn3 = Button(miframe,text="Crear Cuenta",font=("Arial",14,'bold') , bg='#858282',fg='white') ## Boton crear cuenta
+
+btncontra = Button(miframe,text="Olvidó su contraseña",font=("Sitka Text",14,'bold') , bg='white',fg='darkcyan',command=lambda:[Olvide()])
+btncontra.place(x=260,y=460)
+btncontra.config(width="16")
+btncontra.configure(relief="solid")
+btncontra.config(bd=0)
+
+
+
+btn3 = Button(miframe,text="Crear Cuenta",font=("Arial",14,'bold') , bg='#858282',fg='white',command=lambda:[Olvide()]) ## Boton crear cuenta
 btn3.place(x=280,y=550)
 btn3.config(width="12")
 btn3.configure(relief="solid")
 btn3.config(bd=0.5)
-miframe.create_text(155, 110, text="Correo Electrónico",font=("Arial",14)) ##Se crea un texto desde miframe
+miframe.create_text(155, 110, text="Correo Electrónico",font=("Sitka Text",14)) ##Se crea un texto desde miframe
 entry = ttk.Entry(miframe) ## Entrada de correo
 entry.place(x=75, y=130,width="600",height="40")
 
 entry2 = ttk.Entry(miframe) ## Entrada de contraseña
 entry2.place(x=75, y=260,width="600",height="40")
-miframe.create_text(125, 240, text="Contraseña",font=("Arial",14))
+
+miframe.create_text(125, 240, text="Contraseña",font=("Sitka Text",14))
+
+miframe.create_line(20,80,730,80,fill="darkcyan")
+miframe.create_line(20,510,730,510,fill="darkcyan")
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++# 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++# 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++# 
+#+++++++++++++++++++++FRAME OLVIDE CONTRASEÑA CREAR CUENTA++++++++++++++++++++++# 
+
+
+anuncio=tkinter.Canvas(frameforg)
+anuncio.config(width=1240,height=620)
+anuncio.config(bg="white")
+anuncio.configure(relief="solid")
+anuncio.config(bd=0.5)
+anuncio.create_text(620, 150, text="Para crear una cuenta o si olvidó su contraseña",font=("Arial",36,'bold'))
+anuncio.create_text(620, 200, text="envie un mensaje a SaveFace@gmail.com ",font=("Arial",36,'bold'))
+anuncio.create_text(620, 250, text="con los datos de correo y contraseña ",font=("Arial",36,'bold'))
+anuncio.place(x=150,y=100)
+boto= Button(anuncio,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[Regreso()])
+boto.place(x=500,y=400)
+boto.config(width="12")
+boto.configure(relief="solid")
+boto.config(bd=0.5)
+
+
 #+++++++++++++++FRAME CAM+++++++++++++++++++++++++++++++#  
 miframe1=tkinter.Canvas(framecam)
 miframe1.config(width=840,height=420)
@@ -124,7 +162,6 @@ def switch():
      
     # Determine is on or off
     if is_on:
-        print("buton rec",btnrec)
         on_button.config(image = off)
         my_label.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
         is_on = False
@@ -135,6 +172,7 @@ def switch():
         is_on = True
         if(triggerC==True):
             reconocimientoC(nombrerostro)
+        
         if(triggerB==True):
             reconocimientoB(nombrerostro)
         if(triggerA==True):
@@ -159,7 +197,12 @@ def Login():
         show_frame(framecam)
     else:
         print("Usuario o contraseña incorrecta")
+        
+def Regreso():
+        show_frame(framelogin)
 
+def Olvide():
+        show_frame(frameforg)
 def ReconocimientoC(variableRec):
     if variableRec==False:
         global nombrerostro
@@ -204,7 +247,7 @@ show_frame(framelogin)     ## Mostramos el frame default (login)
 frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
 frametop.config(width=2000,height=75) 
 frametop.place(x=0,y=0) 
-frametop.config(bg="#046b17") 
+frametop.config(bg="#23442B") 
 frametop.create_text(100, 40, fill="white",text="SaveFace",font=("Arial",24,'bold')) 
 ventana.mainloop()
 #l-l-l-l-l-l-l-l-l-l-l-l-l-l-#     
