@@ -3,11 +3,26 @@ from tkinter import ttk, Button
 import tkinter
 
 from LogicaBasica.Verificacion import verificarUsuario, verificarContraseña
-
+from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
 #import cv2
 
 
 from tkinter import *
+from PIL import Image, ImageTk #pip install Pillow
+import cv2 #pip install opencv-contrib-python
+import sys
+from tkinter import *
+import tkinter as tk
+from tkinter import ttk, Button
+import tkinter
+from matplotlib import pyplot
+from matplotlib.patches import Rectangle
+from matplotlib.patches import Circle 
+from mtcnn.mtcnn import MTCNN
+#import numpy as np
+import os
+#import imutils
+import cv2
 import tkinter as tk
 from tkinter import ttk, Button
 import tkinter
@@ -98,12 +113,24 @@ my_label = tk.Label(framecam, text = "Cámara apagada",bg="white",fg = "black",f
 my_label.place(x=750,y=550)
 # Define Our Images
 # Create A Button
-
+triggerC=False;
+triggerB=False;
+btnrec = Button(framecam,text="Reconocimiento C",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[ReconocimientoC(triggerC)]) ## Boton crear cuenta
+btnrec.place(x=1000,y=550)
+btnrec.config(width="15")
+btnrec.configure(relief="solid")
+btnrec.config(bd=0.5)
+btnrec1 = Button(framecam,text="Reconocimiento B",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[ReconocimientoB(triggerB)]) ## Boton crear cuenta
+btnrec1.place(x=1000,y=450)
+btnrec1.config(width="15")
+btnrec1.configure(relief="solid")
+btnrec1.config(bd=0.5)
 def switch():
     global is_on
      
     # Determine is on or off
     if is_on:
+        print("buton rec",btnrec)
         on_button.config(image = off)
         my_label.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
         is_on = False
@@ -112,7 +139,12 @@ def switch():
         on_button.config(image = on)
         my_label.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
         is_on = True
- 
+        if(triggerC==True):
+            reconocimientoC("Prueba C")
+        if(triggerB==True):
+            reconocimientoB("Prueba B")
+
+    
 on = PhotoImage(file = "on.png")
 off = PhotoImage(file = "off.png")
 on_button = Button(framecam, image = off, bd = 0,command = switch)
@@ -132,13 +164,27 @@ def Login():
     else:
         print("Usuario o contraseña incorrecta")
 
-  
+def ReconocimientoC(variableRec):
+    if variableRec==False:
+        global triggerC
+        global triggerB
+        triggerB=False
+        triggerC=True
+        return True
+
+def ReconocimientoB(variableRec):
+    if variableRec==False:
+        global triggerB
+        global triggerC
+        triggerC=False
+        triggerB=True
+        return True    
 ##########################
 
 
         
 #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-show_frame(framecam)     ## Mostramos el frame default (login)
+show_frame(framelogin)     ## Mostramos el frame default (login)
 frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
 frametop.config(width=2000,height=75) 
 frametop.place(x=0,y=0) 
