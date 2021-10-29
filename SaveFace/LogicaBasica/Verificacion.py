@@ -7,7 +7,7 @@ Created on Sat Oct 23 19:45:55 2021
 
 #funcion
 def verificarUsuario(usuario):
-    archivo= open(r"C:\Users\Matias\Documents\Repositorios\Proyecto Metodologia SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Correos.txt")
+    archivo= open(r"C:\Users\maxim\Documents\SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Correos.txt")
     linea = archivo.readline()#
     while len(linea)>0:
         linea=linea.rstrip()
@@ -18,7 +18,7 @@ def verificarUsuario(usuario):
         
 
 def verificarContraseña(contraseña):
-    archivo= open(r"C:\Users\Matias\Documents\Repositorios\Proyecto Metodologia SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Contraseñas.txt")
+    archivo= open(r"C:\Users\maxim\Documents\SaveFace\G2_Metodologia_2_2021\SaveFace\LogicaBasica\Contraseñas.txt")
     linea = archivo.readline()#
     while len(linea)>0:
         linea=linea.rstrip()

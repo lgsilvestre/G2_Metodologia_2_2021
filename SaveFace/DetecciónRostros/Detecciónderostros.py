@@ -4,6 +4,14 @@ Created on Sat Oct 23 19:47:40 2021
 
 @author: Matias
 """
+from tkinter import *
+from PIL import Image, ImageTk #pip install Pillow
+import cv2 #pip install opencv-contrib-python
+import sys
+from tkinter import *
+import tkinter as tk
+from tkinter import ttk, Button
+import tkinter
 from matplotlib import pyplot
 from matplotlib.patches import Rectangle
 from matplotlib.patches import Circle 
@@ -11,20 +19,21 @@ from mtcnn.mtcnn import MTCNN
 #import numpy as np
 import os
 #import imutils
-import cv2
+
 
 def reconocimientoA():
     #captura de rostro
     cap = cv2.VideoCapture(0) #seleccion de camara
-    while(True):
-        ret,frame=cap.read() # leemos el video
-        cv2.imshow('Rostro',frame) #mostramos el video en pantalla
-        if cv2.waitKey(1) == 27: # cuando se presiona " escape" se para el video
-            break
-    cv2.imwrite('Rostro.jpg',frame) #guardamos la ultima captura de video como imagen
+    while(True): 
+        ret,frame=cap.read() # leemos el video 
+        cv2.imshow('Rostro',frame) #mostramos el video en pantalla 
+        if cv2.waitKey(1) == 27: # cuando se presiona " escape" se para el video 
+            break 
+    cv2.imwrite('Rostro.jpg',frame)
     cap.release() # cerramos se tiene que cambiar por el boton 
     cv2.destroyAllWindows() #cerrar la ventana de la camara pero hay que cambiarlo al boton que apaga la camara
-    
+
+          
     def dibujo(img, lista_resultados):
         print(caras)
         # leemos la imagen con la libreria matplotlib
@@ -44,7 +53,7 @@ def reconocimientoA():
             #ahora vamos a dibujar los ojos, nariz y boca puntos clave del rostro
             for puntos, value in result['keypoints'].items():
                 #creamos los circulos
-                dot=Circle(value, radius= 4, color='green')
+                dot= Circle(value, radius= 4, color='green')
                 ax.add_patch(dot)
 #######################para exportar#################################################################
         #ahora vamos a exportar los pixeles que pertenecen a los rostros con el fin de usarlos en otro sistema
@@ -76,8 +85,9 @@ def reconocimientoA():
     
 #reconocimientoA()
 
-def reconocimientoB(nombrePersona):
-    direccion= 'C:/Users/Matias/Documents/Repositorios/Proyecto Metodologia SaveFace/G2_Metodologia_2_2021/SaveFace/Guardar informacion de rostros'
+def reconocimientoB(nombrePersona): ## podriamos pedirselo al usuario examinandolo (?)
+   
+    direccion= 'C:/Users/maxim/Documents/SaveFace/G2_Metodologia_2_2021/SaveFace/Guardar informacion de rostros'
     nombreCara= nombrePersona
     direccionFinal = direccion + '/' + nombreCara
     if not os.path.exists(direccionFinal):
@@ -100,7 +110,7 @@ def reconocimientoB(nombrePersona):
         if k == 27: 
             break
     
-    cap.release()
+    cap.release()   
     cv2.destroyAllWindows()
 
 #reconocimientoB()# hay que pasar el nombre de la persona a la cual se le identifico el rostro
@@ -114,29 +124,29 @@ def reconocimientoC(NombreUsuario):
          cv2.imshow('Deteccion Facial',frame)
          if cv2.waitKey(1) == 27:
              break
-         usuario_img = NombreUsuario
-         cv2.imwrite(usuario_img + ".jpg",frame)
-         cap.release()
-         cv2.destroyAllWindows()
+     usuario_img = NombreUsuario
+     cv2.imwrite(usuario_img + ".jpg",frame)
+     cap.release()
+     cv2.destroyAllWindows()
          #nomreUsuario.delete(0, END) # se ocupa para limpiar la variable, posible utilizacion en pantalla.py
          
-         def Identificar_cara(img, lista_resultados):
-             data = pyplot.imread(img)
-             for i in range (len(lista_resultados)):
-                 x1, y1, ancho, alto = lista_resultados[i]['box']
-                 x2, y2 = x1 + ancho, y1 + alto
-                 pyplot.subplot(1, len(lista_resultados), i+1)
-                 pyplot.axis('off')
-                 cara_reg = data[y1:y2, x1:x2]
-                 cara_reg = cv2.resize(cara_reg, (150,150), interpolation = cv2.INTER_CUBIC)
-                 cv2.imwrite(usuario_img+".jpg",cara_reg)
-                 pyplot.imshow(data[y1:y2, x1:x2])
-             pyplot.show()
-         img= usuario_img+".jpg"
-         pixeles= pyplot.imread(img)
-         detector= MTCNN()
-         caras= detector.detect_faces(pixeles)
-         Identificar_cara(img,caras)
+     def Identificar_cara(img, lista_resultados):
+        data = pyplot.imread(img)
+        for i in range (len(lista_resultados)):
+            x1, y1, ancho, alto = lista_resultados[i]['box']
+            x2, y2 = x1 + ancho, y1 + alto
+            pyplot.subplot(1, len(lista_resultados), i+1)
+            pyplot.axis('off')
+            cara_reg = data[y1:y2, x1:x2]
+            cara_reg = cv2.resize(cara_reg, (150,200), interpolation = cv2.INTER_CUBIC)
+            cv2.imwrite(usuario_img+".jpg",cara_reg)
+            pyplot.imshow(data[y1:y2, x1:x2])
+        pyplot.show()
+     img= usuario_img+".jpg"
+     pixeles= pyplot.imread(img)
+     detector= MTCNN()
+     caras= detector.detect_faces(pixeles)
+     Identificar_cara(img,caras)
 #reconocimientoC("matias")
          
 #face_cascade= cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
