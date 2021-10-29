@@ -1,32 +1,13 @@
-import tkinter as tk
-from tkinter import ttk, Button
-import tkinter
 
-from LogicaBasica.Verificacion import verificarUsuario, verificarContraseña
+from LogicaBasica.Verificacion import verificarUsuario
 from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
-#import cv2
-
-
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
 from tkinter.ttk import Label
-import cv2 #pip install opencv-contrib-python
-import sys
-from tkinter import *
 import tkinter as tk
 from tkinter import ttk, Button
 import tkinter
-from matplotlib import pyplot
-from matplotlib.patches import Rectangle
-from matplotlib.patches import Circle 
-from mtcnn.mtcnn import MTCNN
-#import numpy as np
-import os
-#import imutils
-import cv2
-import tkinter as tk
-from tkinter import ttk, Button
-import tkinter
+
 is_on = False
 
 def show_frame(frame):
@@ -173,7 +154,7 @@ on_button.place(x=750,y=600)
 def Login():
     usuario=entry.get()
     contraseña=entry2.get()
-    if(verificarUsuario(usuario)== True and verificarContraseña(contraseña) == True):
+    if(verificarUsuario(usuario,contraseña)== True):
         print("Login Succesfull")
         show_frame(framecam)
     else:
