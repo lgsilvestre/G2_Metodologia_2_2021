@@ -9,6 +9,7 @@ from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimiento
 
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
+from tkinter.ttk import Label
 import cv2 #pip install opencv-contrib-python
 import sys
 from tkinter import *
@@ -103,7 +104,7 @@ btncam.configure(relief="solid")
 btncam.config(bd=0.5)
 
 btncam1 = Button(framecam,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
-btncam1.place(x=1000,y=350)
+btncam1.place(x=1000,y=250)
 btncam1.config(width="12")
 btncam1.configure(relief="solid")
 btncam1.config(bd=0.5)
@@ -113,6 +114,7 @@ my_label = tk.Label(framecam, text = "Cámara apagada",bg="white",fg = "black",f
 my_label.place(x=750,y=550)
 # Define Our Images
 # Create A Button
+triggerA=False;
 triggerC=False;
 triggerB=False;
 btnrec = Button(framecam,text="Reconocimiento C",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[ReconocimientoC(triggerC)]) ## Boton crear cuenta
@@ -125,6 +127,17 @@ btnrec1.place(x=1000,y=450)
 btnrec1.config(width="15")
 btnrec1.configure(relief="solid")
 btnrec1.config(bd=0.5)
+btnrec2 = Button(framecam,text="Reconocimiento A",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[ReconocimientoA(triggerA)]) ## Boton crear cuenta
+btnrec2.place(x=1000,y=350)
+btnrec2.config(width="15")
+btnrec2.configure(relief="solid")
+btnrec2.config(bd=0.5)
+
+labelnombre= Label(framecam,text="Introduzca el nombre del rostro en pantalla",font=("Arial",10,'bold'))
+labelnombre.place(x=1000,y=600)
+entryNombre = ttk.Entry(framecam) ## Entrada de nombre
+entryNombre.place(x=1000, y=620,width="200",height="40")
+nombrerostro="Hola"
 def switch():
     global is_on
      
@@ -140,9 +153,11 @@ def switch():
         my_label.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
         is_on = True
         if(triggerC==True):
-            reconocimientoC("Prueba C")
+            reconocimientoC(nombrerostro)
         if(triggerB==True):
-            reconocimientoB("Prueba B")
+            reconocimientoB(nombrerostro)
+        if(triggerA==True):
+            reconocimientoA(nombrerostro)
 
     
 on = PhotoImage(file = "on.png")
@@ -166,19 +181,39 @@ def Login():
 
 def ReconocimientoC(variableRec):
     if variableRec==False:
+        global nombrerostro
+        nombrerostro=entryNombre.get()
+        global triggerA
         global triggerC
         global triggerB
+        triggerA=False
         triggerB=False
         triggerC=True
         return True
 
 def ReconocimientoB(variableRec):
     if variableRec==False:
+        global nombrerostro
+        nombrerostro=entryNombre.get()
+        global triggerA
         global triggerB
         global triggerC
+        triggerA=False
         triggerC=False
         triggerB=True
         return True    
+    
+def ReconocimientoA(variableRec):
+    if variableRec==False:
+        global nombrerostro
+        nombrerostro=entryNombre.get()
+        global triggerA
+        global triggerB
+        global triggerC
+        triggerC=False
+        triggerB=False
+        triggerA=True
+        return True  
 ##########################
 
 

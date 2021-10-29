@@ -4,6 +4,7 @@ Created on Sat Oct 23 19:47:40 2021
 
 @author: Matias
 """
+import mediapipe as mp
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
 import cv2 #pip install opencv-contrib-python
@@ -23,69 +24,40 @@ from os import remove
 from os import path
 
 
-def reconocimientoA():
-    #captura de rostro
-    cap = cv2.VideoCapture(0) #seleccion de camara
-    while(True): 
-        ret,frame=cap.read() # leemos el video 
-        cv2.imshow('Rostro',frame) #mostramos el video en pantalla 
-        if cv2.waitKey(1) == 27: # cuando se presiona " escape" se para el video 
+def reconocimientoA(nombrePersona): 
+    s = os.getcwd()
+    print(s)
+    new_s = s.replace('\\','/')
+    new_s = s.replace('Graficas','/Guardar informacion de rostros')
+    print(new_s)
+    print("**********************************")
+    ##direccion= 'C:/Users/maxim/Documents/SaveFace/G2_Metodologia_2_2021/SaveFace/Guardar informacion de rostros'
+    direccion = new_s
+    nombreCara= nombrePersona
+    direccionFinal = direccion + '/' + nombreCara
+    if not os.path.exists(direccionFinal):
+        print('Carpeta creada: ', direccionFinal)
+        os.makedirs(direccionFinal) 
+    face_detection= mp.solutions.face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5) 
+    cap= cv2.VideoCapture(0)
+    while True: 
+     ret, im= cap.read()
+     if not ret: 
+          break 
+     im2=cv2.cvtColor(im, cv2.COLOR_BGR2RGB) 
+     results= face_detection.process(im2)       
+     if results.detections: 
+            for detection in results.detections: 
+                mp.solutions.drawing_utils.draw_detection(im, detection) 
+                cv2.imwrite(direccionFinal + '/rostro_{}.jpg'.format(nombreCara),im) 
+     cv2.imshow('imagen',im) 
+     if cv2.waitKey(1) == 27: 
             break 
-    cv2.imwrite('Rostro.jpg',frame)
-    cap.release() # cerramos se tiene que cambiar por el boton 
-    cv2.destroyAllWindows() #cerrar la ventana de la camara pero hay que cambiarlo al boton que apaga la camara
-
-          
-    def dibujo(img, lista_resultados):
-        print(caras)
-        # leemos la imagen con la libreria matplotlib
-        imagen= pyplot.imread(img)
-        #Ploteamos la imagen
-        pyplot.imshow(imagen)
-        #obtenemos los ejes polares para dibujar
-        ax= pyplot.gca()
-        #ploteamos los rectangulos con las coordenadas que nos entrega 'box'
-        for result in lista_resultados:
-            #obtenemos las coordenadas
-            x, y, ancho, alto= result['box']
-            #creamos el rectangulo
-            rect=Rectangle((x,y), ancho, alto, fill= False, color= 'green')
-            #Dibujamos la caja
-            ax.add_patch(rect)
-            #ahora vamos a dibujar los ojos, nariz y boca puntos clave del rostro
-            for puntos, value in result['keypoints'].items():
-                #creamos los circulos
-                dot= Circle(value, radius= 4, color='green')
-                ax.add_patch(dot)
-#######################para exportar#################################################################
-        #ahora vamos a exportar los pixeles que pertenecen a los rostros con el fin de usarlos en otro sistema
-        for i in range(len(lista_resultados)):
-            #obtenemos las coordenadas
-            x1, y1, ancho1, alto1 = lista_resultados[i]['box']
-            x2, y2 = x1 + ancho1, y1 + alto1
-            #definimos el subplot
-            pyplot.subplot(1, len(lista_resultados),i+1)
-            pyplot.axis('off')
-            #ploteamos las caras
-            pyplot.imshow(imagen[y1:y2, x1:x2])
-#####################################################################################################
-        #ploteamos la imagen con el dibujo del rectangulo
-        pyplot.show()
-   #leemos la imagen con la libraria matplotlib
-    img = 'Rostro.jpg'
-    pixeles= pyplot.imread(img)
-    
-    #creamos el detector usando los valores predeterminados
-    detector = MTCNN()
-    
-    #detectamos las caras en la imagen
-    caras= detector.detect_faces(pixeles)
-    
-    #llama la funcion que ya se creo para dibujar los rectangulos
-    dibujo(img, caras)
+    cap.release() 
+    cv2.destroyAllWindows()
 
     
-#reconocimientoA()
+#reconocimientoA("Maxito")
 
 def reconocimientoB(nombrePersona): ## podriamos pedirselo al usuario examinandolo (?)
     
