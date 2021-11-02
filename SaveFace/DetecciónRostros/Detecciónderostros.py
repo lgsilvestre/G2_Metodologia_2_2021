@@ -25,12 +25,10 @@ from os import path
 
 
 def reconocimientoA(nombrePersona): 
-    s = os.getcwd()
-    print(s)
+    s = os.getcwd() ##Con esto obtenemos el directorio de la maquina 
     new_s = s.replace('\\','/')
-    new_s = s.replace('Graficas','/Guardar informacion de rostros')
-    print(new_s)
-    print("**********************************")
+    new_s = s.replace('Main','Guardar informacion de rostros')
+
     ##direccion= 'C:/Users/maxim/Documents/SaveFace/G2_Metodologia_2_2021/SaveFace/Guardar informacion de rostros'
     direccion = new_s
     nombreCara= nombrePersona
@@ -57,16 +55,15 @@ def reconocimientoA(nombrePersona):
     cv2.destroyAllWindows()
 
     
-#reconocimientoA("Maxito")
+##reconocimientoA("Maxito")
 
 def reconocimientoB(nombrePersona): ## podriamos pedirselo al usuario examinandolo (?)
     
     s = os.getcwd()
-    print(s)
+
     new_s = s.replace('\\','/')
-    new_s = s.replace('Graficas','/Guardar informacion de rostros')
-    print(new_s)
-    print("**********************************")
+    new_s = s.replace('Main','Guardar informacion de rostros')
+
     ##direccion= 'C:/Users/maxim/Documents/SaveFace/G2_Metodologia_2_2021/SaveFace/Guardar informacion de rostros'
     direccion = new_s
     nombreCara= nombrePersona
@@ -100,11 +97,10 @@ def reconocimientoB(nombrePersona): ## podriamos pedirselo al usuario examinando
 def reconocimientoC(nombrePersona):
     #captura de rostro
      s = os.getcwd()
-     print(s)
+
      new_s = s.replace('\\','/')
-     new_s = s.replace('Graficas','/Guardar informacion de rostros')
-     print(new_s)
-     print("**********************************")
+     new_s = s.replace('Main','Guardar informacion de rostros')
+
      direccion = new_s
      nombreCara= nombrePersona
      direccionFinal = direccion + '/' + nombreCara
@@ -144,32 +140,14 @@ def reconocimientoC(nombrePersona):
      caras= detector.detect_faces(pixeles)
      Identificar_cara(img,caras)
      s = os.getcwd()
-     print("*******************************************************")
-     print(s)
      new_s = s.replace('\\','/')
-     print(new_s)
      new_s = s.replace('\\','/')
      new_s= (new_s+'/{}.jpg'.format(nombreCara))
      
-     print(new_s)
-     print("**********************************")
-     print(new_s)
+
      if path.exists(new_s):
-         print("entre wiii")
+    
          remove(new_s)
+         
 #reconocimientoC("matias")
          
-#face_cascade= cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-#cap = cv2.VideoCapture(0)
-#while True:
-#        _, img=cap.read()
-#        gray= cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#        faces= face_cascade.detectMultiScale(gray, 1.1, 4)
-#        for(x, y, w, h)in faces:
-#            cv2.rectangle(img, (x, y),(x+w, y+h), (255, 0, 0), 2)
-#        cv2.imshow('img', img)
-#        k= cv2.waitKey(30)
-#        if k == 27:
-#            break
-#cap.release()
-#cv2.destroyAllWindows()# para cerrar todas las ventanas de camara
