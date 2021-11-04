@@ -10,7 +10,7 @@ import os
 
 def verificarUsuario(usuario, contraseña):
     s = os.getcwd()
-    new_s = s.replace('Graficas','LogicaBasica/usuarios.txt')    
+    new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
     archivo= open(new_s)
     linea = archivo.readline()#
     while len(linea)>0:
