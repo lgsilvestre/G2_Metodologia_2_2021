@@ -20,8 +20,10 @@ def verificarUsuario(usuario, contraseña):
             if(contraseña == Array[1]):
                 if('Admin'== Array[2]):
                     return 'Admin'
+                elif('User' == Array[2]):
+                    return 'User'
         linea=archivo.readline()
-    return 'User'   
+    return 'Error'   
         
 
 # cerrar el archivo
