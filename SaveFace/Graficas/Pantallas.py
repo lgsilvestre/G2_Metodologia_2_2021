@@ -214,11 +214,15 @@ def Pantalla():
     def Login():
         usuario=entry.get()
         contraseña=entry2.get()
-        if(verificarUsuario(usuario,contraseña)== True):
-            print("Login Succesfull")
+        resultado=verificarUsuario(usuario,contraseña)
+        if(resultado == 'Admin'):
+            print("Ingreso como Admin")
+            show_frame(framecam)
+        elif(resultado =='User'):
+            print("Ingreso como User")
             show_frame(framecam)
         else:
-            print("Usuario o contraseña incorrecta")
+            print("Error en usuario o contraseña")
             
     def Regreso():
             show_frame(framelogin)
