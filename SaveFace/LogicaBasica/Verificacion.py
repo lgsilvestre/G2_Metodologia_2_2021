@@ -18,9 +18,12 @@ def verificarUsuario(usuario, contraseña):
         Array=linea.split()
         if(usuario == Array[0]):
             if(contraseña == Array[1]):
-                return True
+                if('Admin'== Array[2]):
+                    return 'Admin'
+                elif('User' == Array[2]):
+                    return 'User'
         linea=archivo.readline()
-    return False   
+    return 'Error'   
         
 
 # cerrar el archivo

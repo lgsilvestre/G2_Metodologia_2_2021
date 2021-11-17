@@ -11,6 +11,9 @@ import os
 from os import remove
 from os import path
 
+
+
+
 global is_on
 is_on=False
 global triggerA,triggerC,triggerB
@@ -49,14 +52,51 @@ def Pantalla():
     framecam.config(height=1900,width=1900)
     frameforg = tk.Frame(ventana,bg="white")
     frameforg.config(height=1900,width=1900)
+    frameAdmin = tk.Frame(ventana,bg="white")
+    frameAdmin.config(height=1900,width=1900)
     
-    for frame in (framelogin, framecam, frameforg): #For para mostrar los frames
+    for frame in (framelogin, framecam, frameforg,frameAdmin): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
         
         
     #-----------------------------------------------#
         
-        
+    #****************FRAME ADMIN*********************************
+    Admin = tkinter.Canvas(frameAdmin)
+    Admin.config(width=1425,height=720)
+    Admin.config(bg="white")
+    Admin.configure(relief="solid")
+    Admin.place(x=50,y=100)
+    
+    Admin.create_text(740, 75, text="Administrar",font=("Arial",36,'bold'))
+    RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()])
+    RegresarPrincipal.place(x=650,y=625)
+    RegresarPrincipal.config(width="12")
+    RegresarPrincipal.configure(relief="solid")
+    RegresarPrincipal.config(bd=0.5)
+    
+    
+    RegresarPrincipal= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[AñadirU()])
+    RegresarPrincipal.place(x=1100,y=175)
+    RegresarPrincipal.config(width="14")
+    RegresarPrincipal.configure(relief="solid")
+    RegresarPrincipal.config(bd=0.5)
+    
+    RegresarPrincipal= Button(Admin,text="Editar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()])
+    RegresarPrincipal.place(x=1100,y=325)
+    RegresarPrincipal.config(width="14")
+    RegresarPrincipal.configure(relief="solid")
+    RegresarPrincipal.config(bd=0.5)
+    
+    RegresarPrincipal= Button(Admin,text="Eliminar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EliminarU()])
+    RegresarPrincipal.place(x=1100,y=475)
+    RegresarPrincipal.config(width="14")
+    RegresarPrincipal.configure(relief="solid")
+    RegresarPrincipal.config(bd=0.5)
+   
+
+
+    #************************************************************    
         
     #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
     
@@ -214,17 +254,34 @@ def Pantalla():
     def Login():
         usuario=entry.get()
         contraseña=entry2.get()
-        if(verificarUsuario(usuario,contraseña)== True):
-            print("Login Succesfull")
+        resultado=verificarUsuario(usuario,contraseña)
+        if(resultado == 'Admin'):
+            print("Ingreso como Admin")
+            show_frame(framecam)
+        elif(resultado =='User'):
+            print("Ingreso como User")
             show_frame(framecam)
         else:
-            print("Usuario o contraseña incorrecta")
+            print("Error en usuario o contraseña")
             
     def Regreso():
             show_frame(framelogin)
+            
+    def RegresoPrincipal():
+            show_frame(framecam)
     
     def Olvide():
             show_frame(frameforg)
+            
+    def AñadirU():
+        print("Añadir Usuario")
+        
+    def EditarU():
+        print("Editar Usuario")
+        
+    def EliminarU():
+        print("Eliminar Usuario")
+        
     def ReconocimientoC(variableRec):
         if variableRec==False:
             global nombrerostro
