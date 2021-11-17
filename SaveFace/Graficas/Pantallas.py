@@ -191,28 +191,25 @@ def Pantalla():
     triggerA=False;
     triggerC=False;
     triggerB=False;
-    btnrec = Button(framecam,text="Reconocimiento C",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[ReconocimientoC(triggerC)]) ## Boton crear cuenta
-    btnrec.place(x=1000,y=550)
-    btnrec.config(width="15")
-    btnrec.configure(relief="solid")
-    btnrec.config(bd=0.5)
-    btnrec1 = Button(framecam,text="Reconocimiento B",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[ReconocimientoB(triggerB)]) ## Boton crear cuenta
-    btnrec1.place(x=1000,y=450)
-    btnrec1.config(width="15")
-    btnrec1.configure(relief="solid")
-    btnrec1.config(bd=0.5)
-    btnrec2 = Button(framecam,text="Reconocimiento A",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[ReconocimientoA(triggerA)]) ## Boton crear cuenta
-    btnrec2.place(x=1000,y=350)
-    btnrec2.config(width="15")
-    btnrec2.configure(relief="solid")
-    btnrec2.config(bd=0.5)
-    
+    comboReconocimiento= ttk.Combobox(framecam)
+    comboReconocimiento['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboReconocimiento.place(x=1000,y=350)
+    comboReconocimiento.current(0)
+    btncombo = Button(framecam,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btncombo.place(x=1000,y=400)
+    btncombo.config(width="15")
+    btncombo.configure(relief="solid")
+    btncombo.config(bd=0.5)
     labelnombre= Label(framecam,text="Introduzca el nombre del rostro en pantalla",font=("Arial",10,'bold'))
     labelnombre.place(x=1000,y=600)
     entryNombre = ttk.Entry(framecam) ## Entrada de nombre
     entryNombre.place(x=1000, y=620,width="200",height="40")
     nombrerostro="Hola"
-    
+    btnrastrear = Button(framecam,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear.place(x=750,y=650)
+    btnrastrear.config(width="15")
+    btnrastrear.configure(relief="solid")
+    btnrastrear.config(bd=0.5)
     def switch():
         global is_on
         global triggerA,triggerC,triggerB
@@ -227,15 +224,19 @@ def Pantalla():
             on_button.config(image = on)
             my_label.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
             is_on = True
+            switch2()
   
-            if(triggerC==True):
-                reconocimientoC(nombrerostro)
+    def switch2():
+        global triggerA,triggerC,triggerB
+        nombrerostro=entryNombre.get()
+        if(triggerC==True):
+            reconocimientoC(nombrerostro)
  
-            if(triggerB==True):
-                reconocimientoB(nombrerostro)
+        if(triggerB==True):
+            reconocimientoB(nombrerostro)
 
-            if(triggerA==True):
-                reconocimientoA(nombrerostro)
+        if(triggerA==True):
+            reconocimientoA(nombrerostro)
 
     
     s = os.getcwd()
@@ -245,12 +246,36 @@ def Pantalla():
     off = PhotoImage(file = new_s+"/off.png")
     on_button = Button(framecam, image = off, bd = 0,command = switch)
     on_button.place(x=750,y=600)
-    
+
      
     
     # FUNCIONES             #
     #########################
-    
+    def obtenerCombo():
+        comparar=comboReconocimiento.get()
+        global nombrerostro
+        nombrerostro=entryNombre.get()
+        global triggerA
+        global triggerB
+        global triggerC
+        if(comparar =='Reconocimiento A'):
+            triggerC=False
+            triggerB=False
+            triggerA=True
+            return True  
+        if(comparar =='Reconocimiento B'):
+            triggerA=False
+            triggerC=False
+            triggerB=True
+            return True 
+        if(comparar =='Reconocimiento C'):
+            triggerA=False
+            triggerB=False
+            triggerC=True
+            return True
+        
+            
+        
     def Login():
         usuario=entry.get()
         contraseña=entry2.get()
@@ -282,47 +307,13 @@ def Pantalla():
     def EliminarU():
         print("Eliminar Usuario")
         
-    def ReconocimientoC(variableRec):
-        if variableRec==False:
-            global nombrerostro
-            nombrerostro=entryNombre.get()
-            global triggerA
-            global triggerC
-            global triggerB
-            triggerA=False
-            triggerB=False
-            triggerC=True
-            return True
-    
-    def ReconocimientoB(variableRec):
-        if variableRec==False:
-            global nombrerostro
-            nombrerostro=entryNombre.get()
-            global triggerA
-            global triggerB
-            global triggerC
-            triggerA=False
-            triggerC=False
-            triggerB=True
-            return True    
-        
-    def ReconocimientoA(variableRec):
-        if variableRec==False:
-            global nombrerostro
-            nombrerostro=entryNombre.get()
-            global triggerA
-            global triggerB
-            global triggerC
-            triggerC=False
-            triggerB=False
-            triggerA=True
-            return True  
+
     ##########################
     
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framelogin)     ## Mostramos el frame default (login)
+    show_frame(framecam)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
