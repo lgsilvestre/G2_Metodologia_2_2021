@@ -54,8 +54,10 @@ def Pantalla():
     frameforg.config(height=1900,width=1900)
     frameAdmin = tk.Frame(ventana,bg="white")
     frameAdmin.config(height=1900,width=1900)
+    framecam1 = tk.Frame(ventana,bg="white")
+    framecam1.config(height=1900,width=1900)
     
-    for frame in (framelogin, framecam, frameforg,frameAdmin): #For para mostrar los frames
+    for frame in (framelogin, framecam, frameforg,frameAdmin, framecam1): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
         
         
@@ -176,7 +178,7 @@ def Pantalla():
     btncam.configure(relief="solid")
     btncam.config(bd=0.5)
     
-    btncam1 = Button(framecam,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncam1 = Button(framecam,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
     btncam1.place(x=1000,y=250)
     btncam1.config(width="12")
     btncam1.configure(relief="solid")
@@ -306,7 +308,9 @@ def Pantalla():
         
     def EliminarU():
         print("Eliminar Usuario")
-        
+     
+    def DetectarRostro():
+        show_frame(framecam1)
 
     ##########################
     
