@@ -249,7 +249,45 @@ def Pantalla():
     on_button = Button(framecam, image = off, bd = 0,command = switch)
     on_button.place(x=750,y=600)
 
-     
+    #+++++++++++++++FRAME Detectar Rostro+++++++++++++++++++++++++++++++#  
+    miframe2=tkinter.Canvas(framecam1)
+    miframe2.config(width=840,height=420)
+    miframe2.config(bg="white")
+    miframe2.configure(relief="solid")
+    miframe2.config(bd=0.5)
+    miframe2.create_text(50, 50, text="Camara",font=("Arial",14))
+    miframe2.place(x=50,y=100)
+    
+    btncam3 = Button(framecam1,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncam3.place(x=1000,y=150)
+    btncam3.config(width="12")
+    btncam3.configure(relief="solid")
+    btncam3.config(bd=0.5)
+    
+    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4.place(x=1000,y=250)
+    btncam4.config(width="12")
+    btncam4.configure(relief="solid")
+    btncam4.config(bd=0.5)
+    
+    my_label1 = tk.Label(framecam1, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14))
+    my_label1.place(x=1000,y=100)
+    
+    comboReconocimiento1 = ttk.Combobox(framecam1)
+    comboReconocimiento1['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboReconocimiento1.place(x=1000,y=350)
+    comboReconocimiento1.current(0)
+    btncombo1 = Button(framecam1,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btncombo1.place(x=1000,y=400)
+    btncombo1.config(width="15")
+    btncombo1.configure(relief="solid")
+    btncombo1.config(bd=0.5)
+    
+    btncombo2 = Button(framecam1,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncombo2.place(x=1000,y=490)
+    btncombo2.config(width="15")
+    btncombo2.configure(relief="solid")
+    btncombo2.config(bd=0.5)
     
     # FUNCIONES             #
     #########################
