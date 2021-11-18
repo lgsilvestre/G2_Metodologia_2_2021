@@ -5,7 +5,7 @@ from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
 from tkinter.ttk import Label
 import tkinter as tk
-from tkinter import ttk, Button
+from tkinter import ttk, Button, Checkbutton, IntVar
 import tkinter
 import os
 from os import remove
@@ -96,8 +96,29 @@ def Pantalla():
     RegresarPrincipal.configure(relief="solid")
     RegresarPrincipal.config(bd=0.5)
    
-
-
+    opcion= IntVar()
+    opcion2= IntVar()
+    opcion3= IntVar()
+    checkusuario1= Checkbutton(Admin, text="CORREO: maximiliano.maure@gmail.com  CONTRASEÑA: Leona123  ROL: Admin", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+    checkusuario1.place(x=300,y=190)
+    
+    checkusuario2= Checkbutton(Admin, text="CORREO: cristian.fuentes@gmail.com  CONTRASEÑA: Perla123  ROL: Admin", font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
+    checkusuario2.place(x=300,y=240)
+    
+    checkusuario3= Checkbutton(Admin, text="CORREO: matias.olave@gmail.com  CONTRASEÑA: Tonca123  ROL: User", font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
+    checkusuario3.place(x=300,y=290)
+        
+    checkusuario4= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+    checkusuario4.place(x=300,y=340)
+    
+    checkusuario5= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+    checkusuario5.place(x=300,y=390)
+    
+    checkusuario6= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+    checkusuario6.place(x=300,y=440)
+    
+    checkusuario7= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+    checkusuario7.place(x=300,y=490)
     #************************************************************    
         
     #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
