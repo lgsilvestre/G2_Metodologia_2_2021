@@ -310,6 +310,46 @@ def Pantalla():
     btncombo2.configure(relief="solid")
     btncombo2.config(bd=0.5)
     
+    my_label3 = tk.Label(framecam1, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
+    my_label3.place(x=750,y=550)
+    
+    btnrastrear1 = Button(framecam1,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear1.place(x=750,y=650)
+    btnrastrear1.config(width="15")
+    btnrastrear1.configure(relief="solid")
+    btnrastrear1.config(bd=0.5)
+    
+    on_button1 = Button(framecam1, image = off, bd = 0,command = switch)
+    on_button1.place(x=750,y=600)
+    
+    def switch():
+        global is_on
+        global triggerA,triggerC,triggerB
+        nombrerostro=entryNombre.get()
+        # Determine is on or off
+        if is_on:
+            on_button1.config(image = off)
+            my_label.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
+            is_on = False
+        else:
+           
+            on_button1.config(image = on)
+            my_label.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
+            is_on = True
+            switch2()
+            
+        def switch2():
+            global triggerA,triggerC,triggerB
+            nombrerostro=entryNombre.get()
+            if(triggerC==True):
+                reconocimientoC(nombrerostro)
+ 
+            if(triggerB==True):
+                reconocimientoB(nombrerostro)
+
+            if(triggerA==True):
+                reconocimientoA(nombrerostro)
+            
     # FUNCIONES             #
     #########################
     def obtenerCombo():
