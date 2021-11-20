@@ -1,4 +1,3 @@
-
 from LogicaBasica.Verificacion import verificarUsuario
 from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
 from tkinter import *
@@ -262,13 +261,7 @@ def Pantalla():
             reconocimientoA(nombrerostro)
 
     
-    s = os.getcwd()
-    new_s = s.replace('\\','/')
-    new_s = s.replace('Main','Graficas')
-    on = PhotoImage(file = new_s+"/on.png")
-    off = PhotoImage(file = new_s+"/off.png")
-    on_button = Button(framecam, image = off, bd = 0,command = switch)
-    on_button.place(x=750,y=600)
+   
 
     #+++++++++++++++FRAME Detectar Rostro+++++++++++++++++++++++++++++++#  
     miframe2=tkinter.Canvas(framecam1)
@@ -285,7 +278,7 @@ def Pantalla():
     btncam3.configure(relief="solid")
     btncam3.config(bd=0.5)
     
-    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
     btncam4.place(x=1000,y=250)
     btncam4.config(width="12")
     btncam4.configure(relief="solid")
@@ -298,7 +291,7 @@ def Pantalla():
     comboReconocimiento1['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
     comboReconocimiento1.place(x=1000,y=350)
     comboReconocimiento1.current(0)
-    btncombo1 = Button(framecam1,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btncombo1 = Button(framecam1,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo1()]) ## Boton crear cuenta
     btncombo1.place(x=1000,y=400)
     btncombo1.config(width="15")
     btncombo1.configure(relief="solid")
@@ -319,37 +312,55 @@ def Pantalla():
     btnrastrear1.configure(relief="solid")
     btnrastrear1.config(bd=0.5)
     
-    on_button1 = Button(framecam1, image = off, bd = 0,command = switch)
-    on_button1.place(x=750,y=600)
+    btnregresar = Button(framecam1,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
+    btnregresar.place(x=1150,y=650)
+    btnregresar.config(width="15")
+    btnregresar.configure(relief="solid")
+    btnregresar.config(bd=0.5)
     
-    def switch():
+    
+    
+    def switch1():
         global is_on
-        global triggerA,triggerC,triggerB
+        global triggerX,triggerZtriggerY
         nombrerostro=entryNombre.get()
         # Determine is on or off
         if is_on:
             on_button1.config(image = off)
-            my_label.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
+            my_label3.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
             is_on = False
         else:
            
             on_button1.config(image = on)
-            my_label.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
+            my_label3.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
             is_on = True
-            switch2()
+            switch2a()
             
-        def switch2():
-            global triggerA,triggerC,triggerB
-            nombrerostro=entryNombre.get()
-            if(triggerC==True):
-                reconocimientoC(nombrerostro)
+            
+    def switch2a():
+        global triggerA,triggerB,triggerC
+        nombrerostro=entryNombre.get()
+      
+        
+        if(triggerC==True):
+            reconocimientoC(nombrerostro)
  
-            if(triggerB==True):
-                reconocimientoB(nombrerostro)
+        if(triggerB==True):
+            reconocimientoB(nombrerostro)
 
-            if(triggerA==True):
-                reconocimientoA(nombrerostro)
+        if(triggerA==True):
+            reconocimientoA(nombrerostro)
             
+    s = os.getcwd()
+    new_s = s.replace('\\','/')
+    new_s = s.replace('Main','Graficas')
+    on = PhotoImage(file = new_s+"/on.png")
+    off = PhotoImage(file = new_s+"/off.png")
+    on_button = Button(framecam, image = off, bd = 0,command = switch)
+    on_button.place(x=750,y=600)
+    on_button1 = Button(framecam1, image = off, bd = 0,command = switch1)
+    on_button1.place(x=750,y=600)
+    
     # FUNCIONES             #
     #########################
     def obtenerCombo():
@@ -370,6 +381,29 @@ def Pantalla():
             triggerB=True
             return True 
         if(comparar =='Reconocimiento C'):
+            triggerA=False
+            triggerB=False
+            triggerC=True
+            return True
+    
+    def obtenerCombo1():
+        comparar1=comboReconocimiento1.get()
+        global nombrerostro
+        nombrerostro=entryNombre.get()
+        global triggerA
+        global triggerB
+        global triggerC
+        if(comparar1 =='Reconocimiento A'):
+            triggerC=False
+            triggerB=False
+            triggerA=True
+            return True  
+        if(comparar1 =='Reconocimiento B'):
+            triggerA=False
+            triggerC=False
+            triggerB=True
+            return True 
+        if(comparar1 =='Reconocimiento C'):
             triggerA=False
             triggerB=False
             triggerC=True
