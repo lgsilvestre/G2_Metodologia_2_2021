@@ -94,30 +94,103 @@ def Pantalla():
     RegresarPrincipal.config(width="14")
     RegresarPrincipal.configure(relief="solid")
     RegresarPrincipal.config(bd=0.5)
-   
+    
+    
+    ###############################           ChecktBox        ###############################################
     opcion= IntVar()
     opcion2= IntVar()
     opcion3= IntVar()
-    checkusuario1= Checkbutton(Admin, text="CORREO: maximiliano.maure@gmail.com  CONTRASEÑA: Leona123  ROL: Admin", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario1.place(x=300,y=190)
+    opcion4= IntVar()
+    opcion5= IntVar()
+    opcion6= IntVar()
+    opcion7= IntVar()
+    opcion8= IntVar()
+    opcion9= IntVar()
+    opcion10= IntVar()
     
-    checkusuario2= Checkbutton(Admin, text="CORREO: cristian.fuentes@gmail.com  CONTRASEÑA: Perla123  ROL: Admin", font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
-    checkusuario2.place(x=300,y=240)
+    def RellenadoLista(contador):
+        aux=0
+        s = os.getcwd()
+        new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
+        archivo= open(new_s)
+        linea = archivo.readline()
+        while len(linea)>0:
+            aux=aux+1
+            linea=linea.rstrip()
+            Array=linea.split()
+            if(aux==contador  ):
+                correo = Array[0]
+                contraseña = Array[1]
+                rol= Array[2]
+                return correo, contraseña,rol
+            linea=archivo.readline()
+        return " ", " ", " "  
     
-    checkusuario3= Checkbutton(Admin, text="CORREO: matias.olave@gmail.com  CONTRASEÑA: Tonca123  ROL: User", font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
-    checkusuario3.place(x=300,y=290)
-        
-    checkusuario4= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario4.place(x=300,y=340)
+    contador=1
+    ListaCorreo=" "
+    ListaContraseña=" "
+    ListaRol=" "
     
-    checkusuario5= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario5.place(x=300,y=390)
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
     
-    checkusuario6= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario6.place(x=300,y=440)
+    checkusuario1= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+    checkusuario1.place(x=245,y=140)
     
-    checkusuario7= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario7.place(x=300,y=490)
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario2= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
+    checkusuario2.place(x=245,y=190)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario3= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
+    checkusuario3.place(x=245,y=240)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario4= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion4, onvalue=1, offvalue=0)
+    checkusuario4.place(x=245,y=290)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario5= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion5, onvalue=1, offvalue=0)
+    checkusuario5.place(x=245,y=340)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario6= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion6, onvalue=1, offvalue=0)
+    checkusuario6.place(x=245,y=390)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario7= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion7, onvalue=1, offvalue=0)
+    checkusuario7.place(x=245,y=440)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario8= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion8, onvalue=1, offvalue=0)
+    checkusuario8.place(x=245,y=490)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario9= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion9, onvalue=1, offvalue=0)
+    checkusuario9.place(x=245,y=540)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario10= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion10, onvalue=1, offvalue=0)
+    checkusuario10.place(x=245,y=590)
+    
     #************************************************************    
         
     #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
@@ -450,7 +523,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framecam)     ## Mostramos el frame default (login)
+    show_frame(frameAdmin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
