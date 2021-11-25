@@ -1,11 +1,10 @@
-
 from LogicaBasica.Verificacion import verificarUsuario
 from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
 from tkinter.ttk import Label
 import tkinter as tk
-from tkinter import ttk, Button
+from tkinter import ttk, Button, Checkbutton, IntVar
 import tkinter
 import os
 from os import remove
@@ -54,8 +53,10 @@ def Pantalla():
     frameforg.config(height=1900,width=1900)
     frameAdmin = tk.Frame(ventana,bg="white")
     frameAdmin.config(height=1900,width=1900)
+    framecam1 = tk.Frame(ventana,bg="white")
+    framecam1.config(height=1900,width=1900)
     
-    for frame in (framelogin, framecam, frameforg,frameAdmin): #For para mostrar los frames
+    for frame in (framelogin, framecam, frameforg,frameAdmin, framecam1): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
         
         
@@ -93,9 +94,103 @@ def Pantalla():
     RegresarPrincipal.config(width="14")
     RegresarPrincipal.configure(relief="solid")
     RegresarPrincipal.config(bd=0.5)
-   
-
-
+    
+    
+    ###############################           ChecktBox        ###############################################
+    opcion= IntVar()
+    opcion2= IntVar()
+    opcion3= IntVar()
+    opcion4= IntVar()
+    opcion5= IntVar()
+    opcion6= IntVar()
+    opcion7= IntVar()
+    opcion8= IntVar()
+    opcion9= IntVar()
+    opcion10= IntVar()
+    
+    def RellenadoLista(contador):
+        aux=0
+        s = os.getcwd()
+        new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
+        archivo= open(new_s)
+        linea = archivo.readline()
+        while len(linea)>0:
+            aux=aux+1
+            linea=linea.rstrip()
+            Array=linea.split()
+            if(aux==contador  ):
+                correo = Array[0]
+                contraseña = Array[1]
+                rol= Array[2]
+                return correo, contraseña,rol
+            linea=archivo.readline()
+        return " ", " ", " "  
+    
+    contador=1
+    ListaCorreo=" "
+    ListaContraseña=" "
+    ListaRol=" "
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario1= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+    checkusuario1.place(x=245,y=140)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario2= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
+    checkusuario2.place(x=245,y=190)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario3= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
+    checkusuario3.place(x=245,y=240)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario4= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion4, onvalue=1, offvalue=0)
+    checkusuario4.place(x=245,y=290)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario5= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion5, onvalue=1, offvalue=0)
+    checkusuario5.place(x=245,y=340)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario6= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion6, onvalue=1, offvalue=0)
+    checkusuario6.place(x=245,y=390)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario7= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion7, onvalue=1, offvalue=0)
+    checkusuario7.place(x=245,y=440)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario8= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion8, onvalue=1, offvalue=0)
+    checkusuario8.place(x=245,y=490)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario9= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion9, onvalue=1, offvalue=0)
+    checkusuario9.place(x=245,y=540)
+    
+    ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+    contador=contador+1
+    
+    checkusuario10= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion10, onvalue=1, offvalue=0)
+    checkusuario10.place(x=245,y=590)
+    
     #************************************************************    
         
     #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
@@ -176,7 +271,7 @@ def Pantalla():
     btncam.configure(relief="solid")
     btncam.config(bd=0.5)
     
-    btncam1 = Button(framecam,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncam1 = Button(framecam,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
     btncam1.place(x=1000,y=250)
     btncam1.config(width="12")
     btncam1.configure(relief="solid")
@@ -239,6 +334,96 @@ def Pantalla():
             reconocimientoA(nombrerostro)
 
     
+   
+
+    #+++++++++++++++FRAME Detectar Rostro+++++++++++++++++++++++++++++++#  
+    miframe2=tkinter.Canvas(framecam1)
+    miframe2.config(width=840,height=420)
+    miframe2.config(bg="white")
+    miframe2.configure(relief="solid")
+    miframe2.config(bd=0.5)
+    miframe2.create_text(50, 50, text="Camara",font=("Arial",14))
+    miframe2.place(x=50,y=100)
+    
+    btncam3 = Button(framecam1,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncam3.place(x=1000,y=150)
+    btncam3.config(width="12")
+    btncam3.configure(relief="solid")
+    btncam3.config(bd=0.5)
+    
+    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4.place(x=1000,y=250)
+    btncam4.config(width="12")
+    btncam4.configure(relief="solid")
+    btncam4.config(bd=0.5)
+    
+    my_label1 = tk.Label(framecam1, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14))
+    my_label1.place(x=1000,y=100)
+    
+    comboReconocimiento1 = ttk.Combobox(framecam1)
+    comboReconocimiento1['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboReconocimiento1.place(x=1000,y=350)
+    comboReconocimiento1.current(0)
+    btncombo1 = Button(framecam1,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo1()]) ## Boton crear cuenta
+    btncombo1.place(x=1000,y=400)
+    btncombo1.config(width="15")
+    btncombo1.configure(relief="solid")
+    btncombo1.config(bd=0.5)
+    
+    btncombo2 = Button(framecam1,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncombo2.place(x=1000,y=490)
+    btncombo2.config(width="15")
+    btncombo2.configure(relief="solid")
+    btncombo2.config(bd=0.5)
+    
+    my_label3 = tk.Label(framecam1, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
+    my_label3.place(x=750,y=550)
+    
+    btnrastrear1 = Button(framecam1,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear1.place(x=750,y=650)
+    btnrastrear1.config(width="15")
+    btnrastrear1.configure(relief="solid")
+    btnrastrear1.config(bd=0.5)
+    
+    btnregresar = Button(framecam1,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
+    btnregresar.place(x=1150,y=650)
+    btnregresar.config(width="15")
+    btnregresar.configure(relief="solid")
+    btnregresar.config(bd=0.5)
+    
+    
+    
+    def switch1():
+        global is_on
+        global triggerX,triggerZtriggerY
+        nombrerostro=entryNombre.get()
+        # Determine is on or off
+        if is_on:
+            on_button1.config(image = off)
+            my_label3.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
+            is_on = False
+        else:
+           
+            on_button1.config(image = on)
+            my_label3.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
+            is_on = True
+            switch2a()
+            
+            
+    def switch2a():
+        global triggerA,triggerB,triggerC
+        nombrerostro=entryNombre.get()
+      
+        
+        if(triggerC==True):
+            reconocimientoC(nombrerostro)
+ 
+        if(triggerB==True):
+            reconocimientoB(nombrerostro)
+
+        if(triggerA==True):
+            reconocimientoA(nombrerostro)
+            
     s = os.getcwd()
     new_s = s.replace('\\','/')
     new_s = s.replace('Main','Graficas')
@@ -246,8 +431,8 @@ def Pantalla():
     off = PhotoImage(file = new_s+"/off.png")
     on_button = Button(framecam, image = off, bd = 0,command = switch)
     on_button.place(x=750,y=600)
-
-     
+    on_button1 = Button(framecam1, image = off, bd = 0,command = switch1)
+    on_button1.place(x=750,y=600)
     
     # FUNCIONES             #
     #########################
@@ -269,6 +454,29 @@ def Pantalla():
             triggerB=True
             return True 
         if(comparar =='Reconocimiento C'):
+            triggerA=False
+            triggerB=False
+            triggerC=True
+            return True
+    
+    def obtenerCombo1():
+        comparar1=comboReconocimiento1.get()
+        global nombrerostro
+        nombrerostro=entryNombre.get()
+        global triggerA
+        global triggerB
+        global triggerC
+        if(comparar1 =='Reconocimiento A'):
+            triggerC=False
+            triggerB=False
+            triggerA=True
+            return True  
+        if(comparar1 =='Reconocimiento B'):
+            triggerA=False
+            triggerC=False
+            triggerB=True
+            return True 
+        if(comparar1 =='Reconocimiento C'):
             triggerA=False
             triggerB=False
             triggerC=True
@@ -306,14 +514,16 @@ def Pantalla():
         
     def EliminarU():
         print("Eliminar Usuario")
-        
+     
+    def DetectarRostro():
+        show_frame(framecam1)
 
     ##########################
     
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framecam)     ## Mostramos el frame default (login)
+    show_frame(frameAdmin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
