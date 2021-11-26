@@ -45,7 +45,7 @@ def Pantalla():
     
     
     
-    #---------- Declaracion de frames a usar -------#
+   #---------- Declaracion de frames a usar -------#
     framelogin = tk.Frame(ventana,bg="white")
     framelogin.config(height=1900,width=1900)
     framecam = tk.Frame(ventana,bg="white")
@@ -56,8 +56,10 @@ def Pantalla():
     frameAdmin.config(height=1900,width=1900)
     framecam1 = tk.Frame(ventana,bg="white")
     framecam1.config(height=1900,width=1900)
+    framecam2 = tk.Frame(ventana,bg="white")
+    framecam2.config(height=1900,width=1900)
     
-    for frame in (framelogin, framecam, frameforg,frameAdmin, framecam1): #For para mostrar los frames
+    for frame in (framelogin, framecam, frameforg,frameAdmin, framecam1,framecam2): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
         
         
@@ -65,36 +67,7 @@ def Pantalla():
         
     #****************FRAME ADMIN*********************************
     Admin = tkinter.Canvas(frameAdmin)
-    Admin.config(width=1425,height=720)
-    Admin.config(bg="white")
-    Admin.configure(relief="solid")
-    Admin.place(x=50,y=100)
-    
-    Admin.create_text(740, 75, text="Administrar",font=("Arial",36,'bold'))
-    RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()])
-    RegresarPrincipal.place(x=650,y=625)
-    RegresarPrincipal.config(width="12")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
-    
-    RegresarPrincipal= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()])
-    RegresarPrincipal.place(x=1100,y=175)
-    RegresarPrincipal.config(width="14")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
-    
-    
-    RegresarPrincipal= Button(Admin,text="Editar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()])
-    RegresarPrincipal.place(x=1100,y=325)
-    RegresarPrincipal.config(width="14")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
-    
-    RegresarPrincipal= Button(Admin,text="Eliminar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EliminarU()])
-    RegresarPrincipal.place(x=1100,y=475)
-    RegresarPrincipal.config(width="14")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
+ 
     
     
     ###############################           ChecktBox        ###############################################
@@ -119,14 +92,49 @@ def Pantalla():
             aux=aux+1
             linea=linea.rstrip()
             Array=linea.split()
-            if(aux==contador  ):
+            if(aux==contador):
                 correo = Array[0]
                 contraseña = Array[1]
                 rol= Array[2]
                 return correo, contraseña,rol
             linea=archivo.readline()
         return " ", " ", " "  
-    def actualizarpantalla():
+    
+
+    
+    def Actualizarpantalla():
+        Admin = tkinter.Canvas(frameAdmin)
+        Admin.config(width=1425,height=720)
+        Admin.config(bg="white")
+        Admin.configure(relief="solid")
+        Admin.place(x=50,y=100)
+        
+        Admin.create_text(740, 75, text="Administrar",font=("Arial",36,'bold'))
+        RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()])
+        RegresarPrincipal.place(x=650,y=625)
+        RegresarPrincipal.config(width="12")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
+        RegresarPrincipal= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()])
+        RegresarPrincipal.place(x=1100,y=175)
+        RegresarPrincipal.config(width="14")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
+        
+        RegresarPrincipal= Button(Admin,text="Editar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()])
+        RegresarPrincipal.place(x=1100,y=325)
+        RegresarPrincipal.config(width="14")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
+        RegresarPrincipal= Button(Admin,text="Eliminar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EliminarU()])
+        RegresarPrincipal.place(x=1100,y=475)
+        RegresarPrincipal.config(width="14")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
         contador=1
         ListaCorreo=" "
         ListaContraseña=" "
@@ -146,7 +154,7 @@ def Pantalla():
         
         ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
         contador=contador+1
-        
+       
         checkusuario3= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
         checkusuario3.place(x=245,y=240)
         
@@ -191,7 +199,12 @@ def Pantalla():
         
         checkusuario10= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion10, onvalue=1, offvalue=0)
         checkusuario10.place(x=245,y=590)
-    actualizarpantalla()
+        contador=1
+        
+    
+    Actualizarpantalla()    
+        
+    
     def Completartxt():
         aux=0
         s = os.getcwd()
@@ -222,9 +235,85 @@ def Pantalla():
         f.write(probando)
         f.close()
         Lista.imprimirlista()
-        actualizarpantalla()
+        Actualizarpantalla()
+       
+    
+    def EditarU():
+        print("Editar Usuario")
+        ListaCorreo=" "
+        ListaContraseña=" "
+        ListaRol=" "
+        if(opcion.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+        elif(opcion2.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+        elif(opcion3.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+        elif(opcion4.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+        elif(opcion5.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+        elif(opcion6.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+        elif(opcion7.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+        elif(opcion8.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+        elif(opcion9.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+        elif(opcion10.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+        print(ListaCorreo)
+        answer = simpledialog.askstring("Editar Usuario","Introduzca el nuevo correo.")
+        answer2 = simpledialog.askstring("Editar Usuario","Introduzca la nueva contraseña.")
+        Lista.agregar(answer, answer2, ListaRol)
+        Lista.eliminar(ListaCorreo)
+        pruebatxt = os.getcwd()
+        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+        probando=Lista.copiaratxt()
+        f = open (auxilioprueba,'w')
+        f.write(probando)
+        f.close()
+        Actualizarpantalla()
         
-         
+        
+        
+        
+        
+    def EliminarU():
+        print("Eliminar Usuario")
+        ListaCorreo=" "
+        ListaContraseña=" "
+        ListaRol=" "
+        if(opcion.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+        elif(opcion2.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+        elif(opcion3.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+        elif(opcion4.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+        elif(opcion5.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+        elif(opcion6.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+        elif(opcion7.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+        elif(opcion8.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+        elif(opcion9.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+        elif(opcion10.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+        Lista.eliminar(ListaCorreo)
+        pruebatxt = os.getcwd()
+        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+        probando=Lista.copiaratxt()
+        f = open (auxilioprueba,'w')
+        f.write(probando)
+        f.close()
+        Actualizarpantalla()
+        
     
         
     
@@ -293,7 +382,7 @@ def Pantalla():
     boto.config(bd=0.5)
     
     
-    #+++++++++++++++FRAME CAM+++++++++++++++++++++++++++++++#  
+   #+++++++++++++++FRAME CAM+++++++++++++++++++++++++++++++#  
     miframe1=tkinter.Canvas(framecam)
     miframe1.config(width=840,height=420)
     miframe1.config(bg="white")
@@ -302,7 +391,7 @@ def Pantalla():
     miframe1.create_text(50, 50, text="Camara",font=("Arial",14))
     miframe1.place(x=50,y=100)
     
-    btncam = Button(framecam,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncam = Button(framecam,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BuscarRostro()]) ## Boton crear cuenta
     btncam.place(x=1000,y=150)
     btncam.config(width="12")
     btncam.configure(relief="solid")
@@ -460,19 +549,119 @@ def Pantalla():
 
         if(triggerA==True):
             reconocimientoA(nombrerostro)
+
             
+
+ #+++++++++++++++FRAME Buscar Rostro+++++++++++++++++++++++++++++++#  
+    miframe3=tkinter.Canvas(framecam2)
+    miframe3.config(width=840,height=420)
+    miframe3.config(bg="white")
+    miframe3.configure(relief="solid")
+    miframe3.config(bd=0.5)
+    miframe3.create_text(50, 50, text="Camara",font=("Arial",14))
+    miframe3.place(x=50,y=100)
+    
+    btncam4 = Button(framecam2,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black') ## Boton crear cuenta
+    btncam4.place(x=1000,y=150)
+    btncam4.config(width="12")
+    btncam4.configure(relief="solid")
+    btncam4.config(bd=0.5)
+    
+    btncam4 = Button(framecam2,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4.place(x=1000,y=250)
+    btncam4.config(width="12")
+    btncam4.configure(relief="solid")
+    btncam4.config(bd=0.5)
+    
+    my_label1 = tk.Label(framecam2, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14))
+    my_label1.place(x=1000,y=100)
+    
+    comboReconocimiento1 = ttk.Combobox(framecam2)
+    comboReconocimiento1['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboReconocimiento1.place(x=1000,y=350)
+    comboReconocimiento1.current(0)
+    btncombo3 = Button(framecam2,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo1()]) ## Boton crear cuenta
+    btncombo3.place(x=1000,y=400)
+    btncombo3.config(width="15")
+    btncombo3.configure(relief="solid")
+    btncombo3.config(bd=0.5)
+    
+    btncombo4 = Button(framecam2,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncombo4.place(x=1000,y=490)
+    btncombo4.config(width="15")
+    btncombo4.configure(relief="solid")
+    btncombo4.config(bd=0.5)
+    
+    my_label3 = tk.Label(framecam2, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
+    my_label3.place(x=750,y=550)
+    
+    btnrastrear1 = Button(framecam2,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear1.place(x=750,y=650)
+    btnrastrear1.config(width="15")
+    btnrastrear1.configure(relief="solid")
+    btnrastrear1.config(bd=0.5)
+    
+    btnregresar = Button(framecam2,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
+    btnregresar.place(x=1150,y=650)
+    btnregresar.config(width="15")
+    btnregresar.configure(relief="solid")
+    btnregresar.config(bd=0.5)
+    
+    
+    def switch1():
+        global is_on
+        global triggerX,triggerZtriggerY
+        nombrerostro=entryNombre.get()
+        # Determine is on or off
+        if is_on:
+            on_button2.config(image = off)
+            my_label3.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
+            is_on = False
+        else:
+           
+            on_button2.config(image = on)
+            my_label3.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
+            is_on = True
+            switch2a()
+            
+            
+    def switch2a():
+        global triggerA,triggerB,triggerC
+        nombrerostro=entryNombre.get()
+      
+        
+        if(triggerC==True):
+            reconocimientoC(nombrerostro)
+ 
+        if(triggerB==True):
+            reconocimientoB(nombrerostro)
+
+        if(triggerA==True):
+            reconocimientoA(nombrerostro)
+               
+            
+  
     s = os.getcwd()
     new_s = s.replace('\\','/')
     new_s = s.replace('Main','Graficas')
     on = PhotoImage(file = new_s+"/on.png")
     off = PhotoImage(file = new_s+"/off.png")
+    detectar = PhotoImage(file = new_s+"/detectar.png")
+    buscar = PhotoImage(file = new_s+"/buscar.png")
     on_button = Button(framecam, image = off, bd = 0,command = switch)
     on_button.place(x=750,y=600)
     on_button1 = Button(framecam1, image = off, bd = 0,command = switch1)
     on_button1.place(x=750,y=600)
+    on_button2 = Button(framecam2, image = off, bd = 0,command = switch1)
+    on_button2.place(x=750,y=600)
+    on_button3 = Button(framecam2, image = detectar, bd = 0)
+    on_button3.place(x=50,y=530)
+    on_button4 = Button(framecam1, image = buscar, bd = 0)
+    on_button4.place(x=50,y=530)
     
     # FUNCIONES             #
     #########################
+
     def obtenerCombo():
         comparar=comboReconocimiento.get()
         global nombrerostro
@@ -520,7 +709,7 @@ def Pantalla():
             return True
         
             
-        
+         
     def Login():
         usuario=entry.get()
         contraseña=entry2.get()
@@ -543,17 +732,13 @@ def Pantalla():
     def Olvide():
             show_frame(frameforg)
             
-    def AñadirU():
-        print("Añadir Usuario")
-        
-    def EditarU():
-        print("Editar Usuario")
-        
-    def EliminarU():
-        print("Eliminar Usuario")
-     
+            
     def DetectarRostro():
         show_frame(framecam1)
+        
+    def BuscarRostro():
+        show_frame(framecam2)
+
 
     ##########################
     
