@@ -42,4 +42,17 @@ class Listauser:
         while User != None:
             stringtxt=stringtxt+(User.correo+" "+User.contraseña+" "+User.tipousuario+"\n")
             User = User.next
-        return stringtxt    
+        return stringtxt 
+     # Método para eleminar nodos
+    def eliminar(self, correo):
+        curr = self.head
+        prev = None
+        while curr and curr.correo != correo:
+            prev = curr
+            curr = curr.next
+        if prev is None:
+            self.head = curr.next
+        elif curr:
+            prev.next = curr.next
+            curr.next = None
+            
