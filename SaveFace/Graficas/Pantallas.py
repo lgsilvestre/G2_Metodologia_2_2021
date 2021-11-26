@@ -392,13 +392,13 @@ def Pantalla():
     miframe1.place(x=50,y=100)
     
     btncam = Button(framecam,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BuscarRostro()]) ## Boton crear cuenta
-    btncam.place(x=1000,y=150)
+    btncam.place(x=1050,y=150)
     btncam.config(width="12")
     btncam.configure(relief="solid")
     btncam.config(bd=0.5)
     
     btncam1 = Button(framecam,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
-    btncam1.place(x=1000,y=250)
+    btncam1.place(x=1050,y=250)
     btncam1.config(width="12")
     btncam1.configure(relief="solid")
     btncam1.config(bd=0.5)
@@ -414,17 +414,17 @@ def Pantalla():
     triggerB=False;
     comboReconocimiento= ttk.Combobox(framecam)
     comboReconocimiento['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
-    comboReconocimiento.place(x=1000,y=350)
+    comboReconocimiento.place(x=1050,y=350)
     comboReconocimiento.current(0)
     btncombo = Button(framecam,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
-    btncombo.place(x=1000,y=400)
+    btncombo.place(x=1040,y=450)
     btncombo.config(width="15")
     btncombo.configure(relief="solid")
     btncombo.config(bd=0.5)
     labelnombre= Label(framecam,text="Introduzca el nombre del rostro en pantalla",font=("Arial",10,'bold'))
-    labelnombre.place(x=1000,y=600)
+    labelnombre.place(x=1050,y=700)
     entryNombre = ttk.Entry(framecam) ## Entrada de nombre
-    entryNombre.place(x=1000, y=620,width="200",height="40")
+    entryNombre.place(x=1050, y=720,width="200",height="40")
     nombrerostro="Hola"
     btnrastrear = Button(framecam,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
     btnrastrear.place(x=750,y=650)
@@ -745,7 +745,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framelogin)     ## Mostramos el frame default (login)
+    show_frame(framecam)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
