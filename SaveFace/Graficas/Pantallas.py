@@ -1,5 +1,6 @@
 from LogicaBasica.Verificacion import verificarUsuario
 from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
+from LogicaBasica.Usuario import User,Listauser
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
 from tkinter.ttk import Label
@@ -64,61 +65,257 @@ def Pantalla():
         
     #****************FRAME ADMIN*********************************
     Admin = tkinter.Canvas(frameAdmin)
-    Admin.config(width=1425,height=720)
-    Admin.config(bg="white")
-    Admin.configure(relief="solid")
-    Admin.place(x=50,y=100)
-    
-    Admin.create_text(740, 75, text="Administrar",font=("Arial",36,'bold'))
-    RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()])
-    RegresarPrincipal.place(x=650,y=625)
-    RegresarPrincipal.config(width="12")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
+ 
     
     
-    RegresarPrincipal= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[AñadirU()])
-    RegresarPrincipal.place(x=1100,y=175)
-    RegresarPrincipal.config(width="14")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
-    
-    RegresarPrincipal= Button(Admin,text="Editar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()])
-    RegresarPrincipal.place(x=1100,y=325)
-    RegresarPrincipal.config(width="14")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
-    
-    RegresarPrincipal= Button(Admin,text="Eliminar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EliminarU()])
-    RegresarPrincipal.place(x=1100,y=475)
-    RegresarPrincipal.config(width="14")
-    RegresarPrincipal.configure(relief="solid")
-    RegresarPrincipal.config(bd=0.5)
-   
+    ###############################           ChecktBox        ###############################################
     opcion= IntVar()
     opcion2= IntVar()
     opcion3= IntVar()
-    checkusuario1= Checkbutton(Admin, text="CORREO: maximiliano.maure@gmail.com  CONTRASEÑA: Leona123  ROL: Admin", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario1.place(x=300,y=190)
+    opcion4= IntVar()
+    opcion5= IntVar()
+    opcion6= IntVar()
+    opcion7= IntVar()
+    opcion8= IntVar()
+    opcion9= IntVar()
+    opcion10= IntVar()
     
-    checkusuario2= Checkbutton(Admin, text="CORREO: cristian.fuentes@gmail.com  CONTRASEÑA: Perla123  ROL: Admin", font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
-    checkusuario2.place(x=300,y=240)
+    def RellenadoLista(contador):
+        aux=0
+        s = os.getcwd()
+        new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
+        archivo= open(new_s)
+        linea = archivo.readline()
+        while len(linea)>0:
+            aux=aux+1
+            linea=linea.rstrip()
+            Array=linea.split()
+            if(aux==contador):
+                correo = Array[0]
+                contraseña = Array[1]
+                rol= Array[2]
+                return correo, contraseña,rol
+            linea=archivo.readline()
+        return " ", " ", " "  
     
-    checkusuario3= Checkbutton(Admin, text="CORREO: matias.olave@gmail.com  CONTRASEÑA: Tonca123  ROL: User", font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
-    checkusuario3.place(x=300,y=290)
+
+    
+    def Actualizarpantalla():
+        Admin = tkinter.Canvas(frameAdmin)
+        Admin.config(width=1425,height=720)
+        Admin.config(bg="white")
+        Admin.configure(relief="solid")
+        Admin.place(x=50,y=100)
         
-    checkusuario4= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario4.place(x=300,y=340)
+        Admin.create_text(740, 75, text="Administrar",font=("Arial",36,'bold'))
+        RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()])
+        RegresarPrincipal.place(x=650,y=625)
+        RegresarPrincipal.config(width="12")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
+        RegresarPrincipal= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()])
+        RegresarPrincipal.place(x=1100,y=175)
+        RegresarPrincipal.config(width="14")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
+        
+        RegresarPrincipal= Button(Admin,text="Editar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()])
+        RegresarPrincipal.place(x=1100,y=325)
+        RegresarPrincipal.config(width="14")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
+        RegresarPrincipal= Button(Admin,text="Eliminar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EliminarU()])
+        RegresarPrincipal.place(x=1100,y=475)
+        RegresarPrincipal.config(width="14")
+        RegresarPrincipal.configure(relief="solid")
+        RegresarPrincipal.config(bd=0.5)
+        
+        contador=1
+        ListaCorreo=" "
+        ListaContraseña=" "
+        ListaRol=" "
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario1= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+        checkusuario1.place(x=245,y=140)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario2= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
+        checkusuario2.place(x=245,y=190)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+       
+        checkusuario3= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
+        checkusuario3.place(x=245,y=240)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario4= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion4, onvalue=1, offvalue=0)
+        checkusuario4.place(x=245,y=290)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario5= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion5, onvalue=1, offvalue=0)
+        checkusuario5.place(x=245,y=340)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario6= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion6, onvalue=1, offvalue=0)
+        checkusuario6.place(x=245,y=390)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario7= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion7, onvalue=1, offvalue=0)
+        checkusuario7.place(x=245,y=440)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario8= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion8, onvalue=1, offvalue=0)
+        checkusuario8.place(x=245,y=490)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario9= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion9, onvalue=1, offvalue=0)
+        checkusuario9.place(x=245,y=540)
+        
+        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
+        contador=contador+1
+        
+        checkusuario10= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion10, onvalue=1, offvalue=0)
+        checkusuario10.place(x=245,y=590)
+        contador=1
+        
     
-    checkusuario5= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario5.place(x=300,y=390)
+    Actualizarpantalla()    
+        
     
-    checkusuario6= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario6.place(x=300,y=440)
+    def Completartxt():
+        aux=0
+        s = os.getcwd()
+        new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
+        archivo= open(new_s)
+        linea = archivo.readline()
+        while len(linea)>0:
+            aux=aux+1
+            linea=linea.rstrip()
+            Array=linea.split()
+            Lista.agregar(Array[0], Array[1], Array[2])
+            linea=archivo.readline()
+        
+    global Lista
+    Lista = Listauser()
+    Completartxt()
+    Lista.imprimirlista()    
     
-    checkusuario7= Checkbutton(Admin, text="CORREO: CONTRASEÑA: ROL:", font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-    checkusuario7.place(x=300,y=490)
-    #************************************************************    
+    def Agregar():
+        global Lista
+        pruebatxt = os.getcwd()
+        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')    
+        answer = simpledialog.askstring("Agregar Usuario","Introduzca el nombre de usuario.")
+        answer2 = simpledialog.askstring("Agregar Contraseña","Introduzca la contraseña.")
+        Lista.agregar(answer, answer2, "User")
+        probando=Lista.copiaratxt()
+        f = open (auxilioprueba,'w')
+        f.write(probando)
+        f.close()
+        Lista.imprimirlista()
+        Actualizarpantalla()
+       
+    
+    def EditarU():
+        print("Editar Usuario")
+        ListaCorreo=" "
+        ListaContraseña=" "
+        ListaRol=" "
+        if(opcion.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+        elif(opcion2.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+        elif(opcion3.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+        elif(opcion4.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+        elif(opcion5.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+        elif(opcion6.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+        elif(opcion7.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+        elif(opcion8.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+        elif(opcion9.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+        elif(opcion10.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+        print(ListaCorreo)
+        answer = simpledialog.askstring("Editar Usuario","Introduzca el nuevo correo.")
+        answer2 = simpledialog.askstring("Editar Usuario","Introduzca la nueva contraseña.")
+        Lista.agregar(answer, answer2, ListaRol)
+        Lista.eliminar(ListaCorreo)
+        pruebatxt = os.getcwd()
+        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+        probando=Lista.copiaratxt()
+        f = open (auxilioprueba,'w')
+        f.write(probando)
+        f.close()
+        Actualizarpantalla()
+        
+        
+        
+        
+        
+    def EliminarU():
+        print("Eliminar Usuario")
+        ListaCorreo=" "
+        ListaContraseña=" "
+        ListaRol=" "
+        if(opcion.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+        elif(opcion2.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+        elif(opcion3.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+        elif(opcion4.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+        elif(opcion5.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+        elif(opcion6.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+        elif(opcion7.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+        elif(opcion8.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+        elif(opcion9.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+        elif(opcion10.get()==1):
+            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+        Lista.eliminar(ListaCorreo)
+        pruebatxt = os.getcwd()
+        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+        probando=Lista.copiaratxt()
+        f = open (auxilioprueba,'w')
+        f.write(probando)
+        f.close()
+        Actualizarpantalla()
+        
+    
+        
+    
+    #*******************FIN FRAME ADMIN *************************    
         
     #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
     
@@ -433,14 +630,8 @@ def Pantalla():
     def Olvide():
             show_frame(frameforg)
             
-    def AñadirU():
-        print("Añadir Usuario")
-        
-    def EditarU():
-        print("Editar Usuario")
-        
-    def EliminarU():
-        print("Eliminar Usuario")
+
+    
      
     def DetectarRostro():
         show_frame(framecam1)
@@ -450,7 +641,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framecam)     ## Mostramos el frame default (login)
+    show_frame(framelogin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
