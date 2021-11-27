@@ -101,7 +101,6 @@ def Pantalla():
         return " ", " ", " "  
     
 
-    
     def Actualizarpantalla():
         Admin = tkinter.Canvas(frameAdmin)
         Admin.config(width=1425,height=720)
@@ -135,72 +134,68 @@ def Pantalla():
         RegresarPrincipal.configure(relief="solid")
         RegresarPrincipal.config(bd=0.5)
         
-        contador=1
         ListaCorreo=" "
         ListaContraseña=" "
         ListaRol=" "
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario1= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
-        checkusuario1.place(x=245,y=140)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario2= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
-        checkusuario2.place(x=245,y=190)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-       
-        checkusuario3= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
-        checkusuario3.place(x=245,y=240)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario4= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion4, onvalue=1, offvalue=0)
-        checkusuario4.place(x=245,y=290)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario5= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion5, onvalue=1, offvalue=0)
-        checkusuario5.place(x=245,y=340)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario6= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion6, onvalue=1, offvalue=0)
-        checkusuario6.place(x=245,y=390)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario7= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion7, onvalue=1, offvalue=0)
-        checkusuario7.place(x=245,y=440)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario8= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion8, onvalue=1, offvalue=0)
-        checkusuario8.place(x=245,y=490)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario9= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion9, onvalue=1, offvalue=0)
-        checkusuario9.place(x=245,y=540)
-        
-        ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(contador)
-        contador=contador+1
-        
-        checkusuario10= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion10, onvalue=1, offvalue=0)
-        checkusuario10.place(x=245,y=590)
-        contador=1
-        
+        cont=1
+        s = os.getcwd()
+        new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
+        archivo= open(new_s)
+        linea = archivo.readline()#
+        while len(linea)>0:
+            if(cont==1):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+                checkusuario1= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion, onvalue=1, offvalue=0)
+                checkusuario1.place(x=245,y=140)
+            
+            if(cont==2):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+                checkusuario2= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion2, onvalue=1, offvalue=0)
+                checkusuario2.place(x=245,y=190)
+            
+            if(cont==3):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+                checkusuario3= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion3, onvalue=1, offvalue=0)
+                checkusuario3.place(x=245,y=240)
+            
+            if(cont==4):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+                checkusuario4= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion4, onvalue=1, offvalue=0)
+                checkusuario4.place(x=245,y=290)
+            
+            if(cont==5):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+                checkusuario5= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion5, onvalue=1, offvalue=0)
+                checkusuario5.place(x=245,y=340)
+            
+            if(cont==6):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+                checkusuario6= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion6, onvalue=1, offvalue=0)
+                checkusuario6.place(x=245,y=390)
+           
+            if(cont==7):
+               ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+               checkusuario7= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion7, onvalue=1, offvalue=0)
+               checkusuario7.place(x=245,y=440)
+            
+            if(cont==8):
+               ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+               checkusuario8= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion8, onvalue=1, offvalue=0)
+               checkusuario8.place(x=245,y=490)
+           
+            if(cont==9):
+               ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+               checkusuario9= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion9, onvalue=1, offvalue=0)
+               checkusuario9.place(x=245,y=540)
+           
+            if(cont==10):
+               ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
+               checkusuario10= Checkbutton(Admin, text="CORREO: "+ListaCorreo+" CONTRASEÑA: "+ListaContraseña+" ROL: "+ListaRol, font=("arial",14,'bold'), variable=opcion10, onvalue=1, offvalue=0)
+               checkusuario10.place(x=245,y=590)
+
+            cont=cont+1
+            linea=archivo.readline()
+
     
     Actualizarpantalla()    
         
@@ -245,24 +240,34 @@ def Pantalla():
         ListaRol=" "
         if(opcion.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+            opcion.set(0)
         elif(opcion2.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+            opcion2.set(0)
         elif(opcion3.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+            opcion3.set(0)
         elif(opcion4.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+            opcion4.set(0)
         elif(opcion5.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+            opcion5.set(0)
         elif(opcion6.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+            opcion6.set(0)
         elif(opcion7.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+            opcion7.set(0)
         elif(opcion8.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+            opcion8.set(0)
         elif(opcion9.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+            opcion9.set(0)
         elif(opcion10.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+            opcion10.set(0)
         print(ListaCorreo)
         answer = simpledialog.askstring("Editar Usuario","Introduzca el nuevo correo.")
         answer2 = simpledialog.askstring("Editar Usuario","Introduzca la nueva contraseña.")
@@ -287,24 +292,34 @@ def Pantalla():
         ListaRol=" "
         if(opcion.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+            opcion.set(0)
         elif(opcion2.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+            opcion2.set(0)
         elif(opcion3.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+            opcion3.set(0)
         elif(opcion4.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+            opcion4.set(0)
         elif(opcion5.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+            opcion5.set(0)
         elif(opcion6.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+            opcion6.set(0)
         elif(opcion7.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+            opcion7.set(0)
         elif(opcion8.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+            opcion8.set(0)
         elif(opcion9.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+            opcion9.set(0)
         elif(opcion10.get()==1):
             ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+            opcion10.set(0)
         Lista.eliminar(ListaCorreo)
         pruebatxt = os.getcwd()
         auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
@@ -745,7 +760,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framecam)     ## Mostramos el frame default (login)
+    show_frame(framelogin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
