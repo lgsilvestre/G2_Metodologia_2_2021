@@ -493,13 +493,13 @@ def Pantalla():
     miframe2.create_text(50, 50, text="Camara",font=("Arial",14))
     miframe2.place(x=50,y=100)
     
-    btncam3 = Button(framecam1,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncam3 = Button(framecam1,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black') ## Boton crear cuenta
     btncam3.place(x=1000,y=150)
     btncam3.config(width="12")
     btncam3.configure(relief="solid")
     btncam3.config(bd=0.5)
     
-    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
     btncam4.place(x=1000,y=250)
     btncam4.config(width="12")
     btncam4.configure(relief="solid")
@@ -538,6 +538,7 @@ def Pantalla():
     btnregresar.config(width="15")
     btnregresar.configure(relief="solid")
     btnregresar.config(bd=0.5)
+    
     
     
     
@@ -582,14 +583,14 @@ def Pantalla():
     miframe3.config(bd=0.5)
     miframe3.create_text(50, 50, text="Camara",font=("Arial",14))
     miframe3.place(x=50,y=100)
-    
-    btncam4 = Button(framecam2,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black') ## Boton crear cuenta
+   
+    btncam4 = Button(framecam2,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
     btncam4.place(x=1000,y=150)
     btncam4.config(width="12")
     btncam4.configure(relief="solid")
     btncam4.config(bd=0.5)
     
-    btncam4 = Button(framecam2,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4 = Button(framecam2,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
     btncam4.place(x=1000,y=250)
     btncam4.config(width="12")
     btncam4.configure(relief="solid")
@@ -633,7 +634,7 @@ def Pantalla():
     def switch1():
         global is_on
         global triggerX,triggerZtriggerY
-        nombrerostro=entryNombre.get()
+        nombrerostro=entryNombre1.get()
         # Determine is on or off
         if is_on:
             on_button2.config(image = off)
@@ -649,7 +650,7 @@ def Pantalla():
             
     def switch2a():
         global triggerA,triggerB,triggerC
-        nombrerostro=entryNombre.get()
+        nombrerostro=entryNombre1.get()
       
         
         if(triggerC==True):
@@ -666,10 +667,13 @@ def Pantalla():
     s = os.getcwd()
     new_s = s.replace('\\','/')
     new_s = s.replace('Main','Graficas')
+    new_s1 = s.replace('\\','/')
+    #new_s1 = s.replace('Main','Guardar informacion de rostros',entryNombre1.get())
     on = PhotoImage(file = new_s+"/on.png")
     off = PhotoImage(file = new_s+"/off.png")
     detectar = PhotoImage(file = new_s+"/detectar.png")
     buscar = PhotoImage(file = new_s+"/buscar.png")
+    
     on_button = Button(framecam, image = off, bd = 0,command = switch)
     on_button.place(x=750,y=600)
     on_button1 = Button(framecam1, image = off, bd = 0,command = switch1)
@@ -681,6 +685,33 @@ def Pantalla():
     on_button4 = Button(framecam1, image = buscar, bd = 0)
     on_button4.place(x=50,y=530)
     
+    #Canvas detectar rostro
+    C = tkinter.Canvas(framecam2)   
+    C.config(width=692,height=200)
+    C.configure(relief="solid")
+    C.place(x=50,y=530)
+    C.create_image(0,0, image=buscar, anchor="nw")
+   
+   
+    #Canvas buscar rostro
+    C2 = tkinter.Canvas(framecam1)   
+    C2.config(width=692,height=200)
+    C2.configure(relief="solid")
+    C2.place(x=50,y=530)
+    C2.create_image(0,0, image=detectar, anchor="nw")
+   
+    entryNombre1 = ttk.Entry(framecam2) ## Entrada de nombre
+    entryNombre1.place(x=320, y=560, width="394",height="25")
+    labelnombre1= Label(framecam2,text="Nombre",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelnombre1.place(x=320,y=537)
+    entryDescripcion = ttk.Entry(framecam2) ## Entrada de nombre
+    entryDescripcion.place(x=320, y=610, width="394",height="25")
+    labelDescripcion= Label(framecam2,text="Dirección",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelDescripcion.place(x=320,y=587)
+    entryFecha = ttk.Entry(framecam2) ## Entrada de nombre
+    entryFecha.place(x=320, y=660, width="394",height="25")
+    labelFecha= Label(framecam2,text="Rut",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelFecha.place(x=320,y=637)
     # FUNCIONES             #
     #########################
 
@@ -754,12 +785,12 @@ def Pantalla():
     def Olvide():
             show_frame(frameforg)
             
-            
     def DetectarRostro():
-        show_frame(framecam1)
+        show_frame(framecam2)
         
     def BuscarRostro():
-        show_frame(framecam2)
+        show_frame(framecam1)
+
 
 
     ##########################
@@ -767,7 +798,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framelogin)     ## Mostramos el frame default (login)
+    show_frame(frameAdmin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
