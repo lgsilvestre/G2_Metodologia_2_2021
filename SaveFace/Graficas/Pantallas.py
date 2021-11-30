@@ -631,7 +631,7 @@ def Pantalla():
     btncombo3.configure(relief="solid")
     btncombo3.config(bd=0.5)
     
-    btncombo4 = Button(framecam2,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncombo4 = Button(framecam2,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro()]) ## Boton crear cuenta
     btncombo4.place(x=1000,y=490)
     btncombo4.config(width="15")
     btncombo4.configure(relief="solid")
@@ -728,12 +728,23 @@ def Pantalla():
     labelnombre1.place(x=320,y=537)
     entryDescripcion = ttk.Entry(framecam2) ## Entrada de nombre
     entryDescripcion.place(x=320, y=610, width="394",height="25")
-    labelDescripcion= Label(framecam2,text="Dirección",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelDescripcion= Label(framecam2,text="Descripción",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
     labelDescripcion.place(x=320,y=587)
     entryFecha = ttk.Entry(framecam2) ## Entrada de nombre
     entryFecha.place(x=320, y=660, width="394",height="25")
-    labelFecha= Label(framecam2,text="Rut",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelFecha= Label(framecam2,text="Fecha",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
     labelFecha.place(x=320,y=637)
+    
+    def guardarRostro():
+        nombrerostro=entryNombre1.get()
+        descripcionrostro=entryDescripcion.get()
+        fecharostro=entryFecha.get()
+        pruebatxt = os.getcwd()
+        auxilioprueba = pruebatxt.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
+        probando=("Nombre:"+nombrerostro+"\nDescipción:"+descripcionrostro+"\nFecha:"+fecharostro+"\n")
+        f = open (auxilioprueba,'w')
+        f.write(probando)
+        f.close()
     # FUNCIONES             #
     #########################
 
