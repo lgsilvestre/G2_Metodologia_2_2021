@@ -239,13 +239,22 @@ def Pantalla():
         if(correoEntrada!=None):
             if verificarCorreo(correoEntrada):
                 contraseñaEntrada = simpledialog.askstring("Agregar Contraseña","Introduzca la contraseña.")
-                Lista.agregar(correoEntrada, contraseñaEntrada, "User")
-                probando=Lista.copiaratxt()
-                f = open (auxilioprueba,'w')
-                f.write(probando)
-                f.close()
-                Lista.imprimirlista()
-                Actualizarpantalla()
+                if (messagebox.askyesno("Verificar Eliminación","¿Desea agregar a "+correoEntrada+" como Admin?")==True):
+                    Lista.agregar(correoEntrada, contraseñaEntrada, "Admin")
+                    probando=Lista.copiaratxt()
+                    f = open (auxilioprueba,'w')
+                    f.write(probando)
+                    f.close()
+                    Lista.imprimirlista()
+                    Actualizarpantalla()
+                else:
+                    Lista.agregar(correoEntrada, contraseñaEntrada, "User")
+                    probando=Lista.copiaratxt()
+                    f = open (auxilioprueba,'w')
+                    f.write(probando)
+                    f.close()
+                    Lista.imprimirlista()
+                    Actualizarpantalla()
             else:
                 messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
        
@@ -289,16 +298,49 @@ def Pantalla():
             correoEntrada = simpledialog.askstring("Editar Usuario","Introduzca el nuevo correo.")
             if(correoEntrada!=None):
                 if(verificarCorreo(correoEntrada)):
-                    contraseñaEntrada = simpledialog.askstring("Editar Usuario","Introduzca la nueva contraseña.")     
-                    Lista.agregar(correoEntrada, contraseñaEntrada, ListaRol)
-                    Lista.eliminar(ListaCorreo)
-                    pruebatxt = os.getcwd()
-                    auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
-                    probando=Lista.copiaratxt()
-                    f = open (auxilioprueba,'w')
-                    f.write(probando)
-                    f.close()
-                    Actualizarpantalla()
+                    contraseñaEntrada = simpledialog.askstring("Editar Usuario","Introduzca la nueva contraseña.")
+                    if("Admin"==ListaRol):
+                        if (messagebox.askyesno("Verificar Eliminación","¿Desea que "+correoEntrada+" siga como Admin?")==True):
+                            Lista.agregar(correoEntrada, contraseñaEntrada, ListaRol)
+                            Lista.eliminar(ListaCorreo)
+                            pruebatxt = os.getcwd()
+                            auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+                            probando=Lista.copiaratxt()
+                            f = open (auxilioprueba,'w')
+                            f.write(probando)
+                            f.close()
+                            Actualizarpantalla()
+                        else:
+                            Lista.agregar(correoEntrada, contraseñaEntrada, "User")
+                            Lista.eliminar(ListaCorreo)
+                            pruebatxt = os.getcwd()
+                            auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+                            probando=Lista.copiaratxt()
+                            f = open (auxilioprueba,'w')
+                            f.write(probando)
+                            f.close()
+                            Actualizarpantalla()
+                    else:
+                        if (messagebox.askyesno("Verificar Eliminación","¿Desea que "+correoEntrada+" sea Admin?")==True):
+                            Lista.agregar(correoEntrada, contraseñaEntrada, "Admin")
+                            Lista.eliminar(ListaCorreo)
+                            pruebatxt = os.getcwd()
+                            auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+                            probando=Lista.copiaratxt()
+                            f = open (auxilioprueba,'w')
+                            f.write(probando)
+                            f.close()
+                            Actualizarpantalla()
+                        else:
+                            Lista.agregar(correoEntrada, contraseñaEntrada, ListaRol)
+                            Lista.eliminar(ListaCorreo)
+                            pruebatxt = os.getcwd()
+                            auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+                            probando=Lista.copiaratxt()
+                            f = open (auxilioprueba,'w')
+                            f.write(probando)
+                            f.close()
+                            Actualizarpantalla()
                 else:
                     messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
         else:
