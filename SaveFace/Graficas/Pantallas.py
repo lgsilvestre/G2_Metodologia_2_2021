@@ -198,6 +198,22 @@ def Pantalla():
     Actualizarpantalla()    
         
     
+    def verificarCantidadAdmin():
+        cont=0
+        s = os.getcwd()
+        new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
+        archivo= open(new_s)
+        linea = archivo.readline()
+        while len(linea)>0:
+            linea=linea.rstrip()
+            Array=linea.split()
+            if("Admin"==Array[2]):
+                cont= cont+1                
+            linea=archivo.readline()
+        if(cont==1):
+            return False
+        return True
+    
     def Completartxt():
         aux=0
         s = os.getcwd()
@@ -326,15 +342,19 @@ def Pantalla():
             elif(opcion.get()==10):
                 ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
                 opcion.set(0)
-            if (messagebox.askyesno("Verificar Eliminación","¿Seguro/a que quiere eliminar el correro "+ListaCorreo+" ?")==True):
-                Lista.eliminar(ListaCorreo)
-                pruebatxt = os.getcwd()
-                auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
-                probando=Lista.copiaratxt()
-                f = open (auxilioprueba,'w')
-                f.write(probando)
-                f.close()
-                Actualizarpantalla()
+                
+            if((True==verificarCantidadAdmin()) or (False==verificarCantidadAdmin() and ListaRol != "Admin")):
+                if (messagebox.askyesno("Verificar Eliminación","¿Seguro/a que quiere eliminar el correro "+ListaCorreo+" ?")==True):
+                    Lista.eliminar(ListaCorreo)
+                    pruebatxt = os.getcwd()
+                    auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+                    probando=Lista.copiaratxt()
+                    f = open (auxilioprueba,'w')
+                    f.write(probando)
+                    f.close()
+                    Actualizarpantalla()
+            else:
+                messagebox.showwarning("Error eliminacion", "No es posible eliminar el ultimo Admin")
             
         else:
             messagebox.showwarning("Error selección", "No ha seleccionado nada para poder eliminar")  
@@ -800,7 +820,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framelogin)     ## Mostramos el frame default (login)
+    show_frame(frameAdmin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
