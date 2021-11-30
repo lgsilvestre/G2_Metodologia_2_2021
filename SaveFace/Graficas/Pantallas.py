@@ -1,15 +1,16 @@
-from LogicaBasica.Verificacion import verificarUsuario
+from LogicaBasica.Verificacion import verificarUsuario,verificarCorreo
 from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
 from LogicaBasica.Usuario import User,Listauser
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
 from tkinter.ttk import Label
 import tkinter as tk
-from tkinter import ttk, Button, Checkbutton, IntVar, simpledialog, Radiobutton
+from tkinter import ttk, Button, Checkbutton, IntVar, simpledialog, Radiobutton, messagebox
 import tkinter
 import os
 from os import remove
 from os import path
+
 
 
 
@@ -72,15 +73,7 @@ def Pantalla():
     
     ###############################           ChecktBox        ###############################################
     opcion= IntVar()
-    #opcion2= IntVar()
-    #opcion3= IntVar()
-    #opcion4= IntVar()
-    #opcion5= IntVar()
-    #opcion6= IntVar()
-    #opcion7= IntVar()
-    #opcion8= IntVar()
-    #opcion9= IntVar()
-    #opcion10= IntVar()
+    print(opcion)
     
     def RellenadoLista(contador):
         aux=0
@@ -199,7 +192,8 @@ def Pantalla():
 
             cont=cont+1
             linea=archivo.readline()
-
+            
+        
     
     Actualizarpantalla()    
         
@@ -223,119 +217,127 @@ def Pantalla():
     Lista.imprimirlista()    
     
     def Agregar():
-        global Lista
         pruebatxt = os.getcwd()
-        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
-        
+        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt') 
         correoEntrada = simpledialog.askstring("Agregar Usuario","Introduzca el nombre de usuario.")
-        contraseñaEntrada = simpledialog.askstring("Agregar Contraseña","Introduzca la contraseña.")
-        Lista.agregar(correoEntrada, contraseñaEntrada, "User")
-        probando=Lista.copiaratxt()
-        f = open (auxilioprueba,'w')
-        f.write(probando)
-        f.close()
-        Lista.imprimirlista()
-        Actualizarpantalla()
+        if(correoEntrada!=None):
+            if verificarCorreo(correoEntrada):
+                contraseñaEntrada = simpledialog.askstring("Agregar Contraseña","Introduzca la contraseña.")
+                Lista.agregar(correoEntrada, contraseñaEntrada, "User")
+                probando=Lista.copiaratxt()
+                f = open (auxilioprueba,'w')
+                f.write(probando)
+                f.close()
+                Lista.imprimirlista()
+                Actualizarpantalla()
+            else:
+                messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
        
     
     def EditarU():
-        print("Editar Usuario")
-        ListaCorreo=" "
-        ListaContraseña=" "
-        ListaRol=" "
-        if(opcion.get()==1):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
-            opcion.set(None)
-        elif(opcion.get()==2):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
-            opcion.set(None)
-        elif(opcion.get()==3):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
-            opcion.set(None)
-        elif(opcion.get()==4):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
-            opcion.set(None)
-        elif(opcion.get()==5):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
-            opcion.set(None)
-        elif(opcion.get()==6):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
-            opcion.set(None)
-        elif(opcion.get()==7):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
-            opcion.set(None)
-        elif(opcion.get()==8):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
-            opcion.set(None)
-        elif(opcion.get()==9):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
-            opcion.set(None)
-        elif(opcion.get()==10):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
-            opcion.set(None)
-        print(ListaCorreo)
-            
-        answer = simpledialog.askstring("Editar Usuario","Introduzca el nuevo correo.")
-        answer2 = simpledialog.askstring("Editar Usuario","Introduzca la nueva contraseña.")
-                
-        Lista.agregar(answer, answer2, ListaRol)
-        Lista.eliminar(ListaCorreo)
-        pruebatxt = os.getcwd()
-        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
-        probando=Lista.copiaratxt()
-        f = open (auxilioprueba,'w')
-        f.write(probando)
-        f.close()
-        Actualizarpantalla()
+        if(opcion.get()!=0):
+            ListaCorreo=" "
+            ListaContraseña=" "
+            ListaRol=" "
+            if(opcion.get()==1):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+                opcion.set(0)
+            elif(opcion.get()==2):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+                opcion.set(0)
+            elif(opcion.get()==3):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+                opcion.set(0)
+            elif(opcion.get()==4):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+                opcion.set(0)
+            elif(opcion.get()==5):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+                opcion.set(0)
+            elif(opcion.get()==6):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+                opcion.set(0)
+            elif(opcion.get()==7):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+                opcion.set(0)
+            elif(opcion.get()==8):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+                opcion.set(0)
+            elif(opcion.get()==9):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+                opcion.set(0)
+            elif(opcion.get()==10):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+                opcion.set(0)
+
+            correoEntrada = simpledialog.askstring("Editar Usuario","Introduzca el nuevo correo.")
+            if(correoEntrada!=None):
+                if(verificarCorreo(correoEntrada)):
+                    contraseñaEntrada = simpledialog.askstring("Editar Usuario","Introduzca la nueva contraseña.")     
+                    Lista.agregar(correoEntrada, contraseñaEntrada, ListaRol)
+                    Lista.eliminar(ListaCorreo)
+                    pruebatxt = os.getcwd()
+                    auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+                    probando=Lista.copiaratxt()
+                    f = open (auxilioprueba,'w')
+                    f.write(probando)
+                    f.close()
+                    Actualizarpantalla()
+                else:
+                    messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
+        else:
+            messagebox.showwarning("Error selección", "No ha seleccionado nada para poder editar")
         
         
         
-        
-        
+
     def EliminarU():
-        print("Eliminar Usuario")
-        ListaCorreo=" "
-        ListaContraseña=" "
-        ListaRol=" "
-        if(opcion.get()==1):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
-            opcion.set(None)
-        elif(opcion.get()==2):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
-            opcion.set(None)
-        elif(opcion.get()==3):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
-            opcion.set(None)
-        elif(opcion.get()==4):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
-            opcion.set(None)
-        elif(opcion.get()==5):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
-            opcion.set(None)
-        elif(opcion.get()==6):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
-            opcion.set(None)
-        elif(opcion.get()==7):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
-            opcion.set(None)
-        elif(opcion.get()==8):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
-            opcion.set(None)
-        elif(opcion.get()==9):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
-            opcion.set(None)
-        elif(opcion.get()==10):
-            ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
-            opcion.set(None)
-        Lista.eliminar(ListaCorreo)
-        pruebatxt = os.getcwd()
-        auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
-        probando=Lista.copiaratxt()
-        f = open (auxilioprueba,'w')
-        f.write(probando)
-        f.close()
-        Actualizarpantalla()
-        
+        if(opcion.get()!=0):
+            ListaCorreo=" "
+            ListaContraseña=" "
+            ListaRol=" "
+            if(opcion.get()==1):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(1)
+                opcion.set(0)
+            elif(opcion.get()==2):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(2)
+                opcion.set(0)
+            elif(opcion.get()==3):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(3)
+                opcion.set(0)
+            elif(opcion.get()==4):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(4)
+                opcion.set(0)
+            elif(opcion.get()==5):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(5)
+                opcion.set(0)
+            elif(opcion.get()==6):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(6)
+                opcion.set(0)
+            elif(opcion.get()==7):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(7)
+                opcion.set(0)
+            elif(opcion.get()==8):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(8)
+                opcion.set(0)
+            elif(opcion.get()==9):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(9)
+                opcion.set(0)
+            elif(opcion.get()==10):
+                ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(10)
+                opcion.set(0)
+            if (messagebox.askyesno("Verificar Eliminación","¿Seguro/a que quiere eliminar el correro "+ListaCorreo+" ?")==True):
+                Lista.eliminar(ListaCorreo)
+                pruebatxt = os.getcwd()
+                auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt')
+                probando=Lista.copiaratxt()
+                f = open (auxilioprueba,'w')
+                f.write(probando)
+                f.close()
+                Actualizarpantalla()
+            
+        else:
+            messagebox.showwarning("Error selección", "No ha seleccionado nada para poder eliminar")  
     
         
     
@@ -493,13 +495,13 @@ def Pantalla():
     miframe2.create_text(50, 50, text="Camara",font=("Arial",14))
     miframe2.place(x=50,y=100)
     
-    btncam3 = Button(framecam1,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
+    btncam3 = Button(framecam1,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black') ## Boton crear cuenta
     btncam3.place(x=1000,y=150)
     btncam3.config(width="12")
     btncam3.configure(relief="solid")
     btncam3.config(bd=0.5)
     
-    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
     btncam4.place(x=1000,y=250)
     btncam4.config(width="12")
     btncam4.configure(relief="solid")
@@ -538,6 +540,7 @@ def Pantalla():
     btnregresar.config(width="15")
     btnregresar.configure(relief="solid")
     btnregresar.config(bd=0.5)
+    
     
     
     
@@ -582,14 +585,14 @@ def Pantalla():
     miframe3.config(bd=0.5)
     miframe3.create_text(50, 50, text="Camara",font=("Arial",14))
     miframe3.place(x=50,y=100)
-    
-    btncam4 = Button(framecam2,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black') ## Boton crear cuenta
+   
+    btncam4 = Button(framecam2,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
     btncam4.place(x=1000,y=150)
     btncam4.config(width="12")
     btncam4.configure(relief="solid")
     btncam4.config(bd=0.5)
     
-    btncam4 = Button(framecam2,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
+    btncam4 = Button(framecam2,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
     btncam4.place(x=1000,y=250)
     btncam4.config(width="12")
     btncam4.configure(relief="solid")
@@ -633,7 +636,7 @@ def Pantalla():
     def switch1():
         global is_on
         global triggerX,triggerZtriggerY
-        nombrerostro=entryNombre.get()
+        nombrerostro=entryNombre1.get()
         # Determine is on or off
         if is_on:
             on_button2.config(image = off)
@@ -649,7 +652,7 @@ def Pantalla():
             
     def switch2a():
         global triggerA,triggerB,triggerC
-        nombrerostro=entryNombre.get()
+        nombrerostro=entryNombre1.get()
       
         
         if(triggerC==True):
@@ -666,10 +669,13 @@ def Pantalla():
     s = os.getcwd()
     new_s = s.replace('\\','/')
     new_s = s.replace('Main','Graficas')
+    new_s1 = s.replace('\\','/')
+    #new_s1 = s.replace('Main','Guardar informacion de rostros',entryNombre1.get())
     on = PhotoImage(file = new_s+"/on.png")
     off = PhotoImage(file = new_s+"/off.png")
     detectar = PhotoImage(file = new_s+"/detectar.png")
     buscar = PhotoImage(file = new_s+"/buscar.png")
+    
     on_button = Button(framecam, image = off, bd = 0,command = switch)
     on_button.place(x=750,y=600)
     on_button1 = Button(framecam1, image = off, bd = 0,command = switch1)
@@ -681,6 +687,33 @@ def Pantalla():
     on_button4 = Button(framecam1, image = buscar, bd = 0)
     on_button4.place(x=50,y=530)
     
+    #Canvas detectar rostro
+    C = tkinter.Canvas(framecam2)   
+    C.config(width=692,height=200)
+    C.configure(relief="solid")
+    C.place(x=50,y=530)
+    C.create_image(0,0, image=buscar, anchor="nw")
+   
+   
+    #Canvas buscar rostro
+    C2 = tkinter.Canvas(framecam1)   
+    C2.config(width=692,height=200)
+    C2.configure(relief="solid")
+    C2.place(x=50,y=530)
+    C2.create_image(0,0, image=detectar, anchor="nw")
+   
+    entryNombre1 = ttk.Entry(framecam2) ## Entrada de nombre
+    entryNombre1.place(x=320, y=560, width="394",height="25")
+    labelnombre1= Label(framecam2,text="Nombre",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelnombre1.place(x=320,y=537)
+    entryDescripcion = ttk.Entry(framecam2) ## Entrada de nombre
+    entryDescripcion.place(x=320, y=610, width="394",height="25")
+    labelDescripcion= Label(framecam2,text="Dirección",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelDescripcion.place(x=320,y=587)
+    entryFecha = ttk.Entry(framecam2) ## Entrada de nombre
+    entryFecha.place(x=320, y=660, width="394",height="25")
+    labelFecha= Label(framecam2,text="Rut",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelFecha.place(x=320,y=637)
     # FUNCIONES             #
     #########################
 
@@ -754,12 +787,12 @@ def Pantalla():
     def Olvide():
             show_frame(frameforg)
             
-            
     def DetectarRostro():
-        show_frame(framecam1)
+        show_frame(framecam2)
         
     def BuscarRostro():
-        show_frame(framecam2)
+        show_frame(framecam1)
+
 
 
     ##########################
