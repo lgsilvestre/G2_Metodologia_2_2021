@@ -508,14 +508,14 @@ def Pantalla():
     miframe.place(x=400,y=100)
           
     btn2 = Button(miframe,text="Ingresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[Login()])
-    btn2.place(x=280,y=350)
-    btn2.config(width="12")
+    btn2.place(x=270,y=380)
+    btn2.config(width="16")
     btn2.configure(relief="solid")
     btn2.config(bd=0.5)
             
     
-    btncontra = Button(miframe,text="Olvidó su contraseña",font=("Sitka Text",14,'bold') , bg='white',fg='darkcyan',command=lambda:[Olvide()])
-    btncontra.place(x=260,y=460)
+    btncontra = Button(miframe,text="Olvidó su contraseña",font=("Sitka Text",14,'bold', "underline") , bg='white',fg='darkcyan',command=lambda:[Olvide()])
+    btncontra.place(x=270,y=460)
     btncontra.config(width="16")
     btncontra.configure(relief="solid")
     btncontra.config(bd=0)
@@ -523,8 +523,8 @@ def Pantalla():
     
     
     btn3 = Button(miframe,text="Crear Cuenta",font=("Arial",14,'bold') , bg='#858282',fg='white',command=lambda:[Olvide()]) ## Boton crear cuenta
-    btn3.place(x=280,y=550)
-    btn3.config(width="12")
+    btn3.place(x=270,y=550)
+    btn3.config(width="16")
     btn3.configure(relief="solid")
     btn3.config(bd=0.5)
     miframe.create_text(155, 110, text="Correo Electrónico",font=("Sitka Text",14)) ##Se crea un texto desde miframe
@@ -567,46 +567,47 @@ def Pantalla():
     miframe1.configure(relief="solid")
     miframe1.config(bd=0.5)
     miframe1.create_text(50, 50, text="Camara",font=("Arial",14))
-    miframe1.place(x=50,y=100)
+    miframe1.place(x=100,y=175)
     
     btncam = Button(framecam,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BuscarRostro()]) ## Boton crear cuenta
-    btncam.place(x=1050,y=150)
-    btncam.config(width="12")
+    btncam.place(x=1050,y=200)
+    btncam.config(width="16")
     btncam.configure(relief="solid")
     btncam.config(bd=0.5)
     
     btncam1 = Button(framecam,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
-    btncam1.place(x=1050,y=250)
-    btncam1.config(width="12")
+    btncam1.place(x=1050,y=320)
+    btncam1.config(width="16")
     btncam1.configure(relief="solid")
     btncam1.config(bd=0.5)
     
     
     my_label = tk.Label(framecam, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
-    my_label.place(x=750,y=550)
+    my_label.place(x=100,y=100)
     # Define Our Images
     # Create A Button
     global triggerA,triggerC,triggerB
     triggerA=False;
     triggerC=False;
     triggerB=False;
-    comboReconocimiento= ttk.Combobox(framecam)
+    comboReconocimiento= ttk.Combobox(framecam, font= ("Arial", 14, "bold"))
     comboReconocimiento['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
-    comboReconocimiento.place(x=1050,y=350)
+    comboReconocimiento.place(x=1050,y=450)
+    comboReconocimiento.config(width = "16")
     comboReconocimiento.current(0)
     btncombo = Button(framecam,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
-    btncombo.place(x=1040,y=450)
-    btncombo.config(width="15")
+    btncombo.place(x=1050,y=560)
+    btncombo.config(width="16")
     btncombo.configure(relief="solid")
     btncombo.config(bd=0.5)
-    labelnombre= Label(framecam,text="Introduzca el nombre del rostro en pantalla",font=("Arial",10,'bold'))
-    labelnombre.place(x=1050,y=700)
+    labelnombre= Label(framecam,text="Introduzca el nombre del rostro en pantalla",font=("Arial",12,'bold'))
+    labelnombre.place(x=350,y=620)
     entryNombre = ttk.Entry(framecam) ## Entrada de nombre
-    entryNombre.place(x=1050, y=720,width="200",height="40")
+    entryNombre.place(x=350, y=640,width="330",height="60")
     nombrerostro="Hola"
     btnrastrear = Button(framecam,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
-    btnrastrear.place(x=750,y=650)
-    btnrastrear.config(width="15")
+    btnrastrear.place(x=600,y=120)
+    btnrastrear.config(width="16")
     btnrastrear.configure(relief="solid")
     btnrastrear.config(bd=0.5)
     def switch():
@@ -732,51 +733,52 @@ def Pantalla():
     miframe2.configure(relief="solid")
     miframe2.config(bd=0.5)
     miframe2.create_text(50, 50, text="Camara",font=("Arial",14))
-    miframe2.place(x=50,y=100)
+    miframe2.place(x=100,y=175)
     
     btncam3 = Button(framecam1,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black') ## Boton crear cuenta
-    btncam3.place(x=1000,y=150)
-    btncam3.config(width="12")
+    btncam3.place(x=1050,y=200)
+    btncam3.config(width="16")
     btncam3.configure(relief="solid")
     btncam3.config(bd=0.5)
     
     btncam4 = Button(framecam1,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
-    btncam4.place(x=1000,y=250)
-    btncam4.config(width="12")
+    btncam4.place(x=1050,y=270)
+    btncam4.config(width="16")
     btncam4.configure(relief="solid")
     btncam4.config(bd=0.5)
     
-    my_label1 = tk.Label(framecam1, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14))
-    my_label1.place(x=1000,y=100)
+    my_label1 = tk.Label(framecam1, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14, "bold"))
+    my_label1.place(x=1060,y=150)
     
-    comboReconocimiento1 = ttk.Combobox(framecam1)
+    comboReconocimiento1 = ttk.Combobox(framecam1, font=("Arial", 14, "bold"))
     comboReconocimiento1['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
-    comboReconocimiento1.place(x=1000,y=350)
+    comboReconocimiento1.place(x=1050,y=340)
+    comboReconocimiento1.config(width = "16")
     comboReconocimiento1.current(0)
     btncombo1 = Button(framecam1,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo1()]) ## Boton crear cuenta
-    btncombo1.place(x=1000,y=400)
-    btncombo1.config(width="15")
+    btncombo1.place(x=1050,y=410)
+    btncombo1.config(width="16")
     btncombo1.configure(relief="solid")
     btncombo1.config(bd=0.5)
     
     btncombo2 = Button(framecam1,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
-    btncombo2.place(x=1000,y=490)
-    btncombo2.config(width="15")
+    btncombo2.place(x=1050,y=480)
+    btncombo2.config(width="16")
     btncombo2.configure(relief="solid")
     btncombo2.config(bd=0.5)
     
     my_label3 = tk.Label(framecam1, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
-    my_label3.place(x=750,y=550)
+    my_label3.place(x=100,y=100)
     
     btnrastrear1 = Button(framecam1,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
-    btnrastrear1.place(x=750,y=650)
-    btnrastrear1.config(width="15")
+    btnrastrear1.place(x=600,y=120)
+    btnrastrear1.config(width="16")
     btnrastrear1.configure(relief="solid")
     btnrastrear1.config(bd=0.5)
     
     btnregresar = Button(framecam1,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
-    btnregresar.place(x=1150,y=650)
-    btnregresar.config(width="15")
+    btnregresar.place(x=1050,y=570)
+    btnregresar.config(width="16")
     btnregresar.configure(relief="solid")
     btnregresar.config(bd=0.5)
     
@@ -914,51 +916,52 @@ def Pantalla():
     miframe3.configure(relief="solid")
     miframe3.config(bd=0.5)
     miframe3.create_text(50, 50, text="Camara",font=("Arial",14))
-    miframe3.place(x=50,y=100)
+    miframe3.place(x=100,y=175)
    
     btncam4 = Button(framecam2,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
-    btncam4.place(x=1000,y=150)
-    btncam4.config(width="12")
+    btncam4.place(x=1050,y=200)
+    btncam4.config(width="16")
     btncam4.configure(relief="solid")
     btncam4.config(bd=0.5)
     
     btncam4 = Button(framecam2,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
-    btncam4.place(x=1000,y=250)
-    btncam4.config(width="12")
+    btncam4.place(x=1050,y=270)
+    btncam4.config(width="16")
     btncam4.configure(relief="solid")
     btncam4.config(bd=0.5)
     
-    my_label1 = tk.Label(framecam2, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14))
-    my_label1.place(x=1000,y=100)
+    my_label1 = tk.Label(framecam2, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14, "bold"))
+    my_label1.place(x=1060,y=150)
     
-    comboReconocimiento1 = ttk.Combobox(framecam2)
+    comboReconocimiento1 = ttk.Combobox(framecam2, font=("Arial", 14,"bold"))
     comboReconocimiento1['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
-    comboReconocimiento1.place(x=1000,y=350)
+    comboReconocimiento1.place(x=1050,y=340)
+    comboReconocimiento1.config(width= "16")
     comboReconocimiento1.current(0)
     btncombo3 = Button(framecam2,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo1()]) ## Boton crear cuenta
-    btncombo3.place(x=1000,y=400)
-    btncombo3.config(width="15")
+    btncombo3.place(x=1050,y=410)
+    btncombo3.config(width="16")
     btncombo3.configure(relief="solid")
     btncombo3.config(bd=0.5)
     
     btncombo4 = Button(framecam2,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro()]) ## Boton crear cuenta
-    btncombo4.place(x=1000,y=490)
-    btncombo4.config(width="15")
+    btncombo4.place(x=1050,y=480)
+    btncombo4.config(width="16")
     btncombo4.configure(relief="solid")
     btncombo4.config(bd=0.5)
     
     my_label3 = tk.Label(framecam2, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
-    my_label3.place(x=750,y=550)
+    my_label3.place(x=100,y=100)
     
     btnrastrear1 = Button(framecam2,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
-    btnrastrear1.place(x=750,y=650)
-    btnrastrear1.config(width="15")
+    btnrastrear1.place(x=600,y=120)
+    btnrastrear1.config(width="16")
     btnrastrear1.configure(relief="solid")
     btnrastrear1.config(bd=0.5)
     
     btnregresar = Button(framecam2,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
-    btnregresar.place(x=1150,y=650)
-    btnregresar.config(width="15")
+    btnregresar.place(x=1050,y=570)
+    btnregresar.config(width="16")
     btnregresar.configure(relief="solid")
     btnregresar.config(bd=0.5)
     
@@ -1092,15 +1095,15 @@ def Pantalla():
     #new_s1 = s.replace('Main','Guardar informacion de rostros',entryNombre1.get())
     on = PhotoImage(file = new_s+"/on.png")
     off = PhotoImage(file = new_s+"/off.png")
-    detectar = PhotoImage(file = new_s+"/detectar.png")
-    buscar = PhotoImage(file = new_s+"/buscar.png")
+    detectar = PhotoImage(file = new_s+"/imagenDetectar.png")
+    buscar = PhotoImage(file = new_s+"/imagenBuscar.png")
     
     on_button = Button(framecam, image = off, bd = 0,command = switch)
-    on_button.place(x=750,y=600)
+    on_button.place(x=100,y=130)
     on_button1 = Button(framecam1, image = off, bd = 0,command = switch1)
-    on_button1.place(x=750,y=600)
+    on_button1.place(x=100,y=130)
     on_button2 = Button(framecam2, image = off, bd = 0,command = switch1)
-    on_button2.place(x=750,y=600)
+    on_button2.place(x=100,y=130)
     
     
     on_buttonA = Button(framecamAdmin, image = off, bd = 0,command = switch)
@@ -1113,31 +1116,33 @@ def Pantalla():
     
     #Canvas detectar rostro USER
     C = tkinter.Canvas(framecam2)   
-    C.config(width=692,height=200)
+    C.config(width=840,height=200)
     C.configure(relief="solid")
-    C.place(x=50,y=530)
+    C.place(x=100,y=600)
     C.create_image(0,0, image=buscar, anchor="nw")
    
    
     #Canvas buscar rostro USER
     C2 = tkinter.Canvas(framecam1)   
-    C2.config(width=692,height=200)
+    C2.config(width=840,height=200)
     C2.configure(relief="solid")
-    C2.place(x=50,y=530)
+    C2.place(x=100,y=600)
     C2.create_image(0,0, image=detectar, anchor="nw")
    
     entryNombre1 = ttk.Entry(framecam2) ## Entrada de nombre
-    entryNombre1.place(x=320, y=560, width="394",height="25")
+    entryNombre1.place(x=360, y=640, width="450",height="25")
     labelnombre1= Label(framecam2,text="Nombre",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
-    labelnombre1.place(x=320,y=537)
-    entryDescripcion = ttk.Entry(framecam2) ## Entrada de nombre
-    entryDescripcion.place(x=320, y=610, width="394",height="25")
+    labelnombre1.place(x=360, y=620)
+    
+    entryDescripcion = ttk.Entry(framecam2) ## Entrada de descripción
+    entryDescripcion.place(x=360,y=700, width="450",height="25")
     labelDescripcion= Label(framecam2,text="Descripción",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
-    labelDescripcion.place(x=320,y=587)
-    entryFecha = ttk.Entry(framecam2) ## Entrada de nombre
-    entryFecha.place(x=320, y=660, width="394",height="25")
+    labelDescripcion.place(x=360,y=680)
+    
+    entryFecha = ttk.Entry(framecam2) ## Entrada de fecha
+    entryFecha.place(x=360,y=760, width="450",height="25")
     labelFecha= Label(framecam2,text="Fecha",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
-    labelFecha.place(x=320,y=637)
+    labelFecha.place(x=360,y=740)
     
     
      #Canvas detectar rostro ADMIN
