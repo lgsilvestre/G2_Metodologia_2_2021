@@ -426,6 +426,12 @@ def Pantalla():
     RastreoActivo.config(bg="white")
     RastreoActivo.configure(relief="solid")
     RastreoActivo.place(x=50,y=100)
+    
+    btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
+    btnregresar.place(x=1150,y=650)
+    btnregresar.config(width="15")
+    btnregresar.configure(relief="solid")
+    btnregresar.config(bd=0.5)
 
     #-----------------------------------------------#
     
@@ -598,7 +604,7 @@ def Pantalla():
     entryNombre = ttk.Entry(framecam) ## Entrada de nombre
     entryNombre.place(x=1050, y=720,width="200",height="40")
     nombrerostro="Hola"
-    btnrastrear = Button(framecam,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear = Button(framecam,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
     btnrastrear.place(x=750,y=650)
     btnrastrear.config(width="15")
     btnrastrear.configure(relief="solid")
@@ -683,7 +689,7 @@ def Pantalla():
     entryNombre = ttk.Entry(framecamAdmin) ## Entrada de nombre
     entryNombre.place(x=1050, y=720,width="200",height="40")
     nombrerostro="Hola"
-    btnrastrear = Button(framecamAdmin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear = Button(framecamAdmin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
     btnrastrear.place(x=750,y=650)
     btnrastrear.config(width="15")
     btnrastrear.configure(relief="solid")
@@ -762,7 +768,7 @@ def Pantalla():
     my_label3 = tk.Label(framecam1, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
     my_label3.place(x=750,y=550)
     
-    btnrastrear1 = Button(framecam1,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear1 = Button(framecam1,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
     btnrastrear1.place(x=750,y=650)
     btnrastrear1.config(width="15")
     btnrastrear1.configure(relief="solid")
@@ -852,7 +858,7 @@ def Pantalla():
     my_label3 = tk.Label(framecam1Admin, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
     my_label3.place(x=750,y=550)
     
-    btnrastrear1 = Button(framecam1Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear1 = Button(framecam1Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
     btnrastrear1.place(x=750,y=650)
     btnrastrear1.config(width="15")
     btnrastrear1.configure(relief="solid")
@@ -944,7 +950,7 @@ def Pantalla():
     my_label3 = tk.Label(framecam2, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
     my_label3.place(x=750,y=550)
     
-    btnrastrear1 = Button(framecam2,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear1 = Button(framecam2,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
     btnrastrear1.place(x=750,y=650)
     btnrastrear1.config(width="15")
     btnrastrear1.configure(relief="solid")
@@ -1032,7 +1038,7 @@ def Pantalla():
     my_label3 = tk.Label(framecam2Admin, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
     my_label3.place(x=750,y=550)
     
-    btnrastrear1 = Button(framecam2Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerCombo()]) ## Boton crear cuenta
+    btnrastrear1 = Button(framecam2Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
     btnrastrear1.place(x=750,y=650)
     btnrastrear1.config(width="15")
     btnrastrear1.configure(relief="solid")
@@ -1289,6 +1295,9 @@ def Pantalla():
         editarUsuario2.delete(0,END) 
         editarContra2.delete(0,END) 
         show_frame(frameAdmin) 
+    
+    def BottonRastreoActivo():
+            show_frame(frameRastreoActivo)
 
 
     ##########################
@@ -1296,7 +1305,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(frameAdmin)     ## Mostramos el frame default (login)
+    show_frame(framelogin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
