@@ -69,8 +69,9 @@ def Pantalla():
     frameAdminEditar.config(height=1900,width=1900)
     frameRastreoActivo= tk.Frame(ventana,bg="white")
     frameRastreoActivo.config(height=1900,width=1900)
-    
-    for frame in (framelogin, framecam,framecamAdmin, frameforg,frameAdmin, framecam1,framecam2,framecam1Admin,framecam2Admin,frameAdminEditar,frameRastreoActivo): #For para mostrar los frames
+    frameAdminAdd= tk.Frame(ventana,bg="white")
+    frameAdminAdd.config(height=1900,width=1900)
+    for frame in (framelogin, framecam,framecamAdmin, frameforg,frameAdmin, framecam1,framecam2,framecam1Admin,framecam2Admin,frameAdminEditar,frameRastreoActivo,frameAdminAdd): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
     #-----------------------------------------------#
         
@@ -119,7 +120,7 @@ def Pantalla():
         RegresarPrincipal.configure(relief="solid")
         RegresarPrincipal.config(bd=0.5)
         
-        AgregarUsuario= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()])
+        AgregarUsuario= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[GotoAñadir()])
         AgregarUsuario.place(x=1100,y=175)
         AgregarUsuario.config(width="14")
         AgregarUsuario.configure(relief="solid")
@@ -232,10 +233,10 @@ def Pantalla():
     def Agregar():
         pruebatxt = os.getcwd()
         auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt') 
-        correoEntrada = simpledialog.askstring("Agregar Usuario","Introduzca el nombre de usuario.")
+        correoEntrada = editarUsuario2.get()
         if(correoEntrada!=None):
             if verificarCorreo(correoEntrada):
-                contraseñaEntrada = simpledialog.askstring("Agregar Contraseña","Introduzca la contraseña.")
+                contraseñaEntrada = editarContra2.get()
                 if (messagebox.askyesno("Verificar Eliminación","¿Desea agregar a "+correoEntrada+" como Admin?")==True):
                     Lista.agregar(correoEntrada, contraseñaEntrada, "Admin")
                     probando=Lista.copiaratxt()
@@ -243,7 +244,10 @@ def Pantalla():
                     f.write(probando)
                     f.close()
                     Lista.imprimirlista()
+                    show_frame(frameAdmin)
                     Actualizarpantalla()
+                    editarUsuario.delete(0,END) 
+                    editarContra.delete(0,END) 
                 else:
                     Lista.agregar(correoEntrada, contraseñaEntrada, "User")
                     probando=Lista.copiaratxt()
@@ -251,7 +255,10 @@ def Pantalla():
                     f.write(probando)
                     f.close()
                     Lista.imprimirlista()
+                    show_frame(frameAdmin)
                     Actualizarpantalla()
+                    editarUsuario.delete(0,END) 
+                    editarContra.delete(0,END) 
             else:
                 messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
        
@@ -309,6 +316,8 @@ def Pantalla():
                             f.close()
                             show_frame(frameAdmin)
                             Actualizarpantalla()
+                            editarUsuario.delete(0,END) 
+                            editarContra.delete(0,END) 
                         else:
                             Lista.agregar(correoEntrada, contraseñaEntrada, "User")
                             Lista.eliminar(ListaCorreo)
@@ -320,6 +329,8 @@ def Pantalla():
                             f.close()
                             show_frame(frameAdmin)
                             Actualizarpantalla()
+                            editarUsuario.delete(0,END) 
+                            editarContra.delete(0,END) 
                     else:
                         if (messagebox.askyesno("Verificación cambio de rol","¿Desea que "+correoEntrada+" sea Admin?")==True):
                             Lista.agregar(correoEntrada, contraseñaEntrada, "Admin")
@@ -332,6 +343,8 @@ def Pantalla():
                             f.close()
                             show_frame(frameAdmin)
                             Actualizarpantalla()
+                            editarUsuario.delete(0,END) 
+                            editarContra.delete(0,END) 
                         else:
                             Lista.agregar(correoEntrada, contraseñaEntrada, ListaRol)
                             Lista.eliminar(ListaCorreo)
@@ -343,6 +356,8 @@ def Pantalla():
                             f.close()
                             show_frame(frameAdmin)
                             Actualizarpantalla()
+                            editarUsuario.delete(0,END) 
+                            editarContra.delete(0,END) 
                 else:
                     messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
         else:
@@ -422,30 +437,55 @@ def Pantalla():
     #*******************FIN FRAME ADMIN *************************    
     ################ FRAME ADMIN EDITAR####################
         
-    Admineditar = tkinter.Canvas(frameAdminEditar)
-    Admineditar.config(width=1425,height=720)
-    Admineditar.config(bg="white")
-    Admineditar.configure(relief="solid")
-    Admineditar.place(x=50,y=100)
-    editarUsuario = ttk.Entry(Admineditar)    
-    editarUsuario.place(x=550,y=300,width="350",height="50")
-    editarContra = ttk.Entry(Admineditar)    
-    editarContra.place(x=550,y=450,width="350",height="50")
-    Admineditar.create_text(740, 75, text="Introduzca el nuevo correo y contraseña",font=("Arial",24,'bold'))
-    Admineditar.create_text(715, 275, text="Correo",font=("Arial",14,'bold'))
-    Admineditar.create_text(715, 425, text="Contraseña",font=("Arial",14,'bold'))
-    btnedit = Button(frameAdminEditar,text="Aceptar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()]) ## Boton crear cuenta
-    btnedit.place(x=550,y=700)
-    btnedit.config(width="10",height="2")
-    btnedit.configure(relief="solid")
-    btnedit.config(bd=0.5)
-    btnedit1 = Button(frameAdminEditar,text="Cancelar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrar()]) ## Boton crear cuenta
-    btnedit1.place(x=850,y=700)
-    btnedit1.config(width="10",height="2")
-    btnedit1.configure(relief="solid")
-    btnedit1.config(bd=0.5)
-        
-        
+          
+    Admineditar = tkinter.Canvas(frameAdminEditar) 
+    Admineditar.config(width=1425,height=720) 
+    Admineditar.config(bg="white") 
+    Admineditar.configure(relief="solid") 
+    Admineditar.place(x=50,y=100) 
+    editarUsuario = ttk.Entry(Admineditar)     
+    editarUsuario.place(x=550,y=300,width="350",height="50") 
+    editarContra = ttk.Entry(Admineditar)     
+    editarContra.place(x=550,y=450,width="350",height="50") 
+    Admineditar.create_text(740, 75, text="Introduzca el nuevo correo y contraseña",font=("Arial",24,'bold')) 
+    Admineditar.create_text(715, 275, text="Correo",font=("Arial",14,'bold')) 
+    Admineditar.create_text(715, 425, text="Contraseña",font=("Arial",14,'bold')) 
+    btnedit = Button(frameAdminEditar,text="Aceptar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()]) ## Boton crear cuenta 
+    btnedit.place(x=550,y=700) 
+    btnedit.config(width="10",height="2") 
+    btnedit.configure(relief="solid") 
+    btnedit.config(bd=0.5) 
+    btnedit1 = Button(frameAdminEditar,text="Cancelar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrarEditar()]) ## Boton crear cuenta 
+    btnedit1.place(x=850,y=700) 
+    btnedit1.config(width="10",height="2") 
+    btnedit1.configure(relief="solid") 
+    btnedit1.config(bd=0.5) 
+         
+    ################### FRAME AÑADIR####################
+    Adminañadir = tkinter.Canvas(frameAdminAdd) 
+    Adminañadir.config(width=1425,height=720) 
+    Adminañadir.config(bg="white") 
+    Adminañadir.configure(relief="solid") 
+    Adminañadir.place(x=50,y=100) 
+    editarUsuario2 = ttk.Entry(Adminañadir)     
+    editarUsuario2.place(x=550,y=300,width="350",height="50") 
+    editarContra2 = ttk.Entry(Adminañadir)     
+    editarContra2.place(x=550,y=450,width="350",height="50") 
+    Adminañadir.create_text(740, 75, text="Introduzca el correo y contraseña",font=("Arial",24,'bold')) 
+    Adminañadir.create_text(715, 275, text="Correo",font=("Arial",14,'bold')) 
+    Adminañadir.create_text(715, 425, text="Contraseña",font=("Arial",14,'bold')) 
+    btnedit3 = Button(frameAdminAdd,text="Aceptar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:(Agregar())) ## Boton crear cuenta 
+    btnedit3.place(x=550,y=700) 
+    btnedit3.config(width="10",height="2") 
+    btnedit3.configure(relief="solid") 
+    btnedit3.config(bd=0.5) 
+    btnedit2 = Button(frameAdminAdd,text="Cancelar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrarAdd()]) ## Boton crear cuenta 
+    btnedit2.place(x=850,y=700) 
+    btnedit2.config(width="10",height="2") 
+    btnedit2.configure(relief="solid") 
+    btnedit2.config(bd=0.5) 
+         #########################################################
+         
         
         
         
@@ -1216,8 +1256,13 @@ def Pantalla():
    
     def RegresoAdmin1():
             show_frame(framecamAdmin)
-    def GotoEdit():
-            show_frame(frameAdminEditar)        
+    def GotoAñadir():
+        show_frame(frameAdminAdd)
+    def GotoEdit(): 
+        if(opcion.get()!=0): 
+            show_frame(frameAdminEditar)       
+        else: 
+            messagebox.showwarning("Error selección", "No ha seleccionado nada para poder editar")        
     def RegresoPrincipal():
             show_frame(framecam)
     
@@ -1236,8 +1281,15 @@ def Pantalla():
     def BuscarRostroAdmin():
         show_frame(framecam1Admin)
 
-    def FrameAdministrar():
-        show_frame(frameAdmin)
+    def FrameAdministrarEditar():
+        editarUsuario.delete(0,END) 
+        editarContra.delete(0,END) 
+        show_frame(frameAdmin) 
+    def FrameAdministrarAdd():
+        editarUsuario2.delete(0,END) 
+        editarContra2.delete(0,END) 
+        show_frame(frameAdmin) 
+
 
     ##########################
     
