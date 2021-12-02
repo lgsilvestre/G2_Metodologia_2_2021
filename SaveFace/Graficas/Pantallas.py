@@ -65,8 +65,10 @@ def Pantalla():
     framecam1Admin.config(height=1900,width=1900)
     framecam2Admin = tk.Frame(ventana,bg="white")
     framecam2Admin.config(height=1900,width=1900)
+    frameAdminEditar = tk.Frame(ventana,bg="white")
+    frameAdminEditar.config(height=1900,width=1900)
     
-    for frame in (framelogin, framecam,framecamAdmin, frameforg,frameAdmin, framecam1,framecam2,framecam1Admin,framecam2Admin): #For para mostrar los frames
+    for frame in (framelogin, framecam,framecamAdmin, frameforg,frameAdmin, framecam1,framecam2,framecam1Admin,framecam2Admin,frameAdminEditar): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
         
         
@@ -410,6 +412,40 @@ def Pantalla():
         
     
     #*******************FIN FRAME ADMIN *************************    
+        ################ FRAME ADMIN EDITAR####################
+        
+        
+    editarUsuario = ttk.Entry(frameAdminEditar)    
+    editarUsuario.place(x=750,y=350,width="394",height="25")
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
     
@@ -943,7 +979,7 @@ def Pantalla():
     btncombo3.configure(relief="solid")
     btncombo3.config(bd=0.5)
     
-    btncombo4 = Button(framecam2Admin,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro()]) ## Boton crear cuenta
+    btncombo4 = Button(framecam2Admin,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro2()]) ## Boton crear cuenta
     btncombo4.place(x=1000,y=490)
     btncombo4.config(width="15")
     btncombo4.configure(relief="solid")
@@ -1092,6 +1128,18 @@ def Pantalla():
         f = open (auxilioprueba,'w')
         f.write(probando)
         f.close()
+        
+        
+    def guardarRostro2():
+        nombrerostro=entryNombre2.get()
+        descripcionrostro=entryDescripcion2.get()
+        fecharostro=entryFecha2.get()
+        pruebatxt = os.getcwd()
+        auxilioprueba = pruebatxt.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
+        probando=("Nombre:"+nombrerostro+"\nDescipción:"+descripcionrostro+"\nFecha:"+fecharostro+"\n")
+        f = open (auxilioprueba,'w')
+        f.write(probando)
+        f.close()
     # FUNCIONES             #
     #########################
 
@@ -1191,7 +1239,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framelogin)     ## Mostramos el frame default (login)
+    show_frame(frameAdminEditar)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
