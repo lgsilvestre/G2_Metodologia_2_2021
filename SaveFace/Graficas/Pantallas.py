@@ -1,6 +1,6 @@
-from LogicaBasica.Verificacion import verificarUsuario,verificarCorreo
+from LogicaBasica.Verificacion import verificarUsuario,verificarCorreo, verificarCantidadAdmin
 from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
-from LogicaBasica.Usuario import User,Listauser
+from LogicaBasica.Usuario import User,ListaUser
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
 from tkinter.ttk import Label
@@ -67,22 +67,21 @@ def Pantalla():
     framecam2Admin.config(height=1900,width=1900)
     frameAdminEditar = tk.Frame(ventana,bg="white")
     frameAdminEditar.config(height=1900,width=1900)
+    frameRastreoActivo= tk.Frame(ventana,bg="white")
+    frameRastreoActivo.config(height=1900,width=1900)
     
-    for frame in (framelogin, framecam,framecamAdmin, frameforg,frameAdmin, framecam1,framecam2,framecam1Admin,framecam2Admin,frameAdminEditar): #For para mostrar los frames
+    for frame in (framelogin, framecam,framecamAdmin, frameforg,frameAdmin, framecam1,framecam2,framecam1Admin,framecam2Admin,frameAdminEditar,frameRastreoActivo): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
-        
-        
     #-----------------------------------------------#
         
-    #****************FRAME ADMIN*********************************
-    Admin = tkinter.Canvas(frameAdmin)
- 
+
     
-    
-    ###############################           ChecktBox        ###############################################
+    #-----------------RadiobuttonBox----------------#
     opcion= IntVar()
-    print(opcion)
+    #-----------------------------------------------#
+
     
+    #------------------Lista de usuarios-------------#
     def RellenadoLista(contador):
         aux=0
         s = os.getcwd()
@@ -100,8 +99,9 @@ def Pantalla():
                 return correo, contraseña,rol
             linea=archivo.readline()
         return " ", " ", " "  
+    #-----------------------------------------------#
     
-
+    #------------Actualizar Pantalla----------------#
     def Actualizarpantalla():
         Admin = tkinter.Canvas(frameAdmin)
         Admin.config(width=1425,height=720)
@@ -109,44 +109,47 @@ def Pantalla():
         Admin.configure(relief="solid")
         Admin.place(x=50,y=100)
         
-        
-        
         Admin.create_text(740, 75, text="Administrar",font=("Arial",36,'bold'))
+        
+        
+        #-------------------Button-------------------#
         RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoAdmin1()()])
         RegresarPrincipal.place(x=650,y=625)
         RegresarPrincipal.config(width="12")
         RegresarPrincipal.configure(relief="solid")
         RegresarPrincipal.config(bd=0.5)
         
-        RegresarPrincipal= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()])
-        RegresarPrincipal.place(x=1100,y=175)
-        RegresarPrincipal.config(width="14")
-        RegresarPrincipal.configure(relief="solid")
-        RegresarPrincipal.config(bd=0.5)
+        AgregarUsuario= Button(Admin,text="Agregar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()])
+        AgregarUsuario.place(x=1100,y=175)
+        AgregarUsuario.config(width="14")
+        AgregarUsuario.configure(relief="solid")
+        AgregarUsuario.config(bd=0.5)
         
+        EditarUsuario= Button(Admin,text="Editar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[GotoEdit()])
+        EditarUsuario.place(x=1100,y=325)
+        EditarUsuario.config(width="14")
+        EditarUsuario.configure(relief="solid")
+        EditarUsuario.config(bd=0.5)
         
-        RegresarPrincipal= Button(Admin,text="Editar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[GotoEdit()])
-        RegresarPrincipal.place(x=1100,y=325)
-        RegresarPrincipal.config(width="14")
-        RegresarPrincipal.configure(relief="solid")
-        RegresarPrincipal.config(bd=0.5)
-        
-        RegresarPrincipal= Button(Admin,text="Eliminar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EliminarU()])
-        RegresarPrincipal.place(x=1100,y=475)
-        RegresarPrincipal.config(width="14")
-        RegresarPrincipal.configure(relief="solid")
-        RegresarPrincipal.config(bd=0.5)
-        
-        
+        ElimininarUsuario= Button(Admin,text="Eliminar Usuario",font=("Arial",16,'bold'),bg='#a8021e',fg='white',command=lambda:[EliminarU()])
+        ElimininarUsuario.place(x=1100,y=475)
+        ElimininarUsuario.config(width="14")
+        ElimininarUsuario.configure(relief="solid")
+        ElimininarUsuario.config(bd=0.5)
+        #-----------------------------------------------#
         
         ListaCorreo=" "
         ListaContraseña=" "
         ListaRol=" "
         cont=1
+        
+        #---------------Leer Archivo txt-----------------#
         s = os.getcwd()
         new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
         archivo= open(new_s)
         linea = archivo.readline()#
+        
+        #-------------RadiobuttonBox Relleno-------------#
         while len(linea)>0:
             if(cont==1):
                 ListaCorreo,ListaContraseña,ListaRol=RellenadoLista(cont)
@@ -200,28 +203,10 @@ def Pantalla():
 
             cont=cont+1
             linea=archivo.readline()
-            
-        
+    #-----------------------------------------------#
+    #-----------------------------------------------#            
     
-    Actualizarpantalla()    
-        
-    
-    def verificarCantidadAdmin():
-        cont=0
-        s = os.getcwd()
-        new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
-        archivo= open(new_s)
-        linea = archivo.readline()
-        while len(linea)>0:
-            linea=linea.rstrip()
-            Array=linea.split()
-            if("Admin"==Array[2]):
-                cont= cont+1                
-            linea=archivo.readline()
-        if(cont==1):
-            return False
-        return True
-    
+    #-----------Rellenar lista con el txt-----------#
     def Completartxt():
         aux=0
         s = os.getcwd()
@@ -234,11 +219,15 @@ def Pantalla():
             Array=linea.split()
             Lista.agregar(Array[0], Array[1], Array[2])
             linea=archivo.readline()
-        
+    #-----------------------------------------------#        
+            
+    Actualizarpantalla()    
+
     global Lista
-    Lista = Listauser()
+    Lista = ListaUser()
     Completartxt()
-    Lista.imprimirlista()    
+        
+
     
     def Agregar():
         pruebatxt = os.getcwd()
@@ -309,7 +298,7 @@ def Pantalla():
                 if(verificarCorreo(correoEntrada)):
                     contraseñaEntrada = editarContra.get()
                     if("Admin"==ListaRol):
-                        if (messagebox.askyesno("Verificar Eliminación","¿Desea que "+correoEntrada+" siga como Admin?")==True):
+                        if (messagebox.askyesno("Verificación cambio de rol","¿Desea que "+correoEntrada+" siga como Admin?")==True):
                             Lista.agregar(correoEntrada, contraseñaEntrada, ListaRol)
                             Lista.eliminar(ListaCorreo)
                             pruebatxt = os.getcwd()
@@ -332,7 +321,7 @@ def Pantalla():
                             show_frame(frameAdmin)
                             Actualizarpantalla()
                     else:
-                        if (messagebox.askyesno("Verificar Eliminación","¿Desea que "+correoEntrada+" sea Admin?")==True):
+                        if (messagebox.askyesno("Verificación cambio de rol","¿Desea que "+correoEntrada+" sea Admin?")==True):
                             Lista.agregar(correoEntrada, contraseñaEntrada, "Admin")
                             Lista.eliminar(ListaCorreo)
                             pruebatxt = os.getcwd()
@@ -416,8 +405,22 @@ def Pantalla():
     
         
     
+    #------------Frame Rastreo Activo--------------#
+    RastreoActivo = tkinter.Canvas(frameRastreoActivo)
+    RastreoActivo.config(width=1425,height=720)
+    RastreoActivo.config(bg="white")
+    RastreoActivo.configure(relief="solid")
+    RastreoActivo.place(x=50,y=100)
+
+    #-----------------------------------------------#
+    
+    
+    
+    
+
+    
     #*******************FIN FRAME ADMIN *************************    
-        ################ FRAME ADMIN EDITAR####################
+    ################ FRAME ADMIN EDITAR####################
         
     Admineditar = tkinter.Canvas(frameAdminEditar)
     Admineditar.config(width=1425,height=720)
@@ -447,29 +450,7 @@ def Pantalla():
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
     #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
     
     miframe=tkinter.Canvas(framelogin)
