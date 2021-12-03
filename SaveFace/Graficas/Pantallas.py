@@ -1,5 +1,5 @@
 from LogicaBasica.Verificacion import verificarUsuario,verificarCorreo, verificarCantidadAdmin
-from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC
+from DetecciónRostros.Detecciónderostros import reconocimientoA,reconocimientoB,reconocimientoC, RastreoActivoCamara
 from LogicaBasica.Usuario import User,ListaUser
 from tkinter import *
 from PIL import Image, ImageTk #pip install Pillow
@@ -420,20 +420,26 @@ def Pantalla():
     
         
     
-    #------------Frame Rastreo Activo--------------#
-    RastreoActivo = tkinter.Canvas(frameRastreoActivo)
-    RastreoActivo.config(width=1425,height=720)
-    RastreoActivo.config(bg="white")
-    RastreoActivo.configure(relief="solid")
-    RastreoActivo.place(x=50,y=100)
-    
-    btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
-    btnregresar.place(x=1150,y=650)
-    btnregresar.config(width="15")
-    btnregresar.configure(relief="solid")
-    btnregresar.config(bd=0.5)
-
-    #-----------------------------------------------#
+    #------------Frame Rastreo Activo--------------# 
+    RastreoActivo = tkinter.Canvas(frameRastreoActivo) 
+    RastreoActivo.config(width=1425,height=720) 
+    RastreoActivo.config(bg="white") 
+    RastreoActivo.configure(relief="solid") 
+    RastreoActivo.place(x=50,y=100) 
+     
+    ActivarCamara = Button(RastreoActivo,text="Activar camara",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RastreoActivoCamara()]) ## Boton crear cuenta 
+    ActivarCamara.place(x=500,y=650) 
+    ActivarCamara.config(width="12") 
+    ActivarCamara.configure(relief="solid") 
+    ActivarCamara.config(bd=0.5) 
+     
+    btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta 
+    btnregresar.place(x=1150,y=650) 
+    btnregresar.config(width="15") 
+    btnregresar.configure(relief="solid") 
+    btnregresar.config(bd=0.5)     
+ 
+    #-----------------------------------------------#  
     
     
     
@@ -1310,7 +1316,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framelogin)     ## Mostramos el frame default (login)
+    show_frame(framecam)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
