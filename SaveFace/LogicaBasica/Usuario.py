@@ -14,7 +14,7 @@ class User:
         
         
         
-class Listauser: 
+class ListaUser: 
     def __init__(self):
         self.head = None        
     # Método para verificar si la estructura de datos esta vacia

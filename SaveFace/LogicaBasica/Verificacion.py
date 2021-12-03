@@ -59,3 +59,19 @@ def verificarCorreo(Correo):
         return False
     
     return False
+    
+def verificarCantidadAdmin():
+    cont=0
+    s = os.getcwd()
+    new_s = s.replace('Main','LogicaBasica/usuarios.txt')    
+    archivo= open(new_s)
+    linea = archivo.readline()
+    while len(linea)>0:
+        linea=linea.rstrip()
+        Array=linea.split()
+        if("Admin"==Array[2]):
+            cont= cont+1                
+        linea=archivo.readline()
+    if(cont==1):
+        return False
+    return True
