@@ -604,7 +604,7 @@ def Pantalla():
     triggerB=False;
     
     comboReconocimientoUser= ttk.Combobox(framecamUser, font= ("Arial", 14, "bold"))
-    comboReconocimientoUser['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboReconocimientoUser['values']= ('Seleccionar Patron','Reconocimiento A','Reconocimiento B','Reconocimiento C')
     comboReconocimientoUser.place(x=1050,y=450)
     comboReconocimientoUser.config(width = "16")
     comboReconocimientoUser.current(0)
@@ -740,7 +740,7 @@ def Pantalla():
     triggerY=False;
     
     comboReconocimientoAdmin= ttk.Combobox(framecamAdmin)
-    comboReconocimientoAdmin['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboReconocimientoAdmin['values']= ('Seleccionar Patron','Reconocimiento A','Reconocimiento B','Reconocimiento C')
     comboReconocimientoAdmin.place(x=1050,y=350)
     comboReconocimientoAdmin.current(0)
     
@@ -789,7 +789,7 @@ def Pantalla():
     comboBoxBuscarRostroUser.config(width = "16")
     comboBoxBuscarRostroUser.current(0)
     
-    botonAplicPatronBuscarRostro = Button(framecamBuscar,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerComboUser()]) ## Boton crear cuenta
+    botonAplicPatronBuscarRostro = Button(framecamBuscar,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
     botonAplicPatronBuscarRostro.place(x=1050,y=410)
     botonAplicPatronBuscarRostro.config(width="16")
     botonAplicPatronBuscarRostro.configure(relief="solid")
@@ -849,7 +849,7 @@ def Pantalla():
     comboBoxBuscarRostroAdmin.place(x=1000,y=350)
     comboBoxBuscarRostroAdmin.current(0)
     
-    botonAplicPatronBuscarR = Button(framecam1Admin,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerComboAdmin()]) ## Boton crear cuenta
+    botonAplicPatronBuscarR = Button(framecam1Admin,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
     botonAplicPatronBuscarR.place(x=1000,y=400)
     botonAplicPatronBuscarR.config(width="15")
     botonAplicPatronBuscarR.configure(relief="solid")
@@ -909,7 +909,7 @@ def Pantalla():
     my_label1.place(x=1060,y=150)
     
     comboBoxDetectarRostroUser = ttk.Combobox(framecamDetectar, font=("Arial", 14,"bold"))
-    comboBoxDetectarRostroUser['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboBoxDetectarRostroUser['values']= ('Seleccionar Patron','Reconocimiento A','Reconocimiento B','Reconocimiento C')
     comboBoxDetectarRostroUser.place(x=1050,y=340)
     comboBoxDetectarRostroUser.config(width= "16")
     comboBoxDetectarRostroUser.current(0)
@@ -969,7 +969,7 @@ def Pantalla():
     my_label1.place(x=1000,y=100)
     
     comboBoxDetectarRostroAdmin = ttk.Combobox(framecam2Admin)
-    comboBoxDetectarRostroAdmin['values']= ('Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboBoxDetectarRostroAdmin['values']= ('Seleccionar Patron','Reconocimiento A','Reconocimiento B','Reconocimiento C')
     comboBoxDetectarRostroAdmin.place(x=1000,y=350)
     comboBoxDetectarRostroAdmin.current(0)
     
@@ -1121,50 +1121,62 @@ def Pantalla():
 
     def obtenerComboAdmin():
         comparar=comboReconocimientoAdmin.get()
+        compararDetectar=comboBoxDetectarRostroAdmin.get()
         global nombrerostro
         nombrerostro=entryNombreDetectarAdmin.get()
         global triggerA
         global triggerB
         global triggerC
-        if(comparar =='Reconocimiento A'):
+        
+        if(comparar =='Reconocimiento A' or compararDetectar == 'Reconocimiento A'):
             triggerC=False
             triggerB=False
             triggerA=True
             return True  
-        if(comparar =='Reconocimiento B'):
+            print("si entra A")
+        if(comparar =='Reconocimiento B' or compararDetectar == 'Reconocimiento B'):
             triggerA=False
             triggerC=False
             triggerB=True
             return True 
-        if(comparar =='Reconocimiento C'):
+            print("si entra B")
+        if(comparar =='Reconocimiento C' or compararDetectar == 'Reconocimiento C' ):
             triggerA=False
             triggerB=False
             triggerC=True
             return True
-    
+            print("si entra C")
+            
     def obtenerComboUser():
         comparar1=comboReconocimientoUser.get()
+        compararDetectarUser=comboBoxDetectarRostroUser.get()
+        print(compararDetectarUser)
         global nombrerostro
         nombrerostro=entryNombreDetectarUser.get()
         global triggerA
         global triggerB
         global triggerC
-        if(comparar1 =='Reconocimiento A'):
+        
+        if(comparar1 =='Reconocimiento A' or compararDetectarUser == 'Reconocimiento A'):
             triggerC=False
             triggerB=False
             triggerA=True
             return True  
-        if(comparar1 =='Reconocimiento B'):
+            
+      
+       
+        if(comparar1 =='Reconocimiento B' or compararDetectarUser == 'Reconocimiento B'):
             triggerA=False
             triggerC=False
             triggerB=True
             return True 
-        if(comparar1 =='Reconocimiento C'):
+            
+      
+        if(comparar1 =='Reconocimiento C' or compararDetectarUser == 'Reconocimiento C'):
             triggerA=False
             triggerB=False
             triggerC=True
             return True
-        
             
          
     def Login():
