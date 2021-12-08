@@ -920,7 +920,7 @@ def Pantalla():
     botonAplicarDetectarUser.configure(relief="solid")
     botonAplicarDetectarUser.config(bd=0.5)
     
-    botonGuardarRostroUser = Button(framecamDetectar,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro()]) ## Boton crear cuenta
+    botonGuardarRostroUser = Button(framecamDetectar,text="Guardar Rostro user",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro()]) ## Boton crear cuenta
     botonGuardarRostroUser.place(x=1050,y=480)
     botonGuardarRostroUser.config(width="16")
     botonGuardarRostroUser.configure(relief="solid")
@@ -1050,8 +1050,8 @@ def Pantalla():
     
     entryDescripcionDetectarUser = ttk.Entry(framecamDetectar) ## Entrada de descripción
     entryDescripcionDetectarUser.place(x=360,y=700, width="450",height="25")
-    entryDescripcionDetectarUser= Label(framecamDetectar,text="Descripción",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
-    entryDescripcionDetectarUser.place(x=360,y=680)
+    labelDescripcionDetectarUser= Label(framecamDetectar,text="Descripción",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelDescripcionDetectarUser.place(x=360,y=680)
     
     entryFechaDetectarUser = ttk.Entry(framecamDetectar) ## Entrada de fecha
     entryFechaDetectarUser.place(x=360,y=760, width="450",height="25")
@@ -1093,11 +1093,15 @@ def Pantalla():
     labelFechaDetectarAdmin.place(x=320,y=637)
     
     def guardarRostro():
-        nombrerostro=entryNombreDetectarAdmin.get()
-        descripcionrostro=entryDescripcionDetectarAdmin.get()
-        fecharostro=entryFechaDetectarAdmin.get()
+        nombrerostro=entryNombreDetectarUser.get()
+        descripcionrostro=entryDescripcionDetectarUser.get()
+        fecharostro=entryFechaDetectarUser.get()
         pruebatxt = os.getcwd()
+        new_s = pruebatxt.replace('\\','/')
+        new_s = pruebatxt.replace('Main','Guardar informacion de rostros')
+        auxilioprueba = new_s.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
         auxilioprueba = pruebatxt.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
+        print("Directorio Guardar Rostro 1", auxilioprueba)
         probando=("Nombre:"+nombrerostro+"\nDescipción:"+descripcionrostro+"\nFecha:"+fecharostro+"\n")
         f = open (auxilioprueba,'w')
         f.write(probando)
@@ -1105,11 +1109,18 @@ def Pantalla():
         
         
     def guardarRostro2():
-        nombrerostro=entryNombreDetectarUser.get()
-        descripcionrostro=entryDescripcionDetectarUser.get()
-        fecharostro=entryFechaDetectarUser.get()
+        nombrerostro=entryNombreDetectarAdmin.get()
+        print("Nombre rostro 2", nombrerostro +"\n")
+        descripcionrostro=entryDescripcionDetectarAdmin.get()
+        print("Nombre rostro 2", descripcionrostro +"\n")
+        fecharostro=entryFechaDetectarAdmin.get()
+        print("Nombre rostro 2", fecharostro +"\n")
         pruebatxt = os.getcwd()
+        new_s = pruebatxt.replace('\\','/')
+        new_s = pruebatxt.replace('Main','Guardar informacion de rostros')
+        auxilioprueba = new_s.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
         auxilioprueba = pruebatxt.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
+        print("Directorio Guardar Rostro 2", auxilioprueba)
         probando=("Nombre:"+nombrerostro+"\nDescipción:"+descripcionrostro+"\nFecha:"+fecharostro+"\n")
         f = open (auxilioprueba,'w')
         f.write(probando)
