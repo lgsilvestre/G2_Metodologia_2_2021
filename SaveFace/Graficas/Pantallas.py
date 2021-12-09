@@ -72,11 +72,14 @@ def Pantalla():
     
     frameAdminEditar = tk.Frame(ventana,bg="white")
     frameAdminEditar.config(height=1900,width=1900)
-    frameRastreoActivo= tk.Frame(ventana,bg="white")
-    frameRastreoActivo.config(height=1900,width=1900)
+    
     frameAdminAdd= tk.Frame(ventana,bg="white")
     frameAdminAdd.config(height=1900,width=1900)
-    for frame in (framelogin, framecamUser,framecamAdmin, frameforg,frameAdmin, framecamBuscar,framecamDetectar,framecam1Admin,framecam2Admin,frameAdminEditar,frameRastreoActivo,frameAdminAdd): #For para mostrar los frames
+    frameRastreoActivo= tk.Frame(ventana,bg="white")
+    frameRastreoActivo.config(height=1900,width=1900)
+    frameRastreoActivoAdmin= tk.Frame(ventana,bg="white")
+    frameRastreoActivoAdmin.config(height=1900,width=1900)
+    for frame in (framelogin, framecamUser,framecamAdmin, frameforg,frameAdmin, framecamBuscar,framecamDetectar,framecam1Admin,framecam2Admin,frameAdminEditar,frameAdminAdd,frameRastreoActivo,frameRastreoActivoAdmin): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
     #-----------------------------------------------#
         
@@ -119,7 +122,7 @@ def Pantalla():
         
         
         #-------------------Button-------------------#
-        RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoAdmin1()()])
+        RegresarPrincipal= Button(Admin,text="Regresar",font=("Arial",20,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoAdmin1()])
         RegresarPrincipal.place(x=650,y=625)
         RegresarPrincipal.config(width="12")
         RegresarPrincipal.configure(relief="solid")
@@ -438,7 +441,7 @@ def Pantalla():
     ActivarCamara.configure(relief="solid") 
     ActivarCamara.config(bd=0.5) 
      
-    btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta 
+    btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta 
     btnregresar.place(x=1150,y=650) 
     btnregresar.config(width="15") 
     btnregresar.configure(relief="solid") 
@@ -446,7 +449,26 @@ def Pantalla():
  
     #-----------------------------------------------#  
     
-    
+    #--------Frame Rastreo Activo Admin-------------# 
+    RastreoActivoAdmin = tkinter.Canvas(frameRastreoActivoAdmin) 
+    RastreoActivoAdmin.config(width=1425,height=720) 
+    RastreoActivoAdmin.config(bg="white") 
+    RastreoActivoAdmin.configure(relief="solid") 
+    RastreoActivoAdmin.place(x=50,y=100) 
+     
+    ActivarCamara = Button(RastreoActivoAdmin,text="Activar camara",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RastreoActivoCamara()]) ## Boton crear cuenta 
+    ActivarCamara.place(x=500,y=650) 
+    ActivarCamara.config(width="12") 
+    ActivarCamara.configure(relief="solid") 
+    ActivarCamara.config(bd=0.5) 
+     
+    btnregresar = Button(RastreoActivoAdmin,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoAdmin()]) ## Boton crear cuenta 
+    btnregresar.place(x=1150,y=650) 
+    btnregresar.config(width="15") 
+    btnregresar.configure(relief="solid") 
+    btnregresar.config(bd=0.5)     
+ 
+    #-----------------------------------------------#  
     
     
 
@@ -711,19 +733,19 @@ def Pantalla():
     miframe2.create_text(50, 50, text="Camara",font=("Arial",14))
     miframe2.place(x=50,y=100)
     
-    btnBuscarRostroAdmin = Button(framecamAdmin,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BuscarRostroAdmin()()]) ## Boton crear cuenta
+    btnBuscarRostroAdmin = Button(framecamAdmin,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BuscarRostroAdmin()]) ## Boton crear cuenta
     btnBuscarRostroAdmin.place(x=1050,y=150)
     btnBuscarRostroAdmin.config(width="12")
     btnBuscarRostroAdmin.configure(relief="solid")
     btnBuscarRostroAdmin.config(bd=0.5)
     
-    btnDetectarAdmin = Button(framecamAdmin,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostroAdmin()()]) ## Boton crear cuenta
+    btnDetectarAdmin = Button(framecamAdmin,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostroAdmin()]) ## Boton crear cuenta
     btnDetectarAdmin.place(x=1050,y=250)
     btnDetectarAdmin.config(width="12")
     btnDetectarAdmin.configure(relief="solid")
     btnDetectarAdmin.config(bd=0.5)
     
-    btnAdministrar = Button(framecamAdmin,text="Administrar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrar()()]) ## Boton crear cuenta
+    btnAdministrar = Button(framecamAdmin,text="Administrar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrar()]) ## Boton crear cuenta
     btnAdministrar.place(x=1200,y=100)
     btnAdministrar.config(width="12")
     btnAdministrar.configure(relief="solid")
@@ -751,7 +773,7 @@ def Pantalla():
     btnAplicarPatronAdmin.config(bd=0.5)
     
     
-    btnRastreoActivoAdmin = Button(framecamAdmin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
+    btnRastreoActivoAdmin = Button(framecamAdmin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo2()]) ## Boton crear cuenta
     btnRastreoActivoAdmin.place(x=750,y=650)
     btnRastreoActivoAdmin.config(width="15")
     btnRastreoActivoAdmin.configure(relief="solid")
@@ -810,7 +832,7 @@ def Pantalla():
     btnrastrearBuscarRostro.configure(relief="solid")
     btnrastrearBuscarRostro.config(bd=0.5)
     
-    btnRegresarBuscarRostro = Button(framecamBuscar,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
+    btnRegresarBuscarRostro = Button(framecamBuscar,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta
     btnRegresarBuscarRostro.place(x=1050,y=570)
     btnRegresarBuscarRostro.config(width="16")
     btnRegresarBuscarRostro.configure(relief="solid")
@@ -835,7 +857,7 @@ def Pantalla():
     botonBuscarRostroAdmin.configure(relief="solid")
     botonBuscarRostroAdmin.config(bd=0.5)
     
-    botonDetectarRostroAdmin = Button(framecam1Admin,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostroAdmin()()]) ## Boton crear cuenta
+    botonDetectarRostroAdmin = Button(framecam1Admin,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostroAdmin()]) ## Boton crear cuenta
     botonDetectarRostroAdmin.place(x=1000,y=250)
     botonDetectarRostroAdmin.config(width="12")
     botonDetectarRostroAdmin.configure(relief="solid")
@@ -864,13 +886,13 @@ def Pantalla():
     labelEstadoCamBuscarAdmin = tk.Label(framecam1Admin, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
     labelEstadoCamBuscarAdmin.place(x=750,y=550)
     
-    btnrastrearBuscarRostroAdmin = Button(framecam1Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
+    btnrastrearBuscarRostroAdmin = Button(framecam1Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo2()]) ## Boton crear cuenta
     btnrastrearBuscarRostroAdmin.place(x=750,y=650)
     btnrastrearBuscarRostroAdmin.config(width="15")
     btnrastrearBuscarRostroAdmin.configure(relief="solid")
     btnrastrearBuscarRostroAdmin.config(bd=0.5)
     
-    btnRegresarBuscarR = Button(framecam1Admin,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoAdmin1()()()]) ## Boton crear cuenta
+    btnRegresarBuscarR = Button(framecam1Admin,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoAdmin1()]) ## Boton crear cuenta
     btnRegresarBuscarR.place(x=1150,y=650)
     btnRegresarBuscarR.config(width="15")
     btnRegresarBuscarR.configure(relief="solid")
@@ -935,7 +957,7 @@ def Pantalla():
     botonRastreoActivoUser.configure(relief="solid")
     botonRastreoActivoUser.config(bd=0.5)
     
-    botonRegresarDetectarUser = Button(framecamDetectar,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPrincipal()]) ## Boton crear cuenta
+    botonRegresarDetectarUser = Button(framecamDetectar,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta
     botonRegresarDetectarUser.place(x=1050,y=570)
     botonRegresarDetectarUser.config(width="16")
     botonRegresarDetectarUser.configure(relief="solid")
@@ -988,7 +1010,7 @@ def Pantalla():
     labelEstadoCamDetectarAdmin = tk.Label(framecam2Admin, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
     labelEstadoCamDetectarAdmin.place(x=750,y=550)
     
-    botonRastreoActivoAdmin = Button(framecam2Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
+    botonRastreoActivoAdmin = Button(framecam2Admin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo2()]) ## Boton crear cuenta
     botonRastreoActivoAdmin.place(x=750,y=650)
     botonRastreoActivoAdmin.config(width="15")
     botonRastreoActivoAdmin.configure(relief="solid")
@@ -1206,8 +1228,8 @@ def Pantalla():
     def Regreso():
             show_frame(framecamUser)
             
-    def RegresoAdmin():
-            show_frame(framelogin)
+    #def RegresoAdmin():
+     #       show_frame(framelogin)
    
     def RegresoAdmin1():
             show_frame(framecamAdmin)
@@ -1218,9 +1240,13 @@ def Pantalla():
             show_frame(frameAdminEditar)       
         else: 
             messagebox.showwarning("Error selección", "No ha seleccionado nada para poder editar")        
-    def RegresoPrincipal():
+    
+    def RegresoUser():
             show_frame(framecamUser)
     
+    def RegresoAdmin():
+            show_frame(framecamAdmin)
+            
     def Olvide():
             show_frame(frameforg)
             
@@ -1250,6 +1276,9 @@ def Pantalla():
     
     def BottonRastreoActivo():
             show_frame(frameRastreoActivo)
+            
+    def BottonRastreoActivo2():
+            show_frame(frameRastreoActivoAdmin)
 
 
     ##########################
