@@ -236,8 +236,9 @@ def Pantalla():
     Lista = ListaUser()
     Completartxt()
         
-
+    #----------------Funciones de Admin-------------#
     
+    #----------------Agregar Usuario----------------#
     def Agregar():
         pruebatxt = os.getcwd()
         auxilioprueba = pruebatxt.replace('Main','LogicaBasica/usuarios.txt') 
@@ -254,8 +255,9 @@ def Pantalla():
                     Lista.imprimirlista()
                     show_frame(frameAdmin)
                     Actualizarpantalla()
-                    editarUsuario.delete(0,END) 
-                    editarContra.delete(0,END) 
+                    editarUsuario2.delete(0,END) 
+                    editarContra2.delete(0,END)
+                  
                 else:
                     Lista.agregar(correoEntrada, contraseñaEntrada, "User")
                     probando=Lista.copiaratxt()
@@ -264,13 +266,15 @@ def Pantalla():
                     f.close()
                     Lista.imprimirlista()
                     show_frame(frameAdmin)
-                    Actualizarpantalla()
-                    editarUsuario.delete(0,END) 
-                    editarContra.delete(0,END) 
+                    Actualizarpantalla() 
+                    editarUsuario2.delete(0,END) 
+                    editarContra2.delete(0,END)
+                  
             else:
                 messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
-       
+    #-----------------------------------------------# 
     
+    #----------------Editar Usuario-----------------#
     def EditarU():
         if(opcion.get()!=0):
             ListaCorreo=" "
@@ -326,6 +330,7 @@ def Pantalla():
                             Actualizarpantalla()
                             editarUsuario.delete(0,END) 
                             editarContra.delete(0,END) 
+                      
                         else:
                             Lista.agregar(correoEntrada, contraseñaEntrada, "User")
                             Lista.eliminar(ListaCorreo)
@@ -339,6 +344,7 @@ def Pantalla():
                             Actualizarpantalla()
                             editarUsuario.delete(0,END) 
                             editarContra.delete(0,END) 
+                      
                     else:
                         if (messagebox.askyesno("Verificación cambio de rol","¿Desea que "+correoEntrada+" sea Admin?")==True):
                             Lista.agregar(correoEntrada, contraseñaEntrada, "Admin")
@@ -353,6 +359,7 @@ def Pantalla():
                             Actualizarpantalla()
                             editarUsuario.delete(0,END) 
                             editarContra.delete(0,END) 
+                          
                         else:
                             Lista.agregar(correoEntrada, contraseñaEntrada, ListaRol)
                             Lista.eliminar(ListaCorreo)
@@ -366,14 +373,15 @@ def Pantalla():
                             Actualizarpantalla()
                             editarUsuario.delete(0,END) 
                             editarContra.delete(0,END) 
+                        
                 else:
                     messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
         else:
             messagebox.showwarning("Error selección", "No ha seleccionado nada para poder editar")
+    #-----------------------------------------------#     
         
         
-        
-
+    #--------------Eliminar Usuario-----------------#
     def EliminarU():
         if(opcion.get()!=0):
             ListaCorreo=" "
@@ -425,8 +433,8 @@ def Pantalla():
             
         else:
             messagebox.showwarning("Error selección", "No ha seleccionado nada para poder eliminar")  
-    
-        
+    #-----------------------------------------------# 
+    #-----------------------------------------------#    
     
     #------------Frame Rastreo Activo--------------# 
     RastreoActivo = tkinter.Canvas(frameRastreoActivo) 
@@ -513,7 +521,7 @@ def Pantalla():
     Adminañadir.create_text(740, 75, text="Introduzca el correo y contraseña",font=("Arial",24,'bold')) 
     Adminañadir.create_text(715, 275, text="Correo",font=("Arial",14,'bold')) 
     Adminañadir.create_text(715, 425, text="Contraseña",font=("Arial",14,'bold')) 
-    btnedit3 = Button(frameAdminAdd,text="Aceptar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:(Agregar())) ## Boton crear cuenta 
+    btnedit3 = Button(frameAdminAdd,text="Aceptar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()]) ## Boton crear cuenta 
     btnedit3.place(x=550,y=700) 
     btnedit3.config(width="10",height="2") 
     btnedit3.configure(relief="solid") 
@@ -529,9 +537,9 @@ def Pantalla():
         
         
         
+         
 
-    #+++++++++++++++FRAME LOGIN+++++++++++++++++++++++++++++++#
-    
+    #----------------Frame Login--------------------# 
     miframe=tkinter.Canvas(framelogin)
     miframe.config(width=740,height=620)
     miframe.config(bg="white")
@@ -540,43 +548,40 @@ def Pantalla():
     miframe.create_text(50, 50, text="Inicio",font=("Sitka Text",14))
     miframe.place(x=400,y=100)
           
-    btn2 = Button(miframe,text="Ingresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[Login()])
-    btn2.place(x=270,y=380)
-    btn2.config(width="16")
-    btn2.configure(relief="solid")
-    btn2.config(bd=0.5)
+    btnIngresar = Button(miframe,text="Ingresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[Login()])
+    btnIngresar.place(x=270,y=380)
+    btnIngresar.config(width="16")
+    btnIngresar.configure(relief="solid")
+    btnIngresar.config(bd=0.5)
             
+    btnOlvidar = Button(miframe,text="Olvidó su contraseña",font=("Sitka Text",14,'bold', "underline") , bg='white',fg='darkcyan',command=lambda:[Olvide()])
+    btnOlvidar.place(x=270,y=460)
+    btnOlvidar.config(width="16")
+    btnOlvidar.configure(relief="solid")
+    btnOlvidar.config(bd=0)
     
-    btncontra = Button(miframe,text="Olvidó su contraseña",font=("Sitka Text",14,'bold', "underline") , bg='white',fg='darkcyan',command=lambda:[Olvide()])
-    btncontra.place(x=270,y=460)
-    btncontra.config(width="16")
-    btncontra.configure(relief="solid")
-    btncontra.config(bd=0)
+    btnCrear = Button(miframe,text="Crear Cuenta",font=("Arial",14,'bold') , bg='#858282',fg='white',command=lambda:[Olvide()]) ## Boton crear cuenta
+    btnCrear.place(x=270,y=550)
+    btnCrear.config(width="16")
+    btnCrear.configure(relief="solid")
+    btnCrear.config(bd=0.5)
     
-    
-    
-    btn3 = Button(miframe,text="Crear Cuenta",font=("Arial",14,'bold') , bg='#858282',fg='white',command=lambda:[Olvide()]) ## Boton crear cuenta
-    btn3.place(x=270,y=550)
-    btn3.config(width="16")
-    btn3.configure(relief="solid")
-    btn3.config(bd=0.5)
     miframe.create_text(155, 110, text="Correo Electrónico",font=("Sitka Text",14)) ##Se crea un texto desde miframe
-    entry = ttk.Entry(miframe) ## Entrada de correo
-    entry.place(x=75, y=130,width="600",height="40")
-    
-    entry2 = ttk.Entry(miframe) ## Entrada de contraseña
-    entry2.place(x=75, y=260,width="600",height="40")
-    
     miframe.create_text(125, 240, text="Contraseña",font=("Sitka Text",14))
+    
+    EntradaUsuario = ttk.Entry(miframe) ## Entrada de correo
+    EntradaUsuario.place(x=75, y=130,width="600",height="40")
+    
+    EntradaContraseña = ttk.Entry(miframe) ## Entrada de contraseña
+    EntradaContraseña.place(x=75, y=260,width="600",height="40")
+    EntradaContraseña.config(show="*")
     
     miframe.create_line(20,80,730,80,fill="darkcyan")
     miframe.create_line(20,510,730,510,fill="darkcyan")
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++# 
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++# 
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++# 
-    #+++++++++++++++++++++FRAME OLVIDE CONTRASEÑA CREAR CUENTA++++++++++++++++++++++# 
+    #-----------------------------------------------#
     
     
+     #+++++++++++++++++++++FRAME OLVIDE CONTRASEÑA CREAR CUENTA++++++++++++++++++++++#
     anuncio=tkinter.Canvas(frameforg)
     anuncio.config(width=1240,height=620)
     anuncio.config(bg="white")
@@ -1214,8 +1219,8 @@ def Pantalla():
             
          
     def Login():
-        usuario=entry.get()
-        contraseña=entry2.get()
+        usuario=EntradaUsuario.get()
+        contraseña=EntradaContraseña.get()
         resultado=verificarUsuario(usuario,contraseña)
         if(resultado == 'Admin'):
             print("Ingreso como Admin")
@@ -1243,13 +1248,13 @@ def Pantalla():
             messagebox.showwarning("Error selección", "No ha seleccionado nada para poder editar")        
     
     def RegresoUser():
-            show_frame(framecamUser)
+        show_frame(framecamUser)
     
     def RegresoAdmin():
-            show_frame(framecamAdmin)
+        show_frame(framecamAdmin)
             
     def Olvide():
-            show_frame(frameforg)
+        show_frame(frameforg)
             
     def DetectarRostro():
         show_frame(framecamDetectar)
@@ -1264,22 +1269,18 @@ def Pantalla():
         show_frame(framecam1Admin)
 
     def FrameAdministrarEditar():
-        editarUsuario.delete(0,END) 
-        editarContra.delete(0,END) 
-        show_frame(frameAdmin) 
+        show_frame(frameAdmin)
     def FrameAdministrarAdd():
-        editarUsuario2.delete(0,END) 
-        editarContra2.delete(0,END) 
         show_frame(frameAdmin) 
 
     def FrameAdministrar():
         show_frame(frameAdmin)
     
     def BottonRastreoActivo():
-            show_frame(frameRastreoActivo)
+        show_frame(frameRastreoActivo)
             
     def BottonRastreoActivo2():
-            show_frame(frameRastreoActivoAdmin)
+        show_frame(frameRastreoActivoAdmin)
 
 
     ##########################
@@ -1287,7 +1288,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framecam2Admin)     ## Mostramos el frame default (login)
+    show_frame(frameAdmin)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
