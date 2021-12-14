@@ -163,7 +163,9 @@ def RastreoActivoCamara():
             cv2.rectangle(img, (x,y), (x+w,y+h),(0,255,0),2)
             i = i+1
             cv2.putText(img, 'Numero de Cara '+str(i),(x-10, y-10), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7,(0, 0, 255), 2) 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7,(0, 0, 255), 2)
+        cv2.putText(img, 'Numero total de caras: '+str(i),(5, 15),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7,(0, 0, 255), 2)
         cv2.imshow('img',img) 
         k= cv2.waitKey(30) 
         if k == 27:  
