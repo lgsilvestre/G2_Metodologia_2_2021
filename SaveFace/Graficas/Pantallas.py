@@ -62,6 +62,10 @@ def Pantalla():
     framecamDetectar = tk.Frame(ventana,bg="white")
     framecamDetectar.config(height=1900,width=1900)
     
+    ## FRAME DETECTAR ROSTRO DEFINITIVO####
+    DetectFace = tk.Frame(ventana,bg="white")
+    DetectFace.config(height=1900,width=1900)
+    
     #frame Buscar Admin
     framecam1Admin = tk.Frame(ventana,bg="white") 
     framecam1Admin.config(height=1900,width=1900)
@@ -79,17 +83,17 @@ def Pantalla():
     frameRastreoActivo.config(height=1900,width=1900)
     frameRastreoActivoAdmin= tk.Frame(ventana,bg="white")
     frameRastreoActivoAdmin.config(height=1900,width=1900)
-    for frame in (framelogin, framecamUser,framecamAdmin, frameforg,frameAdmin, framecamBuscar,framecamDetectar,framecam1Admin,framecam2Admin,frameAdminEditar,frameAdminAdd,frameRastreoActivo,frameRastreoActivoAdmin): #For para mostrar los frames
+    for frame in (framelogin, framecamUser,framecamAdmin,DetectFace, frameforg,frameAdmin, framecamBuscar,framecamDetectar,framecam1Admin,framecam2Admin,frameAdminEditar,frameAdminAdd,frameRastreoActivo,frameRastreoActivoAdmin): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
     #-----------------------------------------------#
         
 
-    
+    #NO ELIMINAR
     #-----------------RadiobuttonBox----------------#
     opcion= IntVar()
     #-----------------------------------------------#
 
-    
+    #NO ELIMINAR
     #------------------Lista de usuarios-------------#
     def RellenadoLista(contador):
         aux=0
@@ -109,7 +113,7 @@ def Pantalla():
             linea=archivo.readline()
         return " ", " ", " "  
     #-----------------------------------------------#
-    
+    #NO ELIMINAR
     #------------Actualizar Pantalla----------------#
     def Actualizarpantalla():
         Admin = tkinter.Canvas(frameAdmin)
@@ -214,7 +218,7 @@ def Pantalla():
             linea=archivo.readline()
     #-----------------------------------------------#
     #-----------------------------------------------#            
-    
+    #NO ELIMINAR
     #-----------Rellenar lista con el txt-----------#
     def Completartxt():
         aux=0
@@ -237,7 +241,7 @@ def Pantalla():
     Completartxt()
         
     #----------------Funciones de Admin-------------#
-    
+    #NO ELIMINAR
     #----------------Agregar Usuario----------------#
     def Agregar():
         pruebatxt = os.getcwd()
@@ -273,7 +277,7 @@ def Pantalla():
             else:
                 messagebox.showwarning("Error Correo", "El correo "+correoEntrada+" no es valido")
     #-----------------------------------------------# 
-    
+    #NO ELIMINAR
     #----------------Editar Usuario-----------------#
     def EditarU():
         if(opcion.get()!=0):
@@ -380,7 +384,7 @@ def Pantalla():
             messagebox.showwarning("Error selección", "No ha seleccionado nada para poder editar")
     #-----------------------------------------------#     
         
-        
+     #NO ELIMINAR   
     #--------------Eliminar Usuario-----------------#
     def EliminarU():
         if(opcion.get()!=0):
@@ -435,7 +439,7 @@ def Pantalla():
             messagebox.showwarning("Error selección", "No ha seleccionado nada para poder eliminar")  
     #-----------------------------------------------# 
     #-----------------------------------------------#    
-    
+    #NO ELIMINAR
     #------------Frame Rastreo Activo--------------# 
     RastreoActivo = tkinter.Canvas(frameRastreoActivo) 
     RastreoActivo.config(width=1425,height=720) 
@@ -450,27 +454,6 @@ def Pantalla():
     ActivarCamara.config(bd=0.5) 
      
     btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta 
-    btnregresar.place(x=1150,y=650) 
-    btnregresar.config(width="15") 
-    btnregresar.configure(relief="solid") 
-    btnregresar.config(bd=0.5)     
- 
-    #-----------------------------------------------#  
-    
-    #--------Frame Rastreo Activo Admin-------------# 
-    RastreoActivoAdmin = tkinter.Canvas(frameRastreoActivoAdmin) 
-    RastreoActivoAdmin.config(width=1425,height=720) 
-    RastreoActivoAdmin.config(bg="white") 
-    RastreoActivoAdmin.configure(relief="solid") 
-    RastreoActivoAdmin.place(x=50,y=100) 
-     
-    ActivarCamara = Button(RastreoActivoAdmin,text="Activar camara",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RastreoActivoCamara()]) ## Boton crear cuenta 
-    ActivarCamara.place(x=500,y=650) 
-    ActivarCamara.config(width="12") 
-    ActivarCamara.configure(relief="solid") 
-    ActivarCamara.config(bd=0.5) 
-     
-    btnregresar = Button(RastreoActivoAdmin,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoAdmin()]) ## Boton crear cuenta 
     btnregresar.place(x=1150,y=650) 
     btnregresar.config(width="15") 
     btnregresar.configure(relief="solid") 
@@ -690,44 +673,7 @@ def Pantalla():
 
     
 
-    def switchUser():
-        global is_on
-        global triggerA,triggerC,triggerB
-        
-        # Determine is on or off
-        if is_on:
-            on_button.config(image = off)
-            on_button1.config(image = off)
-            on_button2.config(image = off)
-            labelEstadoCam.config(text = "Cámara apagada", bg="white",fg = "black",font = ("Arial", 14))
-            is_on = False
-        else:
-           
-            on_button.config(image = on)
-            on_button1.config(image = on)
-            on_button2.config(image = on)
-            
-            labelEstadoCam.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
-            labelEstadoCamAdmin.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
-            labelEstadoCamBuscar.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
-            labelEstadoCamBuscarAdmin.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
-            labelEstadoCamDetectar.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
-            labelEstadoCamDetectarAdmin.config(text = "Cámara encendida", bg="white",fg = "green",font = ("Arial", 14))
-            is_on = True
-            switch2User()
   
-    def switch2User():
-        global triggerA,triggerC,triggerB
-        nombrerostro=entryNombreDetectarUser.get()
-        if(triggerC==True):
-            reconocimientoC(nombrerostro)
- 
-        if(triggerB==True):
-            reconocimientoB(nombrerostro)
-
-        if(triggerA==True):
-            reconocimientoA(nombrerostro)
-
     
 #+++++++++++++++FRAME CAM ADMIN++++++++++++++++++++++++++++++++#  
     miframe2=tkinter.Canvas(framecamAdmin)
@@ -914,64 +860,101 @@ def Pantalla():
             
 
 
- #+++++++++++++++FRAME Detectar Rostro User+++++++++++++++++++++++++++++++#  
-    miframe5=tkinter.Canvas(framecamDetectar)
-    miframe5.config(width=840,height=420)
-    miframe5.config(bg="white")
-    miframe5.configure(relief="solid")
-    miframe5.config(bd=0.5)
-    miframe5.create_text(50, 50, text="Camara",font=("Arial",14))
-    miframe5.place(x=100,y=175)
-    
-    labelEstadoCamDetectar = tk.Label(framecamDetectar, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14,"bold"))
-    labelEstadoCamDetectar.place(x=100,y=100)
-    
-    btnBuscarRostroUser = Button(framecamDetectar,text="Buscar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white') ## Boton crear cuenta
-    btnBuscarRostroUser.place(x=1050,y=175)
-    btnBuscarRostroUser.config(width="16")
-    btnBuscarRostroUser.configure(relief="solid")
-    btnBuscarRostroUser.config(bd=0.5)
-    
-    btnDetectarRostroUser = Button(framecamDetectar,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#9A9797',fg='black',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
-    btnDetectarRostroUser.place(x=1050,y=255)
-    btnDetectarRostroUser.config(width="16")
-    btnDetectarRostroUser.configure(relief="solid")
-    btnDetectarRostroUser.config(bd=0.5)
-    
-    my_label1 = tk.Label(framecamDetectar, text = "Seleccionar Modo",bg="white",fg = "black",font = ("Arial", 14, "bold"))
-    my_label1.place(x=1060,y=100)
-    
-    comboBoxDetectarRostroUser = ttk.Combobox(framecamDetectar, font=("Arial", 14,"bold"))
-    comboBoxDetectarRostroUser['values']= ('Seleccionar Patron','Reconocimiento A','Reconocimiento B','Reconocimiento C')
-    comboBoxDetectarRostroUser.place(x=1050,y=335)
-    comboBoxDetectarRostroUser.config(width= "16")
-    comboBoxDetectarRostroUser.current(0)
-    
-    botonAplicarDetectarUser = Button(framecamDetectar,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerComboUser()]) ## Boton crear cuenta
-    botonAplicarDetectarUser.place(x=1050,y=415)
-    botonAplicarDetectarUser.config(width="16")
-    botonAplicarDetectarUser.configure(relief="solid")
-    botonAplicarDetectarUser.config(bd=0.5)
-    
-    botonGuardarRostroUser = Button(framecamDetectar,text="Guardar Rostro user",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro()]) ## Boton crear cuenta
-    botonGuardarRostroUser.place(x=1050,y=495)
-    botonGuardarRostroUser.config(width="16")
-    botonGuardarRostroUser.configure(relief="solid")
-    botonGuardarRostroUser.config(bd=0.5)
-        
-    botonRastreoActivoUser = Button(framecamDetectar,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
-    botonRastreoActivoUser.place(x=1050,y=575)
-    botonRastreoActivoUser.config(width="16")
-    botonRastreoActivoUser.configure(relief="solid")
-    botonRastreoActivoUser.config(bd=0.5)
-    
-    botonRegresarDetectarUser = Button(framecamDetectar,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta
-    botonRegresarDetectarUser.place(x=1050,y=655)
-    botonRegresarDetectarUser.config(width="16")
-    botonRegresarDetectarUser.configure(relief="solid")
-    botonRegresarDetectarUser.config(bd=0.5)
+ #+++++++++++++++FRAME Detectar Rostro FINAL NO BORRAR+++++++++++++++++++++++++++++++#  
+     #NO ELIMINAR
+    s = os.getcwd()
+    new_s = s.replace('\\','/')
+    new_s = s.replace('Main','Graficas')
+    new_s1 = s.replace('\\','/')
+    #new_s1 = s.replace('Main','Guardar informacion de rostros',entryNombre1.get())
+    on = PhotoImage(file = new_s+"/on.png")
+    off = PhotoImage(file = new_s+"/off.png")
+    detectar = PhotoImage(file = new_s+"/imagenDetectar.png")
+    buscar = PhotoImage(file = new_s+"/imagenBuscar.png")
+    on_button2 = Button(DetectFace, image = off, bd = 0,command = lambda:[switchUser()])
+    on_button2.place(x=575,y=230)
+    entryNombreDetectarFinal = ttk.Entry(DetectFace) ## Entrada de nombre
+    entryNombreDetectarFinal.place(x=360, y=440, width="350",height="30")
+    labelnombreDetectarFinal= Label(DetectFace,text="Nombre",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelnombreDetectarFinal.place(x=360, y=420)
+   
     
     
+    labelEstadoCamDetectar = tk.Label(DetectFace, text = "Encender Cámara",bg="white",fg = "black",font = ("Arial", 14,"bold"))
+    labelEstadoCamDetectar.place(x=550,y=170)
+    labelinstructivo= Label(DetectFace,text="Para Buscar y Guardar un rostro es necesario seleccionar",font=("Arial",14,'bold'))
+    labelinstructivo.place(x=880, y=160)
+    labelinstructivo2= Label(DetectFace,text=" un patrón, luego, aplicar el patrón y encender",font=("Arial",14,'bold'))
+    labelinstructivo2.place(x=880, y=200)
+    labelinstructivo3= Label(DetectFace,text="la cámara (Tocar el botón Off/On). Al momento de ",font=("Arial",14,'bold'))
+    labelinstructivo3.place(x=880, y=240)
+    labelinstructivo4= Label(DetectFace,text="hacer click en el botón se abrirá una ventana y",font=("Arial",14,'bold'))
+    labelinstructivo4.place(x=880, y=280)
+    labelinstructivo6= Label(DetectFace,text="sacar la fotografía con la tecla escape.",font=("Arial",14,'bold'))
+    labelinstructivo6.place(x=880, y=320)
+    labelinstructivo5= Label(DetectFace,text="Para guardar el rostro es necesario rellenar la",font=("Arial",14,'bold'))
+    labelinstructivo5.place(x=880, y=400)
+    labelinstructivo7= Label(DetectFace,text="información del recuadro rojo y luego pulsar Guardar rostro.",font=("Arial",14,'bold'))
+    labelinstructivo7.place(x=880, y=440)
+    labelinstructivo8= Label(DetectFace,text="Para repetir el proceso hay que accionar nuevamente el",font=("Arial",14,'bold'))
+    labelinstructivo8.place(x=880, y=520)
+    labelinstructivo9= Label(DetectFace,text="Botón Off/On, apagarlo y volverlo a encender respectivamente.",font=("Arial",14,'bold'))
+    labelinstructivo9.place(x=880, y=560)
+    labelinstructivo0= Label(DetectFace,text="Para cambiar patrón basta con seleccionar uno nuevo y aplicarlo.",font=("Arial",14,'bold'))
+    labelinstructivo0.place(x=880, y=660)
+    
+    comboBoxDetectarRostroFinal = ttk.Combobox(DetectFace, font=("Arial", 14,"bold"))
+    comboBoxDetectarRostroFinal['values']= ('Seleccionar Patron','Reconocimiento A','Reconocimiento B','Reconocimiento C')
+    comboBoxDetectarRostroFinal.place(x=120,y=170)
+    comboBoxDetectarRostroFinal.config(width= "16")
+    comboBoxDetectarRostroFinal.current(0)
+    
+    botonAplicarDetectarFinal = Button(DetectFace,text="Aplicar patrón",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[obtenerComboUser()]) ## Boton crear cuenta
+    botonAplicarDetectarFinal.place(x=120,y=230)
+    botonAplicarDetectarFinal.config(width="16")
+    botonAplicarDetectarFinal.configure(relief="solid")
+    botonAplicarDetectarFinal.config(bd=0.5)
+    
+    botonGuardarRostroFinal = Button(DetectFace,text="Guardar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[guardarRostro()]) ## Boton crear cuenta
+    botonGuardarRostroFinal.place(x=320,y=600)
+    botonGuardarRostroFinal.config(width="20",height="2")
+    botonGuardarRostroFinal.configure(relief="solid")
+    botonGuardarRostroFinal.config(bd=0.5)
+
+    botonRegresarDetectarFinal = Button(DetectFace,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta
+    botonRegresarDetectarFinal.place(x=345,y=700)
+    botonRegresarDetectarFinal.config(width="16",height="2")
+    botonRegresarDetectarFinal.configure(relief="solid")
+    botonRegresarDetectarFinal.config(bd=0.5)
+    
+
+   #NO ELIMINAR
+    #Canvas para mostrar Nombre Descripcion Fecha
+    CanvasBuscarRostroFinal = tkinter.Canvas(DetectFace)   
+    CanvasBuscarRostroFinal.config(width=750,height=200)
+    CanvasBuscarRostroFinal.configure(relief="solid")
+    CanvasBuscarRostroFinal.place(x=100,y=350)
+    CanvasBuscarRostroFinal.create_image(0,0, image=buscar, anchor="nw")
+   ## CanvasBuscarRostroFinal.create_image(0,0, image=pruebademiniatura, anchor="nw")
+   #NO ELIMINAR
+    entryNombreDetectarFinal = ttk.Entry(DetectFace) ## Entrada de nombre
+    entryNombreDetectarFinal.place(x=360, y=380, width="350",height="30")
+    labelnombreDetectarFinal= Label(DetectFace,text="Nombre",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelnombreDetectarFinal.place(x=360, y=360)
+    
+    entryDescripcionDetectarFinal = ttk.Entry(DetectFace) ## Entrada de descripción
+    entryDescripcionDetectarFinal.place(x=360,y=440, width="350",height="30")
+    labelDescripcionDetectarFinal= Label(DetectFace,text="Descripción",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelDescripcionDetectarFinal.place(x=360,y=420)
+    
+    entryFechaDetectarFinal = ttk.Entry(DetectFace) ## Entrada de fecha
+    entryFechaDetectarFinal.place(x=360,y=500, width="350",height="30")
+    labelFechaDetectarFinal = Label(DetectFace,text="Fecha",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
+    labelFechaDetectarFinal.place(x=360,y=480)
+    
+ 
+
+ #++++++++++++++++++++++++++++++++++++++++++++++#     
    
             
 #+++++++++++++++FRAME Detectar Rostro ADMIN+++++++++++++++++++++++++++++++#  
@@ -1032,31 +1015,7 @@ def Pantalla():
     botonRegresarDetectarAdmin.config(bd=0.5)
     
     
-    
-    s = os.getcwd()
-    new_s = s.replace('\\','/')
-    new_s = s.replace('Main','Graficas')
-    new_s1 = s.replace('\\','/')
-    #new_s1 = s.replace('Main','Guardar informacion de rostros',entryNombre1.get())
-    on = PhotoImage(file = new_s+"/on.png")
-    off = PhotoImage(file = new_s+"/off.png")
-    detectar = PhotoImage(file = new_s+"/imagenDetectar.png")
-    buscar = PhotoImage(file = new_s+"/imagenBuscar.png")
-    
-    on_button = Button(framecamUser, image = off, bd = 0,command = switchUser)
-    on_button.place(x=100,y=130)
-    on_button1 = Button(framecamBuscar, image = off, bd = 0,command = switchUser)
-    on_button1.place(x=100,y=130)
-    on_button2 = Button(framecamDetectar, image = off, bd = 0,command = switchUser)
-    on_button2.place(x=100,y=130)
-    
-    
-    on_buttonA = Button(framecamAdmin, image = off, bd = 0,command = switchAdmin)
-    on_buttonA.place(x=100,y=130)
-    on_button1A = Button(framecam2Admin, image = off, bd = 0,command = switchAdmin)
-    on_button1A.place(x=100,y=130)
-    on_button2A = Button(framecam1Admin, image = off, bd = 0,command = switchAdmin)
-    on_button2A.place(x=100,y=130)
+  
     
     
     #Canvas detectar rostro USER
@@ -1120,10 +1079,15 @@ def Pantalla():
     labelFechaDetectarAdmin = Label(framecam2Admin,text="Fecha",font=("Arial",10,'bold'),background='#a8021e',foreground="white")
     labelFechaDetectarAdmin.place(x=360,y=740)
     
+    # FUNCIONES             #
+    #########################
+       
+    ##NO ELIMINAR
+    
     def guardarRostro():
-        nombrerostro=entryNombreDetectarUser.get()
-        descripcionrostro=entryDescripcionDetectarUser.get()
-        fecharostro=entryFechaDetectarUser.get()
+        nombrerostro=entryNombreDetectarFinal.get()
+        descripcionrostro=entryDescripcionDetectarFinal.get()
+        fecharostro=entryFechaDetectarFinal.get()
         pruebatxt = os.getcwd()
         new_s = pruebatxt.replace('\\','/')
         new_s = pruebatxt.replace('Main','Guardar informacion de rostros')
@@ -1136,67 +1100,47 @@ def Pantalla():
         f.close()
         
         
-    def guardarRostro2():
-        nombrerostro=entryNombreDetectarAdmin.get()
-        print("Nombre rostro 2", nombrerostro +"\n")
-        descripcionrostro=entryDescripcionDetectarAdmin.get()
-        print("Nombre rostro 2", descripcionrostro +"\n")
-        fecharostro=entryFechaDetectarAdmin.get()
-        print("Nombre rostro 2", fecharostro +"\n")
-        pruebatxt = os.getcwd()
-        new_s = pruebatxt.replace('\\','/')
-        new_s = pruebatxt.replace('Main','Guardar informacion de rostros')
-        auxilioprueba = new_s.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
-        auxilioprueba = pruebatxt.replace('Main','Guardar informacion de rostros/'+nombrerostro+'/Datos.txt') 
-        print("Directorio Guardar Rostro 2", auxilioprueba)
-        probando=("Nombre:"+nombrerostro+"\nDescipción:"+descripcionrostro+"\nFecha:"+fecharostro+"\n")
-        f = open (auxilioprueba,'w')
-        f.write(probando)
-        f.close()
-    # FUNCIONES             #
-    #########################
     
-    
-
-    def obtenerComboAdmin():
-        comparar=comboReconocimientoAdmin.get()
-        compararDetectar=comboBoxDetectarRostroAdmin.get()
-        global nombrerostro
-        nombrerostro=entryNombreDetectarAdmin.get()
-        global triggerA
-        global triggerB
-        global triggerC
+    ##NO ELIMINAR
+    def switchUser():
+        global is_on
+        global triggerA,triggerC,triggerB
         
-        if(comparar =='Reconocimiento A' or compararDetectar == 'Reconocimiento A'):
-            triggerC=False
-            triggerB=False
-            triggerA=True
-            return True  
-            print("si entra A")
-        if(comparar =='Reconocimiento B' or compararDetectar == 'Reconocimiento B'):
-            triggerA=False
-            triggerC=False
-            triggerB=True
-            return True 
-            print("si entra B")
-        if(comparar =='Reconocimiento C' or compararDetectar == 'Reconocimiento C' ):
-            triggerA=False
-            triggerB=False
-            triggerC=True
-            return True
-            print("si entra C")
-            
+        # Determine is on or off
+        if is_on:
+            on_button2.config(image = off)
+            is_on = False
+        else:
+           
+            on_button2.config(image = on)
+            is_on = True
+            switch2User()
+     
+    ##NO ELIMINAR
+    def switch2User():
+        global triggerA,triggerC,triggerB
+        nombrerostro=entryNombreDetectarFinal.get()
+        if(triggerC==True):
+            reconocimientoC(nombrerostro)
+ 
+        if(triggerB==True):
+            reconocimientoB(nombrerostro)
+
+        if(triggerA==True):
+            reconocimientoA(nombrerostro)
+        
+    ##NO ELIMINAR       
     def obtenerComboUser():
-        comparar1=comboReconocimientoUser.get()
-        compararDetectarUser=comboBoxDetectarRostroUser.get()
+        comparar1=comboBoxDetectarRostroFinal.get()
+        compararDetectarUser=comboBoxDetectarRostroFinal.get()
         print(compararDetectarUser)
         global nombrerostro
-        nombrerostro=entryNombreDetectarUser.get()
+        nombrerostro=entryNombreDetectarFinal.get()
         global triggerA
         global triggerB
         global triggerC
         
-        if(comparar1 =='Reconocimiento A' or compararDetectarUser == 'Reconocimiento A'):
+        if(comparar1 =='Reconocimiento A' or compararDetectarFinal == 'Reconocimiento A'):
             triggerC=False
             triggerB=False
             triggerA=True
@@ -1204,20 +1148,21 @@ def Pantalla():
             
       
        
-        if(comparar1 =='Reconocimiento B' or compararDetectarUser == 'Reconocimiento B'):
+        if(comparar1 =='Reconocimiento B' or compararDetectarFinal == 'Reconocimiento B'):
             triggerA=False
             triggerC=False
             triggerB=True
             return True 
             
       
-        if(comparar1 =='Reconocimiento C' or compararDetectarUser == 'Reconocimiento C'):
+        if(comparar1 =='Reconocimiento C' or compararDetectarFinal == 'Reconocimiento C'):
             triggerA=False
             triggerB=False
             triggerC=True
             return True
-            
-         
+    
+    
+    #NO ELIMINAR
     def Login():
         usuario=EntradaUsuario.get()
         contraseña=EntradaContraseña.get()
@@ -1239,8 +1184,13 @@ def Pantalla():
    
     def RegresoAdmin1():
             show_frame(framecamAdmin)
+            
+            
+    #NO ELIMINAR      
     def GotoAñadir():
         show_frame(frameAdminAdd)
+        
+    #NO ELIMINAR    
     def GotoEdit(): 
         if(opcion.get()!=0): 
             show_frame(frameAdminEditar)       
@@ -1252,7 +1202,8 @@ def Pantalla():
     
     def RegresoAdmin():
         show_frame(framecamAdmin)
-            
+        
+     #NO ELIMINAR       
     def Olvide():
         show_frame(frameforg)
             
@@ -1267,15 +1218,17 @@ def Pantalla():
         
     def BuscarRostroAdmin():
         show_frame(framecam1Admin)
-
+    
+    #NO ELIMINAR
     def FrameAdministrarEditar():
         show_frame(frameAdmin)
+    #NO ELIMINAR    
     def FrameAdministrarAdd():
         show_frame(frameAdmin) 
-
+    #NO ELIMINAR
     def FrameAdministrar():
         show_frame(frameAdmin)
-    
+    #NO ELIMINAR
     def BottonRastreoActivo():
         show_frame(frameRastreoActivo)
             
@@ -1288,7 +1241,7 @@ def Pantalla():
     
             
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(frameAdmin)     ## Mostramos el frame default (login)
+    show_frame(DetectFace)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
