@@ -19,7 +19,8 @@ global triggerA,triggerC,triggerB
 triggerA=False;
 triggerC=False;
 triggerB=False;
-
+global tipoUsuario
+tipoUsuario=" "
 
 def Pantalla():
     global is_on
@@ -439,7 +440,7 @@ def Pantalla():
     ActivarCamara.configure(relief="solid") 
     ActivarCamara.config(bd=0.5) 
      
-    btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta 
+    btnregresar = Button(RastreoActivo,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoDeRastreoActivo()]) ## Boton crear cuenta 
     btnregresar.place(x=1150,y=650) 
     btnregresar.config(width="15") 
     btnregresar.configure(relief="solid") 
@@ -673,7 +674,7 @@ def Pantalla():
     botonGuardarRostroFinal.configure(relief="solid")
     botonGuardarRostroFinal.config(bd=0.5)
 
-    botonRegresarDetectarFinal = Button(DetectFace,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoUser()]) ## Boton crear cuenta
+    botonRegresarDetectarFinal = Button(DetectFace,text="Regresar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RegresoPantallaPrincipal()]) ## Boton crear cuenta
     botonRegresarDetectarFinal.place(x=345,y=700)
     botonRegresarDetectarFinal.config(width="16",height="2")
     botonRegresarDetectarFinal.configure(relief="solid")
@@ -788,6 +789,8 @@ def Pantalla():
         usuario=EntradaUsuario.get()
         contraseña=EntradaContraseña.get()
         resultado=verificarUsuario(usuario,contraseña)
+        global tipoUsuario
+        tipoUsuario=resultado
         if(resultado == 'Admin'):
             print("Ingreso como Admin")
             show_frame(framecamAdmin)
@@ -797,12 +800,21 @@ def Pantalla():
         else:
             print("Error en usuario o contraseña")
             
-    def RegresoUser():
+    def RegresoDeRastreoActivo():
+        if(tipoUsuario=='User'):
             show_frame(framecamUser)
+        elif(tipoUsuario=='Admin'):
+            show_frame(framecamAdmin)
+    
+    def RegresoPantallaPrincipal():
+        if(tipoUsuario=='User'):
+            show_frame(framecamUser)
+        elif(tipoUsuario=='Admin'):
+            show_frame(framecamAdmin)
     
     def RegresoAdmin():
-            show_frame(framecamAdmin)
-            
+        show_frame(framecamAdmin)
+        
     def Regreso():
         show_frame(framelogin)
     #NO ELIMINAR      
