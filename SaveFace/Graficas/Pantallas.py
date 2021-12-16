@@ -71,10 +71,13 @@ def Pantalla():
     
     frameAdminAdd= tk.Frame(ventana,bg="white")
     frameAdminAdd.config(height=1900,width=1900)
+    
     frameRastreoActivo= tk.Frame(ventana,bg="white")
     frameRastreoActivo.config(height=1900,width=1900)
+    
     frameRastreoActivoAdmin= tk.Frame(ventana,bg="white")
     frameRastreoActivoAdmin.config(height=1900,width=1900)
+    
     for frame in (framelogin, framecamUser,framecamAdmin,DetectFace, frameforg,frameAdmin, frameAdminEditar,frameAdminAdd,frameRastreoActivo,frameRastreoActivoAdmin): #For para mostrar los frames
         frame.grid(row=0,column=0,sticky='nsew')
 
@@ -435,8 +438,8 @@ def Pantalla():
     RastreoActivo.place(x=50,y=100) 
      
     ActivarCamara = Button(RastreoActivo,text="Activar camara",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[RastreoActivoCamara()]) ## Boton crear cuenta 
-    ActivarCamara.place(x=500,y=650) 
-    ActivarCamara.config(width="12") 
+    ActivarCamara.place(x=600,y=550) 
+    ActivarCamara.config(width="16") 
     ActivarCamara.configure(relief="solid") 
     ActivarCamara.config(bd=0.5) 
      
@@ -453,19 +456,25 @@ def Pantalla():
     Admineditar.config(width=1425,height=720) 
     Admineditar.config(bg="white") 
     Admineditar.configure(relief="solid") 
-    Admineditar.place(x=50,y=100) 
+    Admineditar.place(x=50,y=100)
+    
     editarUsuario = ttk.Entry(Admineditar)     
     editarUsuario.place(x=550,y=300,width="350",height="50") 
+    
     editarContra = ttk.Entry(Admineditar)     
     editarContra.place(x=550,y=450,width="350",height="50") 
+    
     Admineditar.create_text(740, 75, text="Introduzca el nuevo correo y contraseña",font=("Arial",24,'bold')) 
+    Admineditar.create_text(760, 100, text="para editar un usuario",font=("Arial",24,'bold')) 
     Admineditar.create_text(715, 275, text="Correo",font=("Arial",14,'bold')) 
     Admineditar.create_text(715, 425, text="Contraseña",font=("Arial",14,'bold')) 
+    
     btnedit = Button(frameAdminEditar,text="Aceptar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[EditarU()]) ## Boton crear cuenta 
     btnedit.place(x=550,y=700) 
     btnedit.config(width="10",height="2") 
     btnedit.configure(relief="solid") 
     btnedit.config(bd=0.5) 
+    
     btnedit1 = Button(frameAdminEditar,text="Cancelar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrarEditar()]) ## Boton crear cuenta 
     btnedit1.place(x=850,y=700) 
     btnedit1.config(width="10",height="2") 
@@ -479,18 +488,24 @@ def Pantalla():
     Adminañadir.config(bg="white") 
     Adminañadir.configure(relief="solid") 
     Adminañadir.place(x=50,y=100) 
+    
     editarUsuario2 = ttk.Entry(Adminañadir)     
     editarUsuario2.place(x=550,y=300,width="350",height="50") 
+    
     editarContra2 = ttk.Entry(Adminañadir)     
     editarContra2.place(x=550,y=450,width="350",height="50") 
+    
     Adminañadir.create_text(740, 75, text="Introduzca el correo y contraseña",font=("Arial",24,'bold')) 
+    Adminañadir.create_text(760, 100, text="para agregar un usuario",font=("Arial",24,'bold'))
     Adminañadir.create_text(715, 275, text="Correo",font=("Arial",14,'bold')) 
     Adminañadir.create_text(715, 425, text="Contraseña",font=("Arial",14,'bold')) 
+    
     btnedit3 = Button(frameAdminAdd,text="Aceptar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[Agregar()]) ## Boton crear cuenta 
     btnedit3.place(x=550,y=700) 
     btnedit3.config(width="10",height="2") 
     btnedit3.configure(relief="solid") 
     btnedit3.config(bd=0.5) 
+    
     btnedit2 = Button(frameAdminAdd,text="Cancelar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrarAdd()]) ## Boton crear cuenta 
     btnedit2.place(x=850,y=700) 
     btnedit2.config(width="10",height="2") 
@@ -557,25 +572,24 @@ def Pantalla():
     
     
    #+++++++++++++++FRAME CAM USER++++++++++++++++++++++++++++++++#  
-    miframeUser=tkinter.Canvas(framecamUser)
-    miframeUser.config(width=840,height=420)
-    miframeUser.config(bg="white")
-    miframeUser.configure(relief="solid")
-    miframeUser.config(bd=0.5)
-    miframeUser.create_text(50, 50, text="Camara",font=("Arial",14))
-    miframeUser.place(x=100,y=175)
-    
-    labelUser = tk.Label(framecamUser, text = "Seleccionar acción deseada ",bg="white",fg = "black",font = ("Arial", 14))
-    labelUser.place(x=450,y=350) 
+   
+    RastreoActivo = tkinter.Canvas(framecamUser) 
+    RastreoActivo.config(width=500,height=300) 
+    RastreoActivo.config(bg="white") 
+    RastreoActivo.configure(relief="solid") 
+    RastreoActivo.place(x=25, y=90)     
+   
+    labelUser = tk.Label(framecamUser, text = "Seleccionar acción deseada ",bg="white",fg = "black",font = ("Arial", 16, "bold"))
+    labelUser.place(x=130,y=150) 
    
     btnDetectarRostro = Button(framecamUser,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
-    btnDetectarRostro .place(x=1050,y=320)
+    btnDetectarRostro .place(x=50,y=250)
     btnDetectarRostro .config(width="16")
     btnDetectarRostro .configure(relief="solid")
     btnDetectarRostro .config(bd=0.5)
     
     btnRastreoActivo = Button(framecamUser,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
-    btnRastreoActivo.place(x=600,y=120)
+    btnRastreoActivo.place(x=300,y=250)
     btnRastreoActivo.config(width="16")
     btnRastreoActivo.configure(relief="solid")
     btnRastreoActivo.config(bd=0.5)
@@ -583,36 +597,35 @@ def Pantalla():
 
 #+++++++++++++++FRAME CAM ADMIN++++++++++++++++++++++++++++++++#  
     miframe2=tkinter.Canvas(framecamAdmin)
-    miframe2.config(width=840,height=420)
+    miframe2.config(width=500,height=300)
     miframe2.config(bg="white")
     miframe2.configure(relief="solid")
-    miframe2.config(bd=0.5)
-    miframe2.create_text(50, 50, text="Camara",font=("Arial",14))
-    miframe2.place(x=50,y=100)
+    miframe2.place(x=25, y=90)
+    
+    labelAdmin = tk.Label(framecamAdmin, text = "Seleccionar acción deseada ",bg="white",fg = "black",font = ("Arial", 16, "bold"))
+    labelAdmin.place(x=130,y=150)
+    
     
     btnDetectarAdmin = Button(framecamAdmin,text="Detectar Rostro",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[DetectarRostro()]) ## Boton crear cuenta
-    btnDetectarAdmin.place(x=1050,y=250)
-    btnDetectarAdmin.config(width="12")
+    btnDetectarAdmin.place(x=50,y=250)
+    btnDetectarAdmin.config(width="16")
     btnDetectarAdmin.configure(relief="solid")
     btnDetectarAdmin.config(bd=0.5)
     
-    btnAdministrar = Button(framecamAdmin,text="Administrar",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrar()]) ## Boton crear cuenta
-    btnAdministrar.place(x=1200,y=100)
-    btnAdministrar.config(width="12")
+    
+    btnRastreoActivoAdmin = Button(framecamAdmin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
+    btnRastreoActivoAdmin.place(x=300,y=250)
+    btnRastreoActivoAdmin.config(width="16")
+    btnRastreoActivoAdmin.configure(relief="solid")
+    btnRastreoActivoAdmin.config(bd=0.5)
+    
+    
+    btnAdministrar = Button(framecamAdmin,text="Administrar Usuarios",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[FrameAdministrar()]) ## Boton crear cuenta
+    btnAdministrar.place(x=160,y=320)
+    btnAdministrar.config(width="18")
     btnAdministrar.configure(relief="solid")
     btnAdministrar.config(bd=0.5)
     
-    labelEstadoCamAdmin = tk.Label(framecamAdmin, text = "Cámara apagada",bg="white",fg = "black",font = ("Arial", 14))
-    labelEstadoCamAdmin.place(x=750,y=550)
-    
-    labelAdmin = tk.Label(framecamAdmin, text = "Seleccionar acción deseada ",bg="white",fg = "black",font = ("Arial", 14))
-    labelAdmin.place(x=450,y=350) 
-   
-    btnRastreoActivoAdmin = Button(framecamAdmin,text="Rastreo Activo",font=("Arial",14,'bold'),bg='#a8021e',fg='white',command=lambda:[BottonRastreoActivo()]) ## Boton crear cuenta
-    btnRastreoActivoAdmin.place(x=750,y=650)
-    btnRastreoActivoAdmin.config(width="15")
-    btnRastreoActivoAdmin.configure(relief="solid")
-    btnRastreoActivoAdmin.config(bd=0.5)
     
     
  #+++++++++++++++FRAME Detectar Rostro FINAL NO BORRAR+++++++++++++++++++++++++++++++#  
@@ -855,7 +868,7 @@ def Pantalla():
     
        
     #l-l-l-l-l PROGRAMA MAIN l-l-l-l-l-l-#     
-    show_frame(framelogin)     ## Mostramos el frame default (login)
+    show_frame(frameRastreoActivo)     ## Mostramos el frame default (login)
     frametop=tkinter.Canvas(ventana) ## Corresponde a la barra verde superior que dice "Saveface" 
     frametop.config(width=2000,height=75) 
     frametop.place(x=0,y=0) 
